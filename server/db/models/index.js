@@ -21,8 +21,6 @@ const Order = require('./order')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-console.log(User.prototype)
-
 module.exports = {
   User,
   Product,
