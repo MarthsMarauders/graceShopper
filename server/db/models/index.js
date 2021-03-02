@@ -17,6 +17,12 @@ const Order = require('./order')
  *
  */
 
+// 1 to many
+User.hasMany(Order)
+Order.belongsTo(User)
+
+console.log(User.prototype)
+
 module.exports = {
   User,
   Product,
