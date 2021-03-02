@@ -1,5 +1,15 @@
 # Boilermaker
 
+Notes:
+
+<!-- add changes line by line -->
+
+git add -p
+
+<!-- create new branch and chekc it out -->
+
+git checkout -b new-branch
+
 Goodbye World!
 
 _Good things come in pairs_
