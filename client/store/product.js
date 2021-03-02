@@ -5,7 +5,7 @@ import history from '../history'
  * ACTION TYPES
  */
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
-// const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
+const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 
 /**
  * INITIAL STATE
@@ -23,8 +23,7 @@ export const getProducts = products => ({
   products
 })
 
-// export const getProducts = (products) => ({type: GET_ALL_PRODUCTS, products})
-// const getSingleProducts = (product) => ({type: GET_SINGLE_PRODUCT, product})
+const getSingleProduct = product => ({type: GET_SINGLE_PRODUCT, product})
 
 /**
  * THUNK CREATORS
@@ -34,6 +33,17 @@ export const fetchAllProducts = () => {
     try {
       const {data} = await axios.get('/api/products')
       dispatch(getProducts(data))
+    } catch (error) {
+      console.log(error, 'trouble fetching')
+    }
+  }
+}
+
+export const fetchSingleProduct = id => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get(`/api/products/${id}`)
+      dispatch(getSingleProduct(data))
     } catch (error) {
       console.log(error, 'trouble fetching')
     }
@@ -55,9 +65,9 @@ export const fetchAllProducts = () => {
 export default function productReducer(state = initialState, action) {
   switch (action.type) {
     case GET_ALL_PRODUCTS:
-      return {...state, products: [action.products]}
-    // case GET_SINGLE_PRODUCT:
-    //   return {...state, product: action.product}
+      return {...state, products: action.products}
+    case GET_SINGLE_PRODUCT:
+      return {...state, product: action.product}
     default:
       return state
   }
