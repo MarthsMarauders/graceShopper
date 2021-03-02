@@ -9,11 +9,18 @@ async function seed() {
 
   const users = await Promise.all([
     User.create({
-      email: 'cody@email.com',
+      email: 'mikebusto4@email.com',
       password: '123',
       firstName: 'Mike',
       lastName: 'Busto',
       address: '15552 Main Street'
+    }),
+    User.create({
+      email: 'MrPeanut555@gmail.com',
+      password: '456',
+      firstName: 'Peanut',
+      lastName: 'Mister',
+      address: '7651 Adobe Street'
     })
     // User.create({email: 'murphy@email.com', password: '123'}),
   ])
@@ -40,7 +47,10 @@ async function seed() {
   ])
 
   const orders = await Promise.all([
-    Order.create({shipped: 'pending', totalPrice: 25})
+    Order.create({shipped: 'pending', totalPrice: 25}),
+    Order.create({shipped: 'shipped', totalPrice: 69.99}),
+    Order.create({shipped: 'pending', totalPrice: 89.5}),
+    Order.create({shipped: 'delivered', totalPrice: 1345.55})
   ])
 
   const order = await Order.findByPk(1)
