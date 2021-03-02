@@ -14,6 +14,8 @@ Goodbye World!
 
 _Good things come in pairs_
 
+CONTRACT https://docs.google.com/document/d/1kxPgK6R_1wcLnS61J8PFDmBUX-95U_dOdhksLoiBUew/edit
+
 Looking to mix up a backend with `express`/`sequelize` and a frontend with
 `react`/`redux`? That's `boilermaker`!
 
