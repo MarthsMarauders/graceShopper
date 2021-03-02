@@ -8,8 +8,21 @@ async function seed() {
   console.log('db synced!')
 
   const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
+    User.create({
+      email: 'mikebusto4@email.com',
+      password: '123',
+      firstName: 'Mike',
+      lastName: 'Busto',
+      address: '15552 Main Street'
+    }),
+    User.create({
+      email: 'MrPeanut555@gmail.com',
+      password: '456',
+      firstName: 'Peanut',
+      lastName: 'Mister',
+      address: '7651 Adobe Street'
+    })
+    // User.create({email: 'murphy@email.com', password: '123'}),
   ])
 
   const products = await Promise.all([
@@ -18,12 +31,32 @@ async function seed() {
       description: 'a tv the best',
       rating: 4,
       price: 129.99
+    }),
+    Product.create({
+      name: 'shoe',
+      description: 'the worst shoe',
+      rating: 1,
+      price: 1129.99
+    }),
+    Product.create({
+      name: 'chair',
+      description: 'a ok chair',
+      rating: 3,
+      price: 49.99
     })
   ])
 
   const orders = await Promise.all([
-    Order.create({shipped: 'pending', totalPrice: 25})
+    Order.create({shipped: 'pending', totalPrice: 25}),
+    Order.create({shipped: 'shipped', totalPrice: 69.99}),
+    Order.create({shipped: 'pending', totalPrice: 89.5}),
+    Order.create({shipped: 'delivered', totalPrice: 1345.55})
   ])
+
+  const order = await Order.findByPk(1)
+  const user = await User.findByPk(1)
+
+  await user.setOrders(order)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)
