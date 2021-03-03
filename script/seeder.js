@@ -3,6 +3,36 @@
 //   // document.querySelectorAll('td')[10].lastElementChild.childNodes[0].src; - img
 //   // obj with a name prop and it will contain first thing and img obj for second thing
 
+function f() {
+  let a = document.querySelectorAll('tr')[1].children[1].innerText
+  let img = document.querySelectorAll('tr')[1].lastElementChild.childNodes[0]
+    .href
+}
+// for 1993!!
+Array.from(document.querySelectorAll('tr')).map(row => {
+  let obj = {}
+  try {
+    let val = row.children[1]
+    if (val) obj.name = row.children[1].innerText
+    obj.img = row.lastElementChild.childNodes[0].href
+    return obj
+  } catch (error) {
+    console.log(error)
+  }
+})
+// FOR 1995!!!
+Array.from(document.querySelectorAll('tr')).map(row => {
+  let obj = {}
+  try {
+    let val = row.children[2]
+    //       let img = row.lastElementChild.childNodes[0].href
+    if (val) obj.name = row.children[2].innerText
+    obj.img = row.lastElementChild.childNodes[0].href
+    return obj
+  } catch (error) {
+    console.log(error)
+  }
+})
 //   '202',
 //   "'93 Camaro",
 //   'Purple',
