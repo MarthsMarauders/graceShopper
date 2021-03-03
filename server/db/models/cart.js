@@ -9,11 +9,11 @@ const Cart = db.define('cart', {
 
   totalPrice: {
     type: Sequelize.FLOAT
-  },
-
-  productsList: {
-    type: Sequelize.ARRAY(Sequelize.TEXT)
   }
+
+  // productsList: {
+  //   type: Sequelize.ARRAY(Sequelize.TEXT)
+  // }
 })
 
 module.exports = Cart

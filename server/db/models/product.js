@@ -29,7 +29,7 @@ const Product = db.define('product', {
     defaultValue: -1
   },
   price: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
   }
 })
 

@@ -8,7 +8,8 @@ router.get('/', async (req, res, next) => {
     const cart = await Cart.findAll({
       include: [
         {
-          model: Order
+          model: Product,
+          as: 'products'
         }
       ]
     })

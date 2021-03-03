@@ -61,20 +61,23 @@ async function seed() {
   const exampleCart = await Promise.all([
     Cart.create({
       totalItems: 2,
-      totalPrice: 59.98,
-      productsList: ['chair', 'bed']
+      totalPrice: 59.98
+      // productsList: ['chair', 'bed'],
     })
   ])
 
   const cart = await Cart.findByPk(1)
+  // const order2 = await Order.findByPk(2)
 
-  const order2 = await Order.findByPk(2)
+  const shoe = await Product.findByPk(2)
+  const chair = await Product.findByPk(3)
+  const tv = await Product.findByPk(1)
 
-  // const shoe = Product.findByPk(2)
+  await cart.setProducts(shoe)
+  await cart.setProducts(chair)
+  await cart.setProducts(tv)
 
-  // await cart.addProduct(shoe)
-
-  await cart.setOrder(order2)
+  // await cart.setOrder(order2)
 
   console.log(`seeded ${users.length} users`)
   console.log(`seeded successfully`)

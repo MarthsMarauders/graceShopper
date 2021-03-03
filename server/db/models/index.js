@@ -23,7 +23,7 @@ User.hasMany(Order)
 Order.belongsTo(User)
 
 // 1 cart can have many products
-Cart.hasMany(Product)
+Cart.hasMany(Product, {as: 'products'})
 Product.belongsTo(Cart)
 
 // 1 order can have many products
