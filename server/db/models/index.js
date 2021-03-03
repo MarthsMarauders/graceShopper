@@ -26,6 +26,16 @@ Order.belongsTo(User)
 Cart.hasMany(Product)
 Product.belongsTo(Cart)
 
+// user will have 1 cart
+// cart will belong to 1 user
+
+User.hasOne(Cart)
+Cart.belongsTo(User)
+
+//should be many to many
+// Cart.belongsToMany(Product)
+// Product.belongsToMany(Cart)
+
 // 1 order can have many products
 // Order.hasMany(Product)
 // Product.belongsTo(Order)

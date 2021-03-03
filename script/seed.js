@@ -67,12 +67,10 @@ async function seed() {
   ])
 
   const cart = await Cart.findByPk(1)
-
   const order2 = await Order.findByPk(2)
 
-  // const shoe = Product.findByPk(2)
-
-  // await cart.addProduct(shoe)
+  const shoe = await Product.findByPk(2)
+  await cart.addProduct(shoe)
 
   await cart.setOrder(order2)
 

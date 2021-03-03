@@ -8,7 +8,7 @@ const Product = db.define('product', {
     allowNull: false
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     defaultValue: 'https://bitsofco.de/content/images/2018/12/broken-1.png'
   },
@@ -29,7 +29,7 @@ const Product = db.define('product', {
     defaultValue: -1
   },
   price: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
   }
 })
 
