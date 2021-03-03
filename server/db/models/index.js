@@ -21,6 +21,8 @@ const Order = require('./order')
 User.hasMany(Order)
 Order.belongsTo(User)
 
+//order and products has a one to many relationship
+
 module.exports = {
   User,
   Product,
