@@ -22,20 +22,24 @@ const Cart = require('./cart')
 User.hasMany(Order)
 Order.belongsTo(User)
 
-// 1 cart can have many products
-Cart.hasMany(Product, {as: 'products'})
-Product.belongsTo(Cart)
+//many to many
+Product.belongsTo(Order, {through: 'Order-Products'})
+Order.belongsTo(Product, {through: 'Order-Products'})
+
+//should be many to many
+// Cart.belongsToMany(Product)
+// Product.belongsToMany(Cart)
 
 // 1 order can have many products
 // Order.hasMany(Product)
 // Product.belongsTo(Order)
 
 // one to one cart and order
-Cart.belongsTo(Order)
-Order.hasOne(Cart)
+// Cart.belongsTo(Order)
+// Order.hasOne(Cart)
 
-console.log(Cart.prototype)
-console.log('PRODUCTTTTTTT', Product.prototype)
+console.log(Product.prototype)
+console.log('PRODUCTTTTTTT', Order.prototype)
 
 module.exports = {
   User,

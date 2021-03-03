@@ -4,11 +4,10 @@ const db = require('../db')
 const Product = db.define('product', {
   name: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false
   },
   imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
     allowNull: false,
     defaultValue: 'https://bitsofco.de/content/images/2018/12/broken-1.png'
   },
