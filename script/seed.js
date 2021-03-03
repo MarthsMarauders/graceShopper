@@ -2,9 +2,12 @@
 
 const db = require('../server/db')
 const {User, Product, Order, Cart} = require('../server/db/models')
+const {seeder} = require('./seeder')
 
 async function seed() {
   await db.sync({force: true})
+  const {cars} = seeder()
+  await Product.bulkCreate(cars)
   console.log('db synced!')
 
   const users = await Promise.all([
@@ -25,26 +28,26 @@ async function seed() {
     // User.create({email: 'murphy@email.com', password: '123'}),
   ])
 
-  const products = await Promise.all([
-    Product.create({
-      name: 'tv',
-      description: 'a tv the best',
-      rating: 4,
-      price: 129.99
-    }),
-    Product.create({
-      name: 'shoe',
-      description: 'the worst shoe',
-      rating: 1,
-      price: 1129.99
-    }),
-    Product.create({
-      name: 'chair',
-      description: 'a ok chair',
-      rating: 3,
-      price: 49.99
-    })
-  ])
+  // const products = await Promise.all([
+  //   Product.create({
+  //     name: 'tv',
+  //     description: 'a tv the best',
+  //     rating: 4,
+  //     price: 129.99
+  //   }),
+  //   Product.create({
+  //     name: 'shoe',
+  //     description: 'the worst shoe',
+  //     rating: 1,
+  //     price: 1129.99
+  //   }),
+  //   Product.create({
+  //     name: 'chair',
+  //     description: 'a ok chair',
+  //     rating: 3,
+  //     price: 49.99
+  //   })
+  // ])
 
   const orders = await Promise.all([
     Order.create({shipped: 'pending', totalPrice: 25}),
