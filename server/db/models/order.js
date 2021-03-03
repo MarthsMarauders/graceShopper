@@ -7,8 +7,8 @@ const Order = db.define('order', {
     defaultValue: Date.now()
   },
 
-  shipped: {
-    type: Sequelize.ENUM('shipped', 'delivered', 'pending')
+  status: {
+    type: Sequelize.ENUM('processed', 'completed')
   },
 
   totalPrice: {
