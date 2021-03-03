@@ -12,8 +12,7 @@ function f() {
 Array.from(document.querySelectorAll('tr')).map(row => {
   let obj = {}
   try {
-    let val = row.children[1]
-    if (val) obj.name = row.children[1].innerText
+    obj.name = row.children[1].innerText
     obj.img = row.lastElementChild.childNodes[0].href
     return obj
   } catch (error) {
@@ -24,9 +23,7 @@ Array.from(document.querySelectorAll('tr')).map(row => {
 Array.from(document.querySelectorAll('tr')).map(row => {
   let obj = {}
   try {
-    let val = row.children[2]
-    //       let img = row.lastElementChild.childNodes[0].href
-    if (val) obj.name = row.children[2].innerText
+    obj.name = row.children[2].innerText
     obj.img = row.lastElementChild.childNodes[0].href
     return obj
   } catch (error) {
