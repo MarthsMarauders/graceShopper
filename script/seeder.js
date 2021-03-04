@@ -1322,13 +1322,13 @@ function usersCreator(givenNames) {
     addObj.email =
       addObj.firstName.replace(/['\(\):\/\-/.]/, '') +
       addObj.lastName.replace(/['\(\):\/\-/.]/, '') +
-      Math.round(Math.random() * 1000).toString() +
+      213 +
       '@gmail.com'
     addObj.address =
       Math.round(Math.random() * 1000).toString() +
       ' ' +
       places[Math.round(Math.random() * places.length)]
-    addObj.password = Math.round(Math.random() * 400).toString()
+    addObj.password = '123'
     finalArrayOfUsers.push(addObj)
   })
 }

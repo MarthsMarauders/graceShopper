@@ -4,9 +4,9 @@ const db = require('../db')
 const OrderProducts = db.define('Order-Products', {
   numberOfItems: {
     type: Sequelize.INTEGER,
-    defaultValue: 0
+    defaultValue: 1
   },
-  totalPrice: {
+  price: {
     type: Sequelize.INTEGER
   }
 })

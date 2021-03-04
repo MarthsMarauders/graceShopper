@@ -34,12 +34,12 @@ const User = db.define('user', {
     type: Sequelize.STRING
   },
   firstName: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
+    // allowNull: false
   },
   lastName: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
+    // allowNull: false
   }
 })
 // flipAdmin requires .save() after calling elsewhere

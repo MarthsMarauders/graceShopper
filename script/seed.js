@@ -1,56 +1,33 @@
 'use strict'
 const {Op} = require('sequelize')
 const db = require('../server/db')
-const {User, Product, Order} = require('../server/db/models')
+const {User, Product, Order, OrderProducts} = require('../server/db/models')
 const {seeder} = require('./seeder')
 
 async function seed() {
+  // Overwrite DB
   await db.sync({force: true})
+  // Pull in data from seeder
   const {cars, users} = seeder()
+  // Bulk create
   await User.bulkCreate(users)
   await Product.bulkCreate(cars)
+  // Find 5 admins
   const our5Admins = await User.findAll({
     where: {id: {[Op.lte]: 5}}
   })
-
   // Make 5 users an admin
   for (let admin of our5Admins) {
     await admin.flipAdmin().save()
   }
-
-  // Get 10 users
-  const our10UsersWithOrders = await User.findAll({
-    where: {id: {[Op.between]: [10, 20]}}
-  })
-
-  // Create an Order for all 10 users
-  for (let user of our10UsersWithOrders) {
-    await user.createOrder()
-  }
-
-  // Find all orders
-  const allOrders = await Order.findAll()
-
-  // Find 10 Products
-  const allProducts = await Product.findAll()
-
-  // let randomInt = Math.round(Math.random() * 10)
-  // let randomInt2 = Math.round(Math.random() * 10)
-  // console.log('\n --------🚀 \n seed \n randomInt', randomInt, randomInt2)
-  // function randomIndex() {
-  //   let max = allProducts.length
+  // // Get 2 users
+  // const our10UsersWithOrders = await User.findAll({
+  //   where: {id: {[Op.between]: [18, 20]}}
+  // })
+  // // Create an Order for all 2 users
+  // for (let user of our10UsersWithOrders) {
+  //   await user.createOrder()
   // }
-  // Set random products to each order
-
-  for (let order of allOrders) {
-    await order.setProducts([
-      allProducts[Math.round(Math.random() * 100)],
-      allProducts[Math.round(Math.random() * 100)]
-    ])
-  }
-  // await newOrder.setProducts([streetCleaver, chevy])
-  // await secondOrder.setProducts(bmw)
-
   console.log('db synced!')
 }
 
