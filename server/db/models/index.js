@@ -29,7 +29,9 @@ Order.belongsToMany(Product, {through: OrderProducts})
 // console.log(User.prototype)
 // console.log('PRODUCT MAGIC METHOD', Product.prototype)
 // console.log('USER MAGIC METHOD', User.prototype)
-console.log('ORDER MAGIC METHOD', OrderProducts.prototype)
+// console.log('User MAGIC METHOD', User.prototype)
+// console.log('Product MAGIC METHOD', Product.prototype)
+// console.log('Product MAGIC METHOD', OrderProducts.prototype)
 
 module.exports = {
   User,

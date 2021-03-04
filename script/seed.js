@@ -20,14 +20,45 @@ async function seed() {
   for (let admin of our5Admins) {
     await admin.flipAdmin().save()
   }
-  // // Get 2 users
-  // const our10UsersWithOrders = await User.findAll({
-  //   where: {id: {[Op.between]: [18, 20]}}
-  // })
-  // // Create an Order for all 2 users
-  // for (let user of our10UsersWithOrders) {
-  //   await user.createOrder()
-  // }
+  // Get 15 users
+  const userWithOrder = await User.findAll({
+    where: {id: {[Op.between]: [20, 34]}}
+  })
+  // Create an Order for all 15 users
+  for (let user of userWithOrder) {
+    await user.createOrder()
+  }
+  // Find All Orders
+  const allOrders = await Order.findAll()
+  // Find 3 Products
+  let product1 = await Product.findByPk(1)
+  let product2 = await Product.findByPk(2)
+  let product3 = await Product.findByPk(3)
+  // Add 3 products to each order
+  for (let order of allOrders) {
+    // Add 3 prods
+    await order.addProducts(product1)
+    await order.addProducts(product2)
+    await order.addProducts(product3)
+    // Update price in row
+    let row = await OrderProducts.findOne({
+      where: {orderId: order.id}
+    })
+    row.price = product1.dataValues.price
+    await row.save()
+    // Update price in row
+    let row2 = await OrderProducts.findOne({
+      where: {orderId: order.id}
+    })
+    row2.price = product2.dataValues.price
+    await row2.save()
+    // Update price in row
+    let row3 = await OrderProducts.findOne({
+      where: {orderId: order.id}
+    })
+    row3.price = product3.dataValues.price
+    await row3.save()
+  }
   console.log('db synced!')
 }
 
