@@ -1,90 +1,58 @@
 'use strict'
-
+const {Op} = require('sequelize')
 const db = require('../server/db')
 const {User, Product, Order} = require('../server/db/models')
 const {seeder} = require('./seeder')
 
 async function seed() {
   await db.sync({force: true})
-  const {cars} = seeder()
+  const {cars, users} = seeder()
+  await User.bulkCreate(users)
   await Product.bulkCreate(cars)
+  const our5Admins = await User.findAll({
+    where: {id: {[Op.lte]: 5}}
+  })
+
+  // Make 5 users an admin
+  for (let admin of our5Admins) {
+    await admin.flipAdmin().save()
+  }
+
+  // Get 10 users
+  const our10UsersWithOrders = await User.findAll({
+    where: {id: {[Op.between]: [10, 20]}}
+  })
+
+  // Create an Order for all 10 users
+  for (let user of our10UsersWithOrders) {
+    await user.createOrder()
+  }
+
+  // Find all orders
+  const allOrders = await Order.findAll()
+
+  // Find 10 Products
+  const allProducts = await Product.findAll()
+
+  // let randomInt = Math.round(Math.random() * 10)
+  // let randomInt2 = Math.round(Math.random() * 10)
+  // console.log('\n --------🚀 \n seed \n randomInt', randomInt, randomInt2)
+  // function randomIndex() {
+  //   let max = allProducts.length
+  // }
+  // Set random products to each order
+
+  for (let order of allOrders) {
+    await order.setProducts([
+      allProducts[Math.round(Math.random() * 100)],
+      allProducts[Math.round(Math.random() * 100)]
+    ])
+    // await order.setProducts(allProducts[randomInt2])
+  }
+  // await newOrder.setProducts([streetCleaver, chevy])
+  // await secondOrder.setProducts(bmw)
+
   console.log('db synced!')
-
-  const users = await Promise.all([
-    User.create({
-      email: 'jimmydean4@gmail.com',
-      password: '123',
-      firstName: 'Mike',
-      lastName: 'Busto',
-      address: '15552 Main Street'
-    }),
-    User.create({
-      email: 'MrPeanut555@gmail.com',
-      password: '456',
-      firstName: 'Peanut',
-      lastName: 'Mister',
-      address: '7651 Adobe Street'
-    })
-    // User.create({email: 'murphy@email.com', password: '123'}),
-  ])
-
-  // const products = await Promise.all([
-  //   Product.create({
-  //     name: 'tv',
-  //     description: 'a tv the best',
-  //     rating: 4,
-  //     price: 129.99
-  //   }),
-  //   Product.create({
-  //     name: 'shoe',
-  //     description: 'the worst shoe',
-  //     rating: 1,
-  //     price: 1129.99
-  //   }),
-  //   Product.create({
-  //     name: 'chair',
-  //     description: 'a ok chair',
-  //     rating: 3,
-  //     price: 49.99
-  //   })
-  // ])
-
-  // const orders = await Promise.all([
-  //   Order.create({shipped: 'pending', totalPrice: 25}),
-  //   Order.create({shipped: 'shipped', totalPrice: 69.99}),
-  //   Order.create({shipped: 'pending', totalPrice: 89.5}),
-  //   Order.create({shipped: 'delivered', totalPrice: 1345.55}),
-  // // ])
-
-  // const order = await Order.findByPk(1)
-  // const user = await User.findByPk(1)
-
-  // await user.setOrders(order)
-
-  // const exampleCart = await Promise.all([
-  //   Cart.create({
-  //     totalItems: 2,
-  //     totalPrice: 59.98,
-  //     // productsList: ['chair', 'bed'],
-  //   }),
-  // ])
-
-  // const cart = await Cart.findByPk(1)
-  // // const order2 = await Order.findByPk(2)
-
-  // const shoe = await Product.findByPk(2)
-  // const chair = await Product.findByPk(3)
-  // const tv = await Product.findByPk(1)
-
-  // await cart.setProducts(shoe)
-  // await cart.setProducts(chair)
-  // await cart.setProducts(tv)
-
-  // await cart.setOrder(order2)
-
-  //   console.log(`seeded ${users.length} users`)
-  //   console.log(`seeded successfully`)
-  //
 }
 
 // We've separated the `seed` function from the `runSeed` function.

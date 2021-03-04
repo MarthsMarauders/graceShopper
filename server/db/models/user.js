@@ -1,7 +1,6 @@
 const crypto = require('crypto')
 const Sequelize = require('sequelize')
 const db = require('../db')
-
 const User = db.define('user', {
   email: {
     type: Sequelize.STRING,
@@ -16,7 +15,6 @@ const User = db.define('user', {
       return () => this.getDataValue('password')
     }
   },
-
   isAdmin: {
     type: Sequelize.BOOLEAN,
     defaultValue: false
@@ -32,7 +30,6 @@ const User = db.define('user', {
   googleId: {
     type: Sequelize.STRING
   },
-
   address: {
     type: Sequelize.STRING
   },
@@ -45,6 +42,12 @@ const User = db.define('user', {
     allowNull: false
   }
 })
+// flipAdmin requires .save() after calling elsewhere
+// 'this' in an instance method refers to the instance itself
+User.prototype.flipAdmin = function() {
+  this.isAdmin = !this.isAdmin
+  return this
+}
 
 module.exports = User
 

@@ -6,9 +6,9 @@ const Order = db.define('order', {
     type: Sequelize.DATE,
     defaultValue: Date.now()
   },
-
   status: {
-    type: Sequelize.ENUM('processed', 'completed')
+    type: Sequelize.ENUM('pending', 'completed'),
+    defaultValue: 'pending'
   },
 
   totalPrice: {

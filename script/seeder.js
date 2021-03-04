@@ -1,7 +1,8 @@
-// ;[
-//   // every 11th element  document.querySelectorAll('td')[1].lastElementChild.childNodes[0]; - name
-//   // document.querySelectorAll('td')[10].lastElementChild.childNodes[0].src; - imageUrl
-//   // obj with a name prop and it will contain first thing and imageUrl obj for second thing
+// The below scripts were used to scrape data from the hotwheels wiki
+// DO NOT DELETE
+// every 11th element  document.querySelectorAll('td')[1].lastElementChild.childNodes[0]; - name
+// document.querySelectorAll('td')[10].lastElementChild.childNodes[0].src; - imageUrl
+// obj with a name prop and it will contain first thing and imageUrl obj for second thing
 
 // function f() {
 //   let a = document.querySelectorAll('tr')[1].children[1].innerText
@@ -26,7 +27,7 @@
 //   try {
 //     obj.name = row.children[2].innerText
 //     obj.imageUrl = row.lastElementChild.childNodes[0].href.slice(0, -34)
-//     obj.price = Math.round(Math.random() * 10000) / 100
+//     obj.price = Math.round(Math.random() * 10000)
 //     return obj
 //   } catch (error) {
 //     console.log(error)
@@ -885,6 +886,296 @@ const cars96 = [
     price: 65.81
   }
 ]
+const universities = [
+  '25 Blood Drive',
+  'Abandoned House',
+  'Acid River',
+  'Ant Nation',
+  "Ash's house",
+  'Astral Plane (location)',
+  'Back-To-Nature Island',
+  'Bad Lands',
+  "Banana Man's house",
+  'Barf Kingdom',
+  'Baskets & Boots',
+  'Beautopia (location)',
+  'Beneathaverse',
+  'Better Reality Island',
+  'BGCCTV Surveillance Depot',
+  'Big Butt Rock',
+  'Black ice cave',
+  'Ble Headquarters',
+  'Boneyard Kingdom',
+  "Bounce House Princess' house",
+  'Box Kingdom',
+  'Box Kingdom Arena',
+  'Breakfast Kingdom',
+  'Broke-up Dimension',
+  'Candy Convenience Store',
+  'Candy Drugstore',
+  'Candy Dungeon',
+  'Candy Kingdom',
+  'Candy Kingdom Hospital',
+  'Category:Candy Kingdom Locations',
+  'Candy Kingdom Mental Hospital',
+  'Candy Kingdom Preschool',
+  'Candy Kingdom Subway',
+  'Candy Orphanage',
+  'Candy Tavern',
+  'Carnival Kingdom',
+  'Castle',
+  'Castle Lemongrab',
+  'Category:Castles and Houses',
+  'Caves',
+  'Cemetery',
+  "Charlie's Apartment",
+  'Cheese Kingdom',
+  'Chipmunk Cave',
+  'Chocolate Bridge',
+  'City of Thieves (location)',
+  "Clarence's mausoleum",
+  'Cloud House',
+  'Cloud Kingdom',
+  "Colonel Candy Corn's House",
+  'Category:Comic Book Locations',
+  'Coolest Hotel',
+  'Cotton Candy Forest',
+  'Crater',
+  'Crudtown',
+  'Crystal Citadel',
+  'Crystal Dimension',
+  'Cube Village',
+  'Dead Goat Gulch',
+  'Dead Mountain',
+  'Dead Worlds',
+  "Death's Castle",
+  'Desert Kingdom',
+  'Desert Lands',
+  'Desert of Doom',
+  'Desert of Wonder',
+  'Dewpia',
+  'Category:Dimensions',
+  'Drive-in theater',
+  'Duchy of Nuts',
+  'Dungeon (location)',
+  'Dungeon Train (location)',
+  'Earth',
+  "Elise's Trailer Home",
+  'Eskimo House',
+  'Evil Forest',
+  "Farmer's Market",
+  'Farming Village',
+  'Farmworld',
+  "Fight King's arena",
+  'Fire Kingdom',
+  'Fire Palace',
+  'Fire Pit',
+  "Flame Princess's house",
+  'Flower Path',
+  'Flying Troll Cave',
+  'Forest',
+  'Forest of Trees',
+  'Category:Forests',
+  "Founders' Island",
+  'Freak City (location)',
+  'Gauntlet dock',
+  'Ghost Ship Vortex',
+  'Giant Mushroom Fields',
+  'Giant Shell',
+  'Glass Kingdom',
+  'Glob World',
+  'Goblin Birthing Pits',
+  'Goblin Kingdom',
+  'Grass Lands',
+  'Grave yard',
+  'Grocery Kingdom',
+  'Guardians of Sunshine (game)',
+  "Gumbald's Cabin",
+  'Gumbaldia (location)',
+  'Hall of Just Ice',
+  'Hobo Camp',
+  "Home Of Zeldron's Armor",
+  'Horse City',
+  'Hot Dog Kingdom',
+  'Hub Island',
+  'Huge Kingdom',
+  'Humantown',
+  "Hunson Abadeer's Kitchen",
+  "Huntress Wizard's House",
+  'Ice Caverns',
+  'Ice Kingdom',
+  'Iceberg Lake',
+  'Imagination Zone',
+  'Institute of So Und',
+  'Island Lady',
+  'Islands (location)',
+  'Jakeseum',
+  "James's apartment",
+  "James's Tent",
+  "Jenny's Diner",
+  "Jermaine's House (Abstract)",
+  'Jiggler Den',
+  "Joshua and Margaret's house",
+  "Joshua and Margaret's Old Office",
+  "Joshua's dungeon",
+  'Junktown',
+  "Kim Kil Whan's House",
+  "King Man's house",
+  'Category:Kingdoms and Villages',
+  'La Femme Du La Mer',
+  'Labyrinth',
+  "Lady Rainicorn's house",
+  'Lake Butterscotch',
+  'Lake Szelezon',
+  'Land of Aaa',
+  'Land of Ooo',
+  'Land of the Dead',
+  'Lemongrab (Earldom)',
+  'Library',
+  'Lich Land',
+  'Littleland',
+  'Lizard Kingdom',
+  'Template:Location',
+  'Template:Location/New',
+  'Loch of Phantoms',
+  'Lollipop Park Estates',
+  'Love Tree Point',
+  'Lumpy Space',
+  "Maja's house",
+  'Marauder Village',
+  "Marceline's cave",
+  "Marceline's Hobo Camp",
+  "Marceline's house",
+  'Mars',
+  'Marshmallowy Mweadows',
+  'Martian city',
+  'Maryville',
+  'Memory Core',
+  'Mind Maze',
+  'Mini Elf Kingdom',
+  'MO Co.',
+  "Moldos' Secret Lair",
+  'Moose Bone Clearing',
+  "Morty Rogers' House",
+  'Mount Cragdor',
+  'Mountain (Abstract)',
+  'Mountain Kingdom',
+  'Mountain Man',
+  'Mountain of Matthew',
+  'Mountains',
+  "Mr. Fox's House",
+  'Muffin Top Theater',
+  'Multiverse',
+  "Muscle Princess's castle",
+  'Museum of Natural History',
+  'Mushroom Village',
+  'Music Shop',
+  'Mystery Cave',
+  'Mystery Dungeon (location)',
+  'Mystery Mountains',
+  'Nameless Kingdom',
+  "Ni'Rah",
+  'Nice Castle',
+  'Nightmare Castle',
+  'Nightosphere',
+  'Nightosphere Jail',
+  "Nightosphere's Nightmareosphere",
+  "Nutty's Diner",
+  'Obstacle course',
+  'Ocean',
+  'Old Industrial Park',
+  'Old Lady Village',
+  'Ooo Junkyard',
+  'Pantheon of Savings',
+  'Park',
+  'Pillow World',
+  "Pizza Sassy's",
+  'Category:Planets',
+  'Pond Kingdom',
+  "Princess Bubblegum's castle",
+  "Pudding's Hardware",
+  'Pup Kingdom',
+  'Pyramid',
+  'Reconditioning chamber',
+  'Red Rock Pass',
+  'River of Forgetfulness',
+  'River of Junk',
+  'Rock Candy Mines',
+  'Rock Candy Mountains',
+  'Room 303',
+  "Root Beer Guy's workplace",
+  'Royal Candy Vault',
+  'Royal Congressional Hall',
+  'Royal Tart Path',
+  'Rump Town',
+  'Sand City',
+  'Sewer',
+  'Skull Castle',
+  'Sky Castle',
+  'Slime Kingdom',
+  'Soft Village',
+  'South Woobeewoo',
+  'Spa',
+  'Spell Palace',
+  'Spider Web',
+  'Spiky Rock Fields',
+  'Spiky Village',
+  'Spirit World',
+  'Spooky Forest',
+  'Squeez-E-Mart',
+  "Starchy's House",
+  'Stock Woods',
+  'Super Porp Factory',
+  'Surveillance Room',
+  'Swamp of Embarrassment',
+  'Swampy Planet',
+  'Swimming Hole',
+  'Tartorium',
+  'The Anti-verse',
+  'The Drift',
+  'The Garden of the Living Fountains',
+  'The Grotto of the Water Nymphs',
+  'The Hall of Egress (location)',
+  "The Lich's lair",
+  'The Royal Bathroom',
+  'The Royal Bedroom',
+  'The Royal Dragon Stables',
+  'The Royal Game Archive',
+  'The Sun',
+  'The Wasteland',
+  'Thrashland',
+  'Time Room',
+  'Tiny Mammal Kingdom',
+  'Toadstool Fields',
+  'Town (His Hero)',
+  'Traveling Mini Circus',
+  'Tree (Up a Tree)',
+  'Tree House',
+  'Tree House Walls',
+  "Tree Trunks' house",
+  'Underground Cave',
+  'Underwater City',
+  'Universal Source Code',
+  'Unknown Burning City',
+  'Vanishing Point',
+  'Vapor Swamps',
+  'Vault of Bones (location)',
+  'Veggie Village',
+  'Village (The Monster)',
+  'Vitamin Telemarketing Industries',
+  'Volcano',
+  'Water Lily Pad Castle',
+  'Wet Pipes Water Park',
+  'Wild Trap Mountain',
+  'Wildberry Kingdom',
+  "Witch's Garden (location)",
+  'Wizard Battle Arena',
+  'Wizard City',
+  'Wizard Prison',
+  'Wizard Village',
+  'Worm College',
+  'Yellow Forest'
+]
 
 const descriptionWords = [
   'amazing',
@@ -908,6 +1199,140 @@ const descriptionWords = [
   'unamazing'
 ]
 
+const names = [
+  '8-Head Ted',
+  'Abraham Lincoln',
+  'Acoustics Princess',
+  'Adventure Tim',
+  'Agent Princess',
+  'Alien Children',
+  'Alistair Blacktide',
+  'Baby Spiders',
+  'Banana Guards',
+  'Banana Man',
+  'Bandit Princess',
+  'Basketball Wizard',
+  'Bazooka Goblin',
+  'Beautiful Lady',
+  'Bee Princess',
+  'Bella Noche',
+  'Bellamy Bug',
+  'Big Destiny',
+  'Big Guy',
+  'Bikini Babes',
+  'Bird Woman',
+  'Blanket Dragon',
+  'Blindfolded Mantis',
+  'Blue Nose',
+  'Blue Snail',
+  'Blueberry Cops',
+  'Bob Rainicorn',
+  'Gentleman Spider',
+  'Giant Ant',
+  'Giant Mouse',
+  'Giant Turtle',
+  'Goo Skulls',
+  'Grand Prix',
+  'Guardian Angel',
+  'Gummy Fish',
+  'Hunson Abadeer',
+  'Ice Queen'
+]
+
+const places = [
+  'Ant Nation',
+  'Beneathaverse',
+  'Boneyard Kingdom',
+  'Box Kingdom',
+  'Breakfast Kingdom',
+  'Candy Kingdom',
+  'City of Thieves (location)',
+  'Cloud Kingdom',
+  'Crudtown',
+  'Cube Village',
+  'Dead Goat Gulch',
+  'Desert Kingdom',
+  'Dewpia',
+  'Duchy of Nuts',
+  'Farming Village',
+  'Fire Kingdom',
+  'Glass Kingdom',
+  'Goblin Kingdom',
+  'Grocery Kingdom',
+  'Gumbaldia (location)',
+  'Hot Dog Kingdom',
+  'Huge Kingdom',
+  'Humantown',
+  'Ice Kingdom',
+  'Land of the Dead',
+  'Lemongrab (Earldom)',
+  'Littleland',
+  'Lizard Kingdom',
+  'Lollipop Park Estates',
+  'Lumpy Space',
+  'Marauder Village',
+  'Mars',
+  'Mini Elf Kingdom',
+  'Mountain Kingdom',
+  'Mushroom Village',
+  'Nameless Kingdom',
+  'Nightosphere',
+  'Old Lady Village',
+  'Ooo Junkyard',
+  'Pond Kingdom',
+  'Pup Kingdom',
+  'Rump Town',
+  'Sky Castle',
+  'Slime Kingdom',
+  'Soft Village',
+  'South Woobeewoo',
+  'Spiky Village',
+  'Tiny Mammal Kingdom',
+  'Town (His Hero)',
+  'Unknown Burning City',
+  'Veggie Village',
+  'Village (The Monster)',
+  'Wildberry Kingdom',
+  'Wizard City',
+  'Wizard Village'
+]
+
+const finalArrayOfUsers = []
+function usersCreator(givenNames) {
+  // const universityLength = universities.length
+  givenNames.forEach(name => {
+    let addObj = {}
+    let wordCount = name.split(' ')
+    if (wordCount.length === 1) {
+      addObj.firstName = wordCount[0]
+      addObj.lastName = wordCount[0]
+    }
+    if (wordCount.length > 1) {
+      addObj.firstName = wordCount.shift()
+      if (wordCount.length > 1) {
+        addObj.lastName = wordCount.join(' ')
+      } else {
+        addObj.lastName = wordCount.join('')
+      }
+    }
+    // addObj.email =
+    //   addObj.firstName.replace(/['\(\):\/\-/.]/, '') +
+    //   addObj.lastName.replace(/['\(\):\/\-/.]/, '') +
+    //   '@gmail.com'
+    addObj.email =
+      addObj.firstName.replace(/['\(\):\/\-/.]/, '') +
+      addObj.lastName.replace(/['\(\):\/\-/.]/, '') +
+      Math.round(Math.random() * 1000).toString() +
+      '@gmail.com'
+    addObj.address =
+      Math.round(Math.random() * 1000).toString() +
+      ' ' +
+      places[Math.round(Math.random() * places.length)]
+    addObj.password = Math.round(Math.random() * 400).toString()
+    finalArrayOfUsers.push(addObj)
+  })
+}
+
 const finalArrayOfCars = []
 function carCreator(carArray) {
   const descriptionLength = descriptionWords.length - 1
@@ -916,12 +1341,18 @@ function carCreator(carArray) {
       descriptionWords[Math.round(Math.random() * descriptionLength)] +
       ' ' +
       descriptionWords[Math.round(Math.random() * descriptionLength)]
+    singleCar.price = Math.round(Math.random() * 10000)
+    singleCar.price =
+      singleCar.price.toString()[0] + singleCar.price.toString()[1] + '99'
+    singleCar.price = parseInt(singleCar.price)
     finalArrayOfCars.push(singleCar)
   })
 }
+
 function seeder() {
   carCreator(cars96)
-  return {cars: finalArrayOfCars}
+  usersCreator(names)
+  return {cars: finalArrayOfCars, users: finalArrayOfUsers}
 }
 
 module.exports = {seeder}
