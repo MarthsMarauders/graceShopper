@@ -3,8 +3,8 @@ const db = require('../db')
 
 const Product = db.define('product', {
   name: {
-    type: Sequelize.STRING,
-    allowNull: false
+    type: Sequelize.STRING
+    // allowNull: false
   },
   imageUrl: {
     type: Sequelize.TEXT,
@@ -12,8 +12,7 @@ const Product = db.define('product', {
     defaultValue: 'https://bitsofco.de/content/images/2018/12/broken-1.png'
   },
   description: {
-    type: Sequelize.TEXT,
-    allowNull: false
+    type: Sequelize.TEXT
   },
   quantity: {
     type: Sequelize.INTEGER,
@@ -21,10 +20,10 @@ const Product = db.define('product', {
   },
   rating: {
     type: Sequelize.INTEGER,
-    validate: {
-      min: 0,
-      max: 5
-    },
+    // validate: {
+    //   min: 0,
+    //   max: 5
+    // },
     defaultValue: -1
   },
   price: {

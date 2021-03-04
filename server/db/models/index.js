@@ -26,7 +26,9 @@ Order.belongsTo(User)
 Product.belongsToMany(Order, {through: OrderProducts})
 Order.belongsToMany(Product, {through: OrderProducts})
 
-console.log(Product.prototype)
+console.log('PRODUCT MAGIC METHOD', Product.prototype)
+console.log('USER MAGIC METHOD', User.prototype)
+console.log('ORDER MAGIC METHOD', Order.prototype)
 
 module.exports = {
   User,
