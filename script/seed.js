@@ -26,36 +26,7 @@ async function seed() {
       lastName: 'Mister',
       address: '7651 Adobe Street'
     })
-    // User.create({email: 'murphy@email.com', password: '123'}),
   ])
-
-  // const products = await Promise.all([
-  //   Product.create({
-  //     name: 'tv',
-  //     description: 'a tv the best',
-  //     rating: 4,
-  //     price: 129.99
-  //   }),
-  //   Product.create({
-  //     name: 'shoe',
-  //     description: 'the worst shoe',
-  //     rating: 1,
-  //     price: 1129.99
-  //   }),
-  //   Product.create({
-  //     name: 'chair',
-  //     description: 'a ok chair',
-  //     rating: 3,
-  //     price: 49.99
-  //   })
-  // ])
-
-  // const orders = await Promise.all([
-  //   Order.create({shipped: 'pending', totalPrice: 25}),
-  //   Order.create({shipped: 'shipped', totalPrice: 69.99}),
-  //   Order.create({shipped: 'pending', totalPrice: 89.5}),
-  //   Order.create({shipped: 'delivered', totalPrice: 1345.55}),
-  //  ])
 
   const user1 = await User.findByPk(1)
   const streetCleaver = await Product.findByPk(5)
@@ -65,36 +36,6 @@ async function seed() {
 
   await user1.setOrders(newOrder)
   await newOrder.setProducts([streetCleaver, chevy])
-
-  // const order = await Order.findByPk(1)
-  // const user = await User.findByPk(1)
-
-  // await user.setOrders(order)
-
-  // const exampleCart = await Promise.all([
-  //   Cart.create({
-  //     totalItems: 2,
-  //     totalPrice: 59.98,
-  //     // productsList: ['chair', 'bed'],
-  //   }),
-  // ])
-
-  // const cart = await Cart.findByPk(1)
-  // // const order2 = await Order.findByPk(2)
-
-  // const shoe = await Product.findByPk(2)
-  // const chair = await Product.findByPk(3)
-  // const tv = await Product.findByPk(1)
-
-  // await cart.setProducts(shoe)
-  // await cart.setProducts(chair)
-  // await cart.setProducts(tv)
-
-  // await cart.setOrder(order2)
-
-  //   console.log(`seeded ${users.length} users`)
-  //   console.log(`seeded successfully`)
-  //
 }
 
 // We've separated the `seed` function from the `runSeed` function.
