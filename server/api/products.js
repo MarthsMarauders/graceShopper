@@ -38,16 +38,15 @@ router.post('/', async (req, res, next) => {
 })
 
 //NOT WORKING PROPERLY
-// router.put("/:productId", async (req, res, next) => {
-//   try {
-//     const { productId } = req.params;
-//     const product = await Product.findByPk(productId);
-//     res.json(await product.update(req.body)
-//     );
-//   } catch (error) {
-//     next(error);
-//   }
-// });
+router.put('/:productId', async (req, res, next) => {
+  try {
+    const {productId} = req.params
+    const product = await Product.findByPk(productId)
+    res.json(await product.update(req.body))
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.delete('/:productId', async (req, res, next) => {
   try {
