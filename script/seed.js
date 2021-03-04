@@ -31,15 +31,25 @@ async function seed() {
   // Find All Orders
   const allOrders = await Order.findAll()
   // Find 3 Products
-  let product1 = await Product.findByPk(1)
-  let product2 = await Product.findByPk(2)
-  let product3 = await Product.findByPk(3)
+  function createPks() {
+    let arr = []
+    let prodId = Math.floor(Math.random() * 139) + 1
+    for (let i = 0; i < 3; i++) {
+      while (arr.includes(prodId)) {
+        prodId = Math.floor(Math.random() * 139) + 1
+      }
+      arr.push(prodId)
+    }
+    return arr
+  }
   // Add 3 products to each order
   for (let order of allOrders) {
+    let pkArr = createPks()
+    let product1 = await Product.findByPk(pkArr[0])
+    let product2 = await Product.findByPk(pkArr[1])
+    let product3 = await Product.findByPk(pkArr[2])
     // Add 3 prods
-    await order.addProducts(product1)
-    await order.addProducts(product2)
-    await order.addProducts(product3)
+    await order.addProduct([product1, product2, product3])
     // Update price in row
     let row = await OrderProducts.findOne({
       where: {orderId: order.id}
