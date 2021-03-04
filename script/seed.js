@@ -1,5 +1,6 @@
 'use strict'
 
+const {create} = require('react-test-renderer')
 const db = require('../server/db')
 const {User, Product, Order} = require('../server/db/models')
 const {seeder} = require('./seeder')
@@ -54,7 +55,16 @@ async function seed() {
   //   Order.create({shipped: 'shipped', totalPrice: 69.99}),
   //   Order.create({shipped: 'pending', totalPrice: 89.5}),
   //   Order.create({shipped: 'delivered', totalPrice: 1345.55}),
-  // // ])
+  //  ])
+
+  const user1 = await User.findByPk(1)
+  const streetCleaver = await Product.findByPk(5)
+  const chevy = await Product.findByPk(3)
+
+  const newOrder = await Order.create()
+
+  await user1.setOrders(newOrder)
+  await newOrder.setProducts([streetCleaver, chevy])
 
   // const order = await Order.findByPk(1)
   // const user = await User.findByPk(1)

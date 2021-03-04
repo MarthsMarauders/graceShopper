@@ -7,12 +7,13 @@ const Order = db.define('order', {
     defaultValue: Date.now()
   },
 
-  status: {
-    type: Sequelize.ENUM('processed', 'completed')
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
 
   totalPrice: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
   }
 })
 
