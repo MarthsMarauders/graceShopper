@@ -17,7 +17,6 @@ class SingleProduct extends Component {
 
   render() {
     const {product} = this.props
-    console.log(product)
     return (
       <div key={product.id}>
         <Card style={{width: '18rem'}} border="primary">

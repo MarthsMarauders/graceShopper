@@ -17,4 +17,9 @@ const Order = db.define('order', {
   }
 })
 
+Order.prototype.flipStatus = function() {
+  this.completed = !this.completed
+  return this
+}
+
 module.exports = Order

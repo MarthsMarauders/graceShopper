@@ -1,47 +1,65 @@
 'use strict'
-
-const {create} = require('react-test-renderer')
+const {Op} = require('sequelize')
 const db = require('../server/db')
-const {User, Product, Order} = require('../server/db/models')
+const {User, Product, Order, OrderProducts} = require('../server/db/models')
 const {seeder} = require('./seeder')
 
 async function seed() {
+  // Overwrite DB
   await db.sync({force: true})
-  const {cars} = seeder()
+  // Pull in data from seeder
+  const {cars, users} = seeder()
+  // Bulk create
+  await User.bulkCreate(users)
   await Product.bulkCreate(cars)
-  console.log('db synced!')
-
-  const users = await Promise.all([
-    User.create({
-      email: 'jimmydean4@gmail.com',
-      password: '123',
-      firstName: 'Mike',
-      lastName: 'Busto',
-      address: '15552 Main Street'
-    }),
-    User.create({
-      email: 'MrPeanut555@gmail.com',
-      password: '456',
-      firstName: 'Peanut',
-      lastName: 'Mister',
-      address: '7651 Adobe Street'
+  // Find 5 admins
+  const our5Admins = await User.findAll({
+    where: {id: {[Op.lte]: 5}}
+  })
+  // Make 5 users an admin
+  for (let admin of our5Admins) {
+    await admin.flipAdmin().save()
+  }
+  // Get 15 users
+  const userWithOrder = await User.findAll({
+    where: {id: {[Op.between]: [20, 34]}}
+  })
+  // Create an Order for all 15 users
+  for (let user of userWithOrder) {
+    await user.createOrder()
+  }
+  // Find All Orders
+  const allOrders = await Order.findAll()
+  // Find 3 Products
+  let product1 = await Product.findByPk(1)
+  let product2 = await Product.findByPk(2)
+  let product3 = await Product.findByPk(3)
+  // Add 3 products to each order
+  for (let order of allOrders) {
+    // Add 3 prods
+    await order.addProducts(product1)
+    await order.addProducts(product2)
+    await order.addProducts(product3)
+    // Update price in row
+    let row = await OrderProducts.findOne({
+      where: {orderId: order.id}
     })
-  ])
-
-  const user1 = await User.findByPk(1)
-  const user2 = await User.findByPk(2)
-  const streetCleaver = await Product.findByPk(5)
-  const chevy = await Product.findByPk(3)
-  const bmw = await Product.findByPk(75)
-
-  const newOrder = await Order.create()
-  const secondOrder = await Order.create()
-
-  await user1.setOrders(newOrder)
-  await user2.setOrders(secondOrder)
-
-  await newOrder.setProducts([streetCleaver, chevy])
-  await secondOrder.setProducts(bmw)
+    row.price = product1.dataValues.price
+    await row.save()
+    // Update price in row
+    let row2 = await OrderProducts.findOne({
+      where: {orderId: order.id}
+    })
+    row2.price = product2.dataValues.price
+    await row2.save()
+    // Update price in row
+    let row3 = await OrderProducts.findOne({
+      where: {orderId: order.id}
+    })
+    row3.price = product3.dataValues.price
+    await row3.save()
+  }
+  console.log('db synced!')
 }
 
 // We've separated the `seed` function from the `runSeed` function.
