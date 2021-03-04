@@ -6,14 +6,20 @@ const Order = db.define('order', {
     type: Sequelize.DATE,
     defaultValue: Date.now()
   },
-  status: {
-    type: Sequelize.ENUM('pending', 'completed'),
-    defaultValue: 'pending'
+
+  completed: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false
   },
 
   totalPrice: {
-    type: Sequelize.FLOAT
+    type: Sequelize.INTEGER
   }
 })
+
+Order.prototype.flipStatus = function() {
+  this.completed = !this.completed
+  return this
+}
 
 module.exports = Order

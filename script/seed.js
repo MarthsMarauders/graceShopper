@@ -47,7 +47,6 @@ async function seed() {
       allProducts[Math.round(Math.random() * 100)],
       allProducts[Math.round(Math.random() * 100)]
     ])
-    // await order.setProducts(allProducts[randomInt2])
   }
   // await newOrder.setProducts([streetCleaver, chevy])
   // await secondOrder.setProducts(bmw)
