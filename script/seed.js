@@ -29,13 +29,19 @@ async function seed() {
   ])
 
   const user1 = await User.findByPk(1)
+  const user2 = await User.findByPk(2)
   const streetCleaver = await Product.findByPk(5)
   const chevy = await Product.findByPk(3)
+  const bmw = await Product.findByPk(75)
 
   const newOrder = await Order.create()
+  const secondOrder = await Order.create()
 
   await user1.setOrders(newOrder)
+  await user2.setOrders(secondOrder)
+
   await newOrder.setProducts([streetCleaver, chevy])
+  await secondOrder.setProducts(bmw)
 }
 
 // We've separated the `seed` function from the `runSeed` function.
