@@ -19,7 +19,7 @@ class AllProducts extends Component {
   render() {
     const {products} = this.props
     return products.length ? (
-      <div>
+      <div className="products-div">
         {products.map(product => (
           <div key={product.id}>
             <Card style={{width: '18rem'}} border="primary">
