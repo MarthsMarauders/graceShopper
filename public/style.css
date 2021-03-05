@@ -55,3 +55,22 @@ form div {
   background-color: darkgrey;
   color: white;
 }
+
+#page-numbers {
+  display: flex;
+  justify-content: center;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.numbers {
+  padding: 5px;
+}
+
+.number {
+  cursor: pointer;
+}

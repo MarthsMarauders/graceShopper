@@ -1653,37 +1653,11 @@ const cars96 = [
       'https://static.wikia.nocookie.net/hotwheels/images/2/27/IMG_6131.jpg',
     price: 3533
   },
-
-  {
-    name: 'Auburn 852',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 4053
-  },
-  {
-    name: 'Talbot Lago (Unreleased)',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 5799
-  },
   {
     name: 'Duesenberg 1931',
     imageUrl:
       'https://static.wikia.nocookie.net/hotwheels/images/1/1f/Eurodoozie.jpg',
     price: 8011
-  },
-  {
-    name: 'Mercedes 540K',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 3260
-  },
-
-  {
-    name: 'Ferrari 348',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 7391
   },
   {
     name: 'BMW M3',
@@ -1711,97 +1685,16 @@ const cars96 = [
     price: 6046
   },
   {
-    name: 'Lamborghini Countach',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 2555
-  },
-  {
-    name: 'Porsche 911',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 5713
-  },
-  {
-    name: 'Ferrari 355',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 2974
-  },
-
-  {
-    name: 'Peterbilt',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 9383
-  },
-  {
-    name: 'Oshkosh S Series',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 403
-  },
-  {
-    name: 'Earth Mover',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 6364
-  },
-  {
-    name: 'Breakaway Bucket (Unreleased)',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 9596
-  },
-
-  {
     name: 'Sandstinger',
     imageUrl:
       'https://static.wikia.nocookie.net/hotwheels/images/f/f4/1997ML-EU-SandStinger_%28Large%29.JPG',
     price: 6190
   },
   {
-    name: 'Dirt Rover',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 5650
-  },
-  {
-    name: 'Road Roller',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 8358
-  },
-  {
-    name: 'Highway Builder',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 7489
-  },
-
-  {
-    name: 'Mazda MX5',
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 8128
-  },
-  {
-    name: "'96 Mustang",
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 8620
-  },
-  {
     name: 'Mercedes-Benz 500 SL',
     imageUrl:
       'https://static.wikia.nocookie.net/hotwheels/images/c/c7/Mercedes_500SL_grey_purple_interior_glass_5sp_europe_only.JPG',
     price: 8134
-  },
-  {
-    name: "'96 Camaro",
-    imageUrl:
-      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
-    price: 1003
   }
 ]
 

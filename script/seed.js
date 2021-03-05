@@ -33,10 +33,10 @@ async function seed() {
   // Find 3 Products
   function createPks() {
     let arr = []
-    let prodId = Math.floor(Math.random() * 288) + 1
+    let prodId = Math.floor(Math.random() * 271) + 1
     for (let i = 0; i < 3; i++) {
       while (arr.includes(prodId)) {
-        prodId = Math.floor(Math.random() * 288) + 1
+        prodId = Math.floor(Math.random() * 271) + 1
       }
       arr.push(prodId)
     }
