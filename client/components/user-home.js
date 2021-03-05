@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import AllProducts from './AllProducts'
-
+import Cart from './Cart'
 /**
  * COMPONENT
  */
@@ -13,7 +13,8 @@ export const UserHome = props => {
     <div>
       <h3>Welcome, {email}</h3>
       <div className="products-container">
-        <AllProducts />
+        {/* <Cart /> */}
+        {/* <AllProducts /> */}
       </div>
     </div>
   )
@@ -24,6 +25,7 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
+    ...state,
     email: state.user.email
   }
 }
