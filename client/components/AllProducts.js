@@ -11,32 +11,91 @@ import {Link} from 'react-router-dom'
  */
 
 class AllProducts extends Component {
+  constructor() {
+    super()
+    this.state = {
+      currentPage: 1,
+      productsPerPage: 40
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
+
+  handleClick(event) {
+    console.log(event.target.id)
+    this.setState({
+      currentPage: Number(event.target.id)
+    })
+  }
+
   componentDidMount() {
     this.props.getProds()
-    // this.forceUpdate();
   }
 
   render() {
+    const {currentPage, productsPerPage} = this.state
     const {products} = this.props
-    return products.length ? (
-      <div className="products-div">
-        {products.map(product => (
-          <div key={product.id}>
-            <Card style={{width: '18rem'}} border="primary">
-              <Link to={`/products/${product.id}`}>
-                <Card.Img variant="top" src={product.imageUrl} />
-                <Card.Title>{product.name}</Card.Title>
-              </Link>
-              <Card.Body>
-                <Card.Text>Price: {product.price}</Card.Text>
-                <Card.Text> Description: {product.description}</Card.Text>
-                <Card.Text>Rating: {product.rating}</Card.Text>
-              </Card.Body>
-            </Card>
+    const indexOfLastProduct = currentPage * productsPerPage
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage
+    const currentProducts = products.slice(
+      indexOfFirstProduct,
+      indexOfLastProduct
+    )
+
+    const pageNumbers = []
+    for (let i = 1; i <= Math.ceil(products.length / productsPerPage); i++) {
+      pageNumbers.push(i)
+    }
+
+    const renderPageNumbers = pageNumbers.map(number => {
+      return (
+        <div key={number} className="numbers">
+          <div id={number} className="number" onClick={this.handleClick}>
+            {number}
           </div>
-        ))}
+        </div>
+      )
+    })
+
+    return (
+      <div>
+        <div className="pages">
+          <div id="page-numbers">Pages</div>
+          <div id="page-numbers">{renderPageNumbers}</div>
+        </div>
+        <div className="products-div">
+          {currentProducts.map(product => (
+            <div key={product.id}>
+              <Card id="card" style={{width: '18rem'}} border="primary">
+                <Link to={`/products/${product.id}`}>
+                  <Card.Img
+                    id="prod-img"
+                    variant="top"
+                    src={product.imageUrl}
+                  />
+                  <Card.Title>{product.name}</Card.Title>
+                </Link>
+                <Card.Body>
+                  <Card.Text>${product.price / 100}</Card.Text>
+                  <Card.Text> Description: {product.description}</Card.Text>
+                </Card.Body>
+                <div>Rating: {stars(product.rating)}</div>
+                <button
+                  className="add-to-cart"
+                  type="button"
+                  // onClick={() => this.props.addToCart(product)}
+                >
+                  Add to Cart
+                </button>
+              </Card>
+            </div>
+          ))}
+        </div>
+        <div className="pages">
+          <div id="page-numbers">Pages</div>
+          <div id="page-numbers">{renderPageNumbers}</div>
+        </div>
       </div>
-    ) : null
+    )
   }
 }
 /**
@@ -55,6 +114,72 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
 
+function stars(rating) {
+  let html
+  if (rating === -1) {
+    html = (
+      <div>
+        <p>No Ratings Yet!</p>
+      </div>
+    )
+  }
+  if (rating === 1) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 2) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 3) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 4) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 5) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+      </div>
+    )
+  }
+  return html
+}
 /**
  * PROP TYPES
  */

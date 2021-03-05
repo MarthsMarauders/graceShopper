@@ -25,3 +25,52 @@ form div {
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
+.checked {
+  color: gold;
+}
+
+#unchecked {
+  color: gray;
+}
+
+.products-container {
+  width: 95vw;
+  height: 95vh;
+}
+
+#card {
+  border-radius: 15px;
+}
+
+#prod-img {
+  border-radius: 15px;
+}
+
+.add-to-cart {
+  border-radius: 15px;
+}
+
+.add-to-cart:hover {
+  background-color: darkgrey;
+  color: white;
+}
+
+#page-numbers {
+  display: flex;
+  justify-content: center;
+}
+
+.pages {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.numbers {
+  padding: 5px;
+}
+
+.number {
+  cursor: pointer;
+}
