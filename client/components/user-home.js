@@ -1,23 +1,36 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import AllProducts from './AllProducts'
 import Cart from './Cart'
+import {fetchCart} from '../store/cart'
 /**
  * COMPONENT
  */
-export const UserHome = props => {
-  const {email} = props
+class UserHome extends Component {
+  // componentDidMount() {
+  //   console.log(this.props, 'PROPS!')
+  //   this.props.getCart(this.props.user.id)
+  //   // this.props.getOrder(this.props.user.id)
+  //   // console.log(this.props.order.id, 'ORDER ID')
+  //   // this.props.getCart(this.props.order.id)
+  //   // this.forceUpdate();
+  // }
 
-  return (
-    <div>
-      <h3>Welcome, {email}</h3>
-      <div className="products-container">
-        {/* <Cart /> */}
-        {/* <AllProducts /> */}
+  render() {
+    const {email} = this.props
+    const {user} = this.props
+    console.log(user)
+    return (
+      <div>
+        <h3>Welcome, {email}</h3>
+        <div className="products-container">
+          <Cart />
+          {/* <AllProducts /> */}
+        </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 /**
@@ -25,10 +38,16 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    ...state,
-    email: state.user.email
+    email: state.user.email,
+    user: state.user
   }
 }
+
+// const mapDispatchToProps = dispatch => ({
+//   getCart: userId => {
+//     dispatch(fetchCart(userId))
+//   }
+// })
 
 export default connect(mapState)(UserHome)
 

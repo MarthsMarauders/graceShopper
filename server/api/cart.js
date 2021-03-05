@@ -12,14 +12,23 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+// gets the cart for a user making sure complete is false
+router.get('/:userId/mycart', async (req, res, next) => {
   try {
-    const order = await OrderProducts.findAll({
+    const cart = await Order.findOne({
       where: {
-        orderId: req.params.id
+        completed: false,
+        userId: req.params.userId
       }
     })
-    res.json(order)
+    const cartProductsArr = await Order.findAll({
+      where: {
+        id: cart.id
+      },
+      include: {model: Product}
+    })
+
+    res.json(cartProductsArr)
   } catch (error) {
     next(error)
   }
