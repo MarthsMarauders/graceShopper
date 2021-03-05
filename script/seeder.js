@@ -884,8 +884,927 @@ const cars96 = [
     imageUrl:
       'https://static.wikia.nocookie.net/hotwheels/images/0/0f/Nomad_Bonus.jpg',
     price: 65.81
+  },
+
+  {
+    name: 'Firebird Funny Car',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/c1/FireBird_Funny_1997_RT.JPG',
+    price: 4359
+  },
+  {
+    name: 'Ford F-150',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/7a/Ford_F-150_Red.JPG',
+    price: 2442
+  },
+  {
+    name: 'Excavator',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/d/d7/Excavator_Wht.JPG',
+    price: 8350
+  },
+  {
+    name: 'Saltflat Racer',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/73/Saltflat_Racer_Red.JPG',
+    price: 8871
+  },
+  {
+    name: "'59 Chevy Impala",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/2e/%2759_Chevy_Impala_Pink.JPG',
+    price: 9410
+  },
+  {
+    name: 'BMW M Roadster',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/38/Bmwmroadster.jpg',
+    price: 7881
+  },
+  {
+    name: 'Way 2 Fast',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/e/ee/Way_2_Fast_-_98_FE.JPG',
+    price: 8083
+  },
+  {
+    name:
+      '1970 Plymouth Barracuda was a planned release as "1997 First Edition #8"',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/a3/Plymouth.barracuda.1970.16322.a.jpg',
+    price: 2942
+  },
+  {
+    name: "Scorchin' Scooter",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/bd/Scorchin%27_Scooter_Prpl.JPG',
+    price: 1593
+  },
+  {
+    name: 'Mercedes C-Class',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/a6/Mercedes_C-Class_-_97FE.jpg',
+    price: 1352
+  },
+  {
+    name: "'97 Corvette",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/2d/97_Corvette_MtGrn.JPG',
+    price: 9951
+  },
+  {
+    name: '25th Anniversary Lamborghini Countach',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b2/Lamborghini_Countach_Yel.JPG',
+    price: 5089
+  },
+
+  {
+    name: "'56 Flashsider",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/6a/578_Treasure_Hunt_Series_%2756_Flashsider.jpg',
+    price: 2677
+  },
+  {
+    name: 'Silhouette II',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/95/1997THSilhouetteII.jpg',
+    price: 3357
+  },
+  {
+    name: 'Mercedes-Benz SL',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/8/81/Hotwheels_028.jpg',
+    price: 5073
+  },
+  {
+    name: 'Street Cleaver',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/28/Cleaver_thunt.JPG',
+    price: 6574
+  },
+  {
+    name: 'GM Lean Machine',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/7e/1997TH_GMLeanMachine.jpg',
+    price: 7036
+  },
+  {
+    name: 'Hot Rod Wagon',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/9e/Hot_rod_wagon_t_hunt.jpg',
+    price: 1327
+  },
+  {
+    name: 'Oldsmobile Aurora',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/6a/OldsAurora%24TH.jpg',
+    price: 5433
+  },
+  {
+    name: 'Dogfighter',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/79/Dogfighter_97thunt.JPG',
+    price: 6790
+  },
+  {
+    name: 'Buick Wildcat',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/34/586_Treasure_Hunt_Series_Buick_Wildcat.jpg',
+    price: 8649
+  },
+  {
+    name: 'Blimp',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/e/ec/Hotwheels_026.jpg',
+    price: 2816
+  },
+  {
+    name: 'Avus Quattro',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/66/Hotwheels_030.jpg',
+    price: 8371
+  },
+  {
+    name: 'Rail Rodder',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/36/RailRodder%24TH.jpg',
+    price: 9285
+  },
+
+  {
+    name: 'Power Rocket',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/5/59/Power_Rocket_Grn3SP.JPG',
+    price: 9989
+  },
+  {
+    name: 'Power Pistons',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/01/Power_Pistons_RedClr.JPG',
+    price: 4746
+  },
+  {
+    name: 'Power Pipes',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/d/dc/Power_Pipes_ClrBlu.JPG',
+    price: 3473
+  },
+  {
+    name: 'Road Rocket',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/30/Road_Rocket_OrgYel.JPG',
+    price: 4967
+  },
+
+  {
+    name: 'Hummer',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/8/82/Humvee_-_Race_Team_Series_4.jpg',
+    price: 7395
+  },
+  {
+    name: 'Chevy 1500',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/af/Chevy_1500_-_Race_Team_3.jpg',
+    price: 7411
+  },
+  {
+    name: "3-Window '34",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/70/3-Window_%2734_-_Race_Team_Series_3.jpg',
+    price: 6114
+  },
+  {
+    name: "'80s Corvette",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/4/44/80s_Corvette_-_Race_Team_3.jpg',
+    price: 8763
+  },
+
+  {
+    name: 'Police Cruiser (1996)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/61/Police_Cruiser_Grn5sp.JPG',
+    price: 6628
+  },
+  {
+    name: 'School Bus',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/65/School_Bus_Grn.JPG',
+    price: 7427
+  },
+  {
+    name: 'Tank Truck',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/ce/Tank_Truck_DkRed7sp.JPG',
+    price: 6026
+  },
+  {
+    name: 'Rig Wrecker',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/9a/Rig_Wrecker_FT5sp.JPG',
+    price: 2069
+  },
+
+  {
+    name: 'Mini Truck',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/64/Minitruck_Red5sp.JPG',
+    price: 868
+  },
+  {
+    name: 'Limozeen',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/32/Limozeen_Blu.JPG',
+    price: 1220
+  },
+  {
+    name: 'Range Rover',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/67/Range_Rover_BBBM.JPG',
+    price: 3584
+  },
+  {
+    name: 'VW Bug',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/aa/VW_Bug_BBB.JPG',
+    price: 9087
+  },
+
+  {
+    name: 'Hydroplane',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/90/Hydroplane_WhtBlu.JPG',
+    price: 9600
+  },
+  {
+    name: 'Street Roader',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/bd/Street_Roader_WhtSS.JPG',
+    price: 2083
+  },
+  {
+    name: 'XT-3',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/8/84/XT-3_SpdSpry.JPG',
+    price: 5859
+  },
+  {
+    name: 'Probe Funny Car',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/1a/Probe_Funny_Car_SpdSpry.JPG',
+    price: 6140
+  },
+
+  {
+    name: 'Stealth',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/1a/Shadow_Jet_II_Prp.JPG',
+    price: 2301
+  },
+  {
+    name: 'Alien',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/76/Alien_SpyPrnt3sp.JPG',
+    price: 6572
+  },
+  {
+    name: 'Sol-Aire CX4',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/96/Sol-Aire_CX-4_DkRdSB.JPG',
+    price: 7880
+  },
+  {
+    name: 'Custom Corvette Convertible',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/74/Custom%2BCorvette_BlkSS.JPG',
+    price: 6571
+  },
+
+  {
+    name: 'Mercedes-Benz Unimog',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/69/Mercedes_Benz_Unimog_StrtBst.JPG',
+    price: 8296
+  },
+  {
+    name: 'Jaguar XJ220',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/76/Jaguar_XJ220_-_Street_Beast.JPG',
+    price: 8017
+  },
+  {
+    name: 'Blown Camaro',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/9b/80s_Camaro_StBst.JPG',
+    price: 3088
+  },
+  {
+    name: 'Corvette Stingray',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/4/4e/Corvette_Stingray_StrtBst.JPG',
+    price: 6760
+  },
+
+  {
+    name: 'Speed Machine',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b8/Speed_Machine_Wht.JPG',
+    price: 6964
+  },
+  {
+    name: 'Shadow Jet',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/09/Shadow_JetWht.JPG',
+    price: 5541
+  },
+  {
+    name: "Splittin' Image II",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/aa/Splittin_Image_II_AGENTAIR_6.jpg',
+    price: 5109
+  },
+  {
+    name: 'Twin Mill II',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/29/Twin_Mill_II_Wht.JPG',
+    price: 7131
+  },
+
+  {
+    name: 'Silhouette II',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/64/Silouette_II_DlrsChc.JPG',
+    price: 7154
+  },
+  {
+    name: 'Street Beast',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/ba/Street_Beast_DlrChc.JPG',
+    price: 3216
+  },
+  {
+    name: 'Baja Bug',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/22/Baja_Bug_MtRedDC.JPG',
+    price: 890
+  },
+  {
+    name: "'63 Corvette",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/e/ea/Th_63corvette027.jpg',
+    price: 2462
+  },
+
+  {
+    name: 'Chevy Stocker',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/73/Chevy_Stocker_Red.JPG',
+    price: 504
+  },
+  {
+    name: 'Aeroflash',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/cf/Aeroflash_Prp.JPG',
+    price: 5394
+  },
+  {
+    name: 'Ferrari 308',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/1c/Ferrarri_308_GTB_QS.JPG',
+    price: 8394
+  },
+  {
+    name: 'T-Bird Stocker',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/c9/T-Bird_Stocker_BluQS.JPG',
+    price: 3488
+  },
+
+  {
+    name: 'Twang Thang',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/6c/Twang_Thang_Red.JPG',
+    price: 1884
+  },
+  {
+    name: 'Ferrari F355',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/f4/Ferrari_F355_BlkRkRds.JPG',
+    price: 1110
+  },
+  {
+    name: 'Turbo Flame',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/f9/Turbo_Flame_PrpRR.JPG',
+    price: 1089
+  },
+  {
+    name: 'Porsche 930',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/66/Porsche_930_mtGrn.JPG',
+    price: 8157
+  },
+
+  {
+    name: 'Olds 442 W-30',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/fe/Olds_442_W-30_MtBlu.JPG',
+    price: 3667
+  },
+  {
+    name: 'Nissan Truck',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/98/Nissan_Hardbody_BluStrk.JPG',
+    price: 8306
+  },
+  {
+    name: "'55 Chevy",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/17/55_Chevy_Blu.JPG',
+    price: 3262
+  },
+  {
+    name: 'Speed Blaster',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/1a/Speed_Blaster_blu3sp.JPG',
+    price: 4816
+  },
+
+  {
+    name: 'Driven To The Max',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/fd/Dragster_YelGrn.JPG',
+    price: 3529
+  },
+  {
+    name: 'No Fear Race Car',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/8/84/No_Fear_Race_Car_Blk7sp.JPG',
+    price: 7955
+  },
+  {
+    name: "'58 Corvette Coupe",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b2/100_7294.jpg',
+    price: 4816
+  },
+  {
+    name: 'GMC Motorhome',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/bd/GMC_Motor_Home_-_98_HW.jpg',
+    price: 2890
+  },
+  {
+    name: 'Trailbuster',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/9e/Trailbuster_Jeep_Scrambler_-_3408df.jpg',
+    price: 3073
+  },
+  {
+    name: 'Neet Streeter',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/11/Neet_Streeter_Yel.JPG',
+    price: 5350
+  },
+  {
+    name: 'Second Wind',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/02/Second_Wind_Wht6.JPG',
+    price: 9320
+  },
+  {
+    name: 'Beach Blaster',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/9b/Beach_Blaster_-_6414df.jpg',
+    price: 2149
+  },
+  {
+    name: 'Police Cruiser (1996)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/f5/Police_Cruiser_WhtRd5sp.JPG',
+    price: 6564
+  },
+  {
+    name: 'Porsche 911',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b9/P-911_Red5sp.JPG',
+    price: 1721
+  },
+  {
+    name: 'Porsche 959',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/36/Porsche_959_MtLtBl5sp1.JPG',
+    price: 3477
+  },
+  {
+    name: 'Porsche 930',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/a6/Porsche_930_Blu5sp.JPG',
+    price: 8103
+  },
+  {
+    name: 'Skullrider',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/c9/Skullrider_PnkCrm.JPG',
+    price: 4308
+  },
+  {
+    name: 'GM Ultralite',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/f1/GM_Ultralite_7sp2.JPG',
+    price: 9176
+  },
+  {
+    name: 'Corvette Stingray III',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/9e/595_Corvette_Stingray_III_%28Blue%29.jpg',
+    price: 2720
+  },
+  {
+    name: 'Pontiac Salsa',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/04/Pontiac_Salsa_org3SP.JPG',
+    price: 5635
+  },
+  {
+    name: 'Buick Wildcat',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/8/81/Buick_Wildcat_CRed7sp.JPG',
+    price: 3277
+  },
+  {
+    name: 'Turboa',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/d/d5/Turboa_YelOrg.JPG',
+    price: 6033
+  },
+  {
+    name: 'Camaro Wind',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/ad/Camaro_Wind_AGENTAIR_1.jpg',
+    price: 5991
+  },
+  {
+    name: 'Nissan Custom "Z"',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/d/d0/Nissan_Custom_Z_Blu.JPG',
+    price: 812
+  },
+  {
+    name: 'Commando',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b6/Commando_Red.JPG',
+    price: 4798
+  },
+  {
+    name: 'Sharkruiser',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/9/93/Sharkruiser_BlkRed.JPG',
+    price: 5609
+  },
+  {
+    name: 'BMW 325i',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/cc/Bmw325.jpg',
+    price: 2515
+  },
+  {
+    name: 'Ferrari 308 GTS',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/e/e0/604_Ferrari_308_GTS.jpg',
+    price: 7737
+  },
+  {
+    name: 'Mercedes 2.6 190E (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/06/605_Mercedes_2.6.jpg',
+    price: 5167
+  },
+  {
+    name: 'Mercedes 300TD (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/74/Mercedes_300TD_-_6976df.jpg',
+    price: 9214
+  },
+  {
+    name: "Fat Fendered '40",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/05/%2740%27s_Ford_2-Door_Turq.JPG',
+    price: 5380
+  },
+  {
+    name: 'Porsche 911 Targa',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/5/50/608_Porsche_911_Targa.jpg',
+    price: 9434
+  },
+  {
+    name: 'Jaguar XJ40',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b4/609_Jaguar_XJ40.jpg',
+    price: 8844
+  },
+  {
+    name: 'Land Rover MkII (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/19/610_Land_Rover_MKII.jpg',
+    price: 5313
+  },
+  {
+    name: 'Fire-Eater II (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/38/611_Fire-Eater_II.jpg',
+    price: 7206
+  },
+  {
+    name: "'57 T-Bird (1996) (Unknown Corgi)",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/06/612_%6057_T-Bird.jpg',
+    price: 2177
+  },
+  {
+    name: 'London Bus',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/ae/613_London_Bus.JPG',
+    price: 3946
+  },
+  {
+    name: 'Ford (Sierra) XR4Ti (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/d/da/615_Ford_Sierra_XR4Ti.jpg',
+    price: 1099
+  },
+  {
+    name: "'80's Corvette",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/2b/616_%2780%27s_Corvette.jpg',
+    price: 3421
+  },
+  {
+    name: 'Flame Stopper II (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/5/5d/617_Flame_Stopper_II.jpg',
+    price: 3676
+  },
+  {
+    name: 'Chevy Stocker',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/6/62/Chevystocker_huff.JPG',
+    price: 4941
+  },
+  {
+    name: 'London Taxi (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/fd/London.taxi.jpg',
+    price: 9093
+  },
+  {
+    name: 'Ford Transit Wrecker',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/07/620_Ford_Transit_Wrecker.jpg',
+    price: 9399
+  },
+  {
+    name: 'City Police (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/7b/Buick_Regal_-_5566gf.jpg',
+    price: 874
+  },
+  {
+    name: 'Mustang Cobra',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/4/4c/623_Mustang_Cobra.jpg',
+    price: 1420
+  },
+  {
+    name: 'Assault Crawler',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/f1/Assault_Crawler_-_0039df.jpg',
+    price: 8145
+  },
+  {
+    name: 'Classic Packard',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/30/Classic_Packard_-_4617ef.jpg',
+    price: 2264
+  },
+  {
+    name: 'CAT Wheel Loader',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/0/0b/641_Wheel_Loader.jpg',
+    price: 8025
+  },
+  {
+    name: 'CAT Forklift',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/4/46/CAT_Forklift_Wht.JPG',
+    price: 3160
+  },
+  {
+    name: 'Dirt Rover (Digger) (Unknown Corgi)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/a/a9/643_Digger.jpg',
+    price: 7507
+  },
+
+  {
+    name: "'63 Split Window Corvette",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/3a/Th_63corvette028.jpg',
+    price: 4101
+  },
+  {
+    name: 'Pontiac Salsa',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/2e/Pontiac_Salsa_grnBonus97.JPG',
+    price: 5150
+  },
+  {
+    name: 'GM Lean Machine',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/4/47/GM_Lean_Machine_Bonus.JPG',
+    price: 8905
+  },
+
+  {
+    name: 'Ferrari 250',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/4/43/Ferrari_250_Testarossa_06.jpg',
+    price: 7046
+  },
+  {
+    name: 'Ferrari 308 GTB',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/e/e1/Ferrari_308_GTB_09.JPG',
+    price: 427
+  },
+  {
+    name: 'Ferrari F40',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/4/43/Ferrari_F40-17776.jpg',
+    price: 6534
+  },
+  {
+    name: 'Ferrari F50 Spider',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/27/IMG_6131.jpg',
+    price: 3533
+  },
+
+  {
+    name: 'Auburn 852',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 4053
+  },
+  {
+    name: 'Talbot Lago (Unreleased)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 5799
+  },
+  {
+    name: 'Duesenberg 1931',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/1/1f/Eurodoozie.jpg',
+    price: 8011
+  },
+  {
+    name: 'Mercedes 540K',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 3260
+  },
+
+  {
+    name: 'Ferrari 348',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 7391
+  },
+  {
+    name: 'BMW M3',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/2/25/1997ML-EU-BMWM3_%28Large%29.JPG',
+    price: 9383
+  },
+  {
+    name: 'Jaguar XJR9',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/7/70/Jagxjr.jpg',
+    price: 9071
+  },
+  {
+    name: 'Porsche 935',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/cd/Porsche959.jpg',
+    price: 1634
+  },
+
+  {
+    name: 'BMW 850i',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/3/39/BMW_850i_white_Street_Racers.JPG',
+    price: 6046
+  },
+  {
+    name: 'Lamborghini Countach',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 2555
+  },
+  {
+    name: 'Porsche 911',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 5713
+  },
+  {
+    name: 'Ferrari 355',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 2974
+  },
+
+  {
+    name: 'Peterbilt',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 9383
+  },
+  {
+    name: 'Oshkosh S Series',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 403
+  },
+  {
+    name: 'Earth Mover',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 6364
+  },
+  {
+    name: 'Breakaway Bucket (Unreleased)',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 9596
+  },
+
+  {
+    name: 'Sandstinger',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/f/f4/1997ML-EU-SandStinger_%28Large%29.JPG',
+    price: 6190
+  },
+  {
+    name: 'Dirt Rover',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 5650
+  },
+  {
+    name: 'Road Roller',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 8358
+  },
+  {
+    name: 'Highway Builder',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 7489
+  },
+
+  {
+    name: 'Mazda MX5',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 8128
+  },
+  {
+    name: "'96 Mustang",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 8620
+  },
+  {
+    name: 'Mercedes-Benz 500 SL',
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/c/c7/Mercedes_500SL_grey_purple_interior_glass_5sp_europe_only.JPG',
+    price: 8134
+  },
+  {
+    name: "'96 Camaro",
+    imageUrl:
+      'https://static.wikia.nocookie.net/hotwheels/images/b/b5/Image_Not_Available.jpg',
+    price: 1003
   }
 ]
+
 const universities = [
   '25 Blood Drive',
   'Abandoned House',
@@ -1333,6 +2252,14 @@ function usersCreator(givenNames) {
   })
 }
 
+function createRating() {
+  let rating = Math.floor(Math.random() * 6)
+  if (rating === 0) {
+    rating = -1
+  }
+  return rating
+}
+
 const finalArrayOfCars = []
 function carCreator(carArray) {
   const descriptionLength = descriptionWords.length - 1
@@ -1342,6 +2269,7 @@ function carCreator(carArray) {
       ' ' +
       descriptionWords[Math.round(Math.random() * descriptionLength)]
     singleCar.price = Math.round(Math.random() * 10000)
+    singleCar.rating = createRating()
     singleCar.price =
       singleCar.price.toString()[0] + singleCar.price.toString()[1] + '99'
     singleCar.price = parseInt(singleCar.price)

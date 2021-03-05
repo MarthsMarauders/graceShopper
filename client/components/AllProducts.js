@@ -18,25 +18,32 @@ class AllProducts extends Component {
 
   render() {
     const {products} = this.props
-    return products.length ? (
+    return (
       <div className="products-div">
         {products.map(product => (
           <div key={product.id}>
-            <Card style={{width: '18rem'}} border="primary">
+            <Card id="card" style={{width: '18rem'}} border="primary">
               <Link to={`/products/${product.id}`}>
-                <Card.Img variant="top" src={product.imageUrl} />
+                <Card.Img id="prod-img" variant="top" src={product.imageUrl} />
                 <Card.Title>{product.name}</Card.Title>
               </Link>
               <Card.Body>
-                <Card.Text>Price: {product.price}</Card.Text>
+                <Card.Text>${product.price / 100}</Card.Text>
                 <Card.Text> Description: {product.description}</Card.Text>
-                <Card.Text>Rating: {product.rating}</Card.Text>
               </Card.Body>
+              <div>Rating: {stars(product.rating)}</div>
+              <button
+                className="add-to-cart"
+                type="button"
+                // onClick={() => this.props.addToCart(product)}
+              >
+                Add to Cart
+              </button>
             </Card>
           </div>
         ))}
       </div>
-    ) : null
+    )
   }
 }
 /**
@@ -55,6 +62,72 @@ const mapDispatchToProps = dispatch => ({
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
 
+function stars(rating) {
+  let html
+  if (rating === -1) {
+    html = (
+      <div>
+        <p>No Ratings Yet!</p>
+      </div>
+    )
+  }
+  if (rating === 1) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 2) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 3) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 4) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span id="unchecked" className="fa fa-star"></span>
+      </div>
+    )
+  }
+  if (rating === 5) {
+    html = (
+      <div>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+        <span className="fa fa-star checked"></span>
+      </div>
+    )
+  }
+  return html
+}
 /**
  * PROP TYPES
  */
