@@ -3,18 +3,20 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import AllProducts from './AllProducts'
 import Cart from './Cart'
+import {Link} from 'react-router-dom'
 /**
  * COMPONENT
  */
-
-export const UserHome = props => {
-  const {email} = props
+export const LandingPage = () => {
+  // const {email} = props
 
   return (
     <div>
-      <h3>Welcome, {email}</h3>
+      {/* <h3>Welcome, {email}</h3> */}
       <div className="products-container">
         <h1> HOME </h1>
+        <Link to="/cart"> Cart </Link>
+
         {/* <Cart /> */}
         {/* <AllProducts /> */}
       </div>
@@ -27,15 +29,15 @@ export const UserHome = props => {
  */
 const mapState = state => {
   return {
-    email: state.user.email
+    ...state
   }
 }
 
-export default connect(mapState)(UserHome)
+export default connect(mapState)(LandingPage)
 
 /**
  * PROP TYPES
  */
-UserHome.propTypes = {
-  email: PropTypes.string
-}
+// UserHome.propTypes = {
+//   email: PropTypes.string
+// }

@@ -9,10 +9,10 @@ import {
   AllProducts,
   SingleProduct,
   AllOrders,
-  Cart
+  Cart,
+  LandingPage
 } from './components'
 import {me} from './store'
-// import {} from './components'
 
 /**
  * COMPONENT
@@ -28,11 +28,12 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={LandingPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/orders" component={AllOrders} />
         <Route exact path="/products" component={AllProducts} />
-        <Route exact path="/cart" component={Cart} />
+        <Route exact path="/cart/:id" component={Cart} />
         <Route path="/products/:id" component={SingleProduct} />
         {isLoggedIn && (
           <Switch>
