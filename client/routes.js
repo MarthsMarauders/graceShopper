@@ -8,18 +8,26 @@ import {
   UserHome,
   AllProducts,
   SingleProduct,
-  AllOrders
+  AllOrders,
+  Cart,
+  LandingPage
 } from './components'
 import {me} from './store'
-// import {} from './components'
 
 /**
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  // Moved loadInitialData to constructor
+  constructor(props) {
+    super()
+    props.loadInitialData()
   }
+  // Removed loadInitialData away from compDidMount to change order of operations
+
+  // componentDidMount() {
+  //   this.props.loadInitialData()
+  // }
 
   render() {
     const {isLoggedIn} = this.props
@@ -27,17 +35,21 @@ class Routes extends Component {
     return (
       <Switch>
         {/* Routes placed here are available to all visitors */}
+        <Route exact path="/" component={LandingPage} />
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/orders" component={AllOrders} />
         <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/cart" component={Cart} />
         <Route path="/products/:id" component={SingleProduct} />
+
         {isLoggedIn && (
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
           </Switch>
         )}
+
         {/* Displays our Login component as a fallback */}
         <Route component={Login} />
       </Switch>
