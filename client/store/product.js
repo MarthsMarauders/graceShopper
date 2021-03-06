@@ -24,9 +24,9 @@ export const getProducts = products => ({
   type: GET_ALL_PRODUCTS,
   products
 })
-export const deleteProduct = productId => ({
+export const deleteProduct = product => ({
   type: DELETE_PRODUCT,
-  productId
+  product
 })
 
 const getSingleProduct = product => ({
@@ -65,8 +65,9 @@ export const deleteAProduct = productId => {
       const {data: productToDelete} = await axios.delete(
         `/api/products/${productId}`
       )
+      console.log('DELETED PRODUCT IN THUNK---->', productToDelete)
       dispatch(deleteProduct(productToDelete))
-      history.push('/home')
+      history.push('/products')
     } catch (error) {
       console.log('THERE WAS AN ERROR DELETING A PRODUCT', error)
     }
@@ -92,7 +93,7 @@ export default function productReducer(state = initialState, action) {
     case GET_SINGLE_PRODUCT:
       return {...state, product: action.product}
     case DELETE_PRODUCT:
-      const productId = action.productId
+      const productId = action.product.id
       const newProducts = state.products.filter(
         product => product.id !== productId
       )

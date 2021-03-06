@@ -6,19 +6,21 @@ import {Card} from 'react-bootstrap'
 import {SingleProduct} from './SingleProduct'
 import {Link} from 'react-router-dom'
 import Cart from './Cart'
+import {me} from '../store/user'
 
 /**
  * COMPONENT
  */
 
 class AllProducts extends Component {
-  constructor() {
-    super()
-    const {user} = this.props
+  constructor(props) {
+    super(props)
+    console.log('USER STATE----->', this.props)
+    // const {user} = this.props
     this.state = {
       currentPage: 1,
       productsPerPage: 40,
-      isAddButtonVisable: user.isAdmin
+      isAddButtonVisable: this.props.user
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -28,20 +30,30 @@ class AllProducts extends Component {
       currentPage: Number(event.target.id)
     })
   }
+  handleDeleteClick(productId) {
+    this.props.deleteProduct(productId)
+  }
 
   componentDidMount() {
     this.props.getProds()
   }
 
+  // componentDidUpdate(prevProps) {
+  //   // console.log(
+  //   //   ' componentDidUpdate \n\n',
+  //   //   prevProps.user.id,
+  //   //   this.props.user.id
+  //   // )
+  //   if (this.props.user.id !== prevProps.user.id) {
+  //     this.props.fetchUser(this.props.user.id)
+  //   }
+  // }
+
   // refreshPage() {
   //   window.location.reload()
   // }
-  handleDeleteClick(productId) {
-    this.props.deleteProduct(productId)
-  }
-
   render() {
-    console.log('USER IS ADMIN---->', this.props.user.isAdmin)
+    console.log('USER IS ADMIN---->', this.props.user)
     const {currentPage, productsPerPage} = this.state
     const {products} = this.props
     const indexOfLastProduct = currentPage * productsPerPage
@@ -138,8 +150,9 @@ class AllProducts extends Component {
  */
 const mapStateToProps = state => {
   return {
+    ...state,
     products: state.product.products,
-    user: state.user
+    user: state.user.isAdmin
   }
 }
 const mapDispatchToProps = dispatch => ({
@@ -148,7 +161,8 @@ const mapDispatchToProps = dispatch => ({
   },
   deleteProduct: productId => {
     dispatch(deleteAProduct(productId))
-  }
+  },
+  fetchUser: () => dispatch(me())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
