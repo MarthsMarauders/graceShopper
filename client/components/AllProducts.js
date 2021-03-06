@@ -5,6 +5,7 @@ import {fetchAllProducts} from '../store/product'
 import {Card} from 'react-bootstrap'
 import {SingleProduct} from './SingleProduct'
 import {Link} from 'react-router-dom'
+import Cart from './Cart'
 
 /**
  * COMPONENT
@@ -21,7 +22,6 @@ class AllProducts extends Component {
   }
 
   handleClick(event) {
-    console.log(event.target.id)
     this.setState({
       currentPage: Number(event.target.id)
     })
@@ -58,6 +58,7 @@ class AllProducts extends Component {
 
     return (
       <div>
+        <Cart />
         <div className="pages">
           <div id="page-numbers">Pages</div>
           <div id="page-numbers">{renderPageNumbers}</div>

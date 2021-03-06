@@ -39,21 +39,24 @@ class Cart extends Component {
  * CONTAINER
  */
 const mapStateToProps = state => {
-  console.log(state, 'ORDERS STATE')
   return {
-    ...state,
-    cart: state.cart.products
-    // user: state.user,
-    // order: state.orders.order
+    cart: state.cart.products,
+    user: state.user
   }
 }
+
 const mapDispatchToProps = dispatch => ({
-  getCart: orderId => {
-    dispatch(fetchCart(orderId))
-  },
-  getOrder: userId => {
-    dispatch(fetchOrder(userId))
+  getCart: userId => {
+    dispatch(fetchCart(userId))
   }
 })
+// const mapDispatchToProps = dispatch => ({
+//   getCart: orderId => {
+//     dispatch(fetchCart(orderId))
+//   },
+//   getOrder: userId => {
+//     dispatch(fetchOrder(userId))
+//   }
+// })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
