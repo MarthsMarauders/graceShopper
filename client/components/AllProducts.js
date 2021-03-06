@@ -34,7 +34,6 @@ class AllProducts extends Component {
   render() {
     const {currentPage, productsPerPage} = this.state
     const {products, user} = this.props
-    console.log(this.props, '\n\n\n in render \n\n\n')
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
     const currentProducts = products.slice(

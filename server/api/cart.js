@@ -24,7 +24,6 @@ router.get('/:userId/mycart', async (req, res, next) => {
     })
     // Define what we will send in either case.
     let cartProductsArr = null
-    // console.log(cart[1], 'CREATED VALUE', cart[0], 'INSTANCE')
 
     // If an Order was just created, grab it | Include associated products|
     if (cart[1]) {

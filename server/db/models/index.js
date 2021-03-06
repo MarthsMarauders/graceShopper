@@ -26,13 +26,7 @@ Order.belongsTo(User)
 Product.belongsToMany(Order, {through: OrderProducts})
 Order.belongsToMany(Product, {through: OrderProducts})
 
-// console.log(User.prototype)
-// console.log('PRODUCT MAGIC METHOD', Product.prototype)
-// console.log('USER MAGIC METHOD', User.prototype)
-// console.log('Order MAGIC METHOD', Order.prototype)
-// console.log('Product MAGIC METHOD', Product.prototype)
-// console.log('Product MAGIC METHOD', OrderProducts.prototype)
-
+// These will print all magic methods for a model!
 const productModel = Product
 console.log('\n\nProduct model can use:\n\n')
 for (let assoc of Object.keys(productModel.associations)) {
@@ -47,6 +41,7 @@ for (let assoc of Object.keys(productModel.associations)) {
     )
   }
 }
+// These will print all magic methods for a model!
 const orderModel = Order
 console.log('\n\nOrder model can use:\n\n')
 for (let assoc of Object.keys(orderModel.associations)) {
@@ -59,7 +54,7 @@ for (let assoc of Object.keys(orderModel.associations)) {
     )
   }
 }
-
+// These will print all magic methods for a model!
 const userModel = User
 console.log('\n\n User model can use:\n\n')
 for (let assoc of Object.keys(userModel.associations)) {

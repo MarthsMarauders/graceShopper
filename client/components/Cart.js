@@ -14,11 +14,6 @@ class Cart extends Component {
     this.props.fetchCart(this.props.user.id)
   }
   componentDidUpdate(prevProps) {
-    // console.log(
-    //   ' componentDidUpdate \n\n',
-    //   prevProps.user.id,
-    //   this.props.user.id
-    // )
     if (this.props.user.id !== prevProps.user.id) {
       this.props.fetchCart(this.props.user.id)
     }
@@ -29,7 +24,6 @@ class Cart extends Component {
   render() {
     if (this.props.cart[0]) {
       let arrayOfInCartItems = this.props.cart[0].products
-      console.log('\n arrayOfInCartItems', arrayOfInCartItems)
       return (
         <div /*key={cart.id}*/>
           <div>Hello world</div>
