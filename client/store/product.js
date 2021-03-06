@@ -1,3 +1,4 @@
+/* eslint-disable no-case-declarations */
 import axios from 'axios'
 import history from '../history'
 
@@ -6,6 +7,7 @@ import history from '../history'
  */
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
+const DELETE_PRODUCT = 'DELETE_PRODUCT'
 
 /**
  * INITIAL STATE
@@ -22,8 +24,15 @@ export const getProducts = products => ({
   type: GET_ALL_PRODUCTS,
   products
 })
+export const deleteProduct = productId => ({
+  type: DELETE_PRODUCT,
+  productId
+})
 
-const getSingleProduct = product => ({type: GET_SINGLE_PRODUCT, product})
+const getSingleProduct = product => ({
+  type: GET_SINGLE_PRODUCT,
+  product
+})
 
 /**
  * THUNK CREATORS
@@ -50,6 +59,20 @@ export const fetchSingleProduct = id => {
   }
 }
 
+export const deleteAProduct = productId => {
+  return async dispatch => {
+    try {
+      const {data: productToDelete} = await axios.delete(
+        `/api/products/${productId}`
+      )
+      dispatch(deleteProduct(productToDelete))
+      history.push('/home')
+    } catch (error) {
+      console.log('THERE WAS AN ERROR DELETING A PRODUCT', error)
+    }
+  }
+}
+
 // export const createProduct = () => async (dispatch) => {
 //   try {
 //     await axios.post('/products/createProduct')
@@ -68,6 +91,12 @@ export default function productReducer(state = initialState, action) {
       return {...state, products: action.products}
     case GET_SINGLE_PRODUCT:
       return {...state, product: action.product}
+    case DELETE_PRODUCT:
+      const productId = action.productId
+      const newProducts = state.products.filter(
+        product => product.id !== productId
+      )
+      return {...state, products: newProducts}
     default:
       return state
   }

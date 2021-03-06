@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {fetchAllProducts} from '../store/product'
+import {fetchAllProducts, deleteAProduct} from '../store/product'
 import {Card} from 'react-bootstrap'
 import {SingleProduct} from './SingleProduct'
 import {Link} from 'react-router-dom'
@@ -14,9 +14,11 @@ import Cart from './Cart'
 class AllProducts extends Component {
   constructor() {
     super()
+    const {user} = this.props
     this.state = {
       currentPage: 1,
-      productsPerPage: 40
+      productsPerPage: 40,
+      isAddButtonVisable: user.isAdmin
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -31,7 +33,15 @@ class AllProducts extends Component {
     this.props.getProds()
   }
 
+  // refreshPage() {
+  //   window.location.reload()
+  // }
+  handleDeleteClick(productId) {
+    this.props.deleteProduct(productId)
+  }
+
   render() {
+    console.log('USER IS ADMIN---->', this.props.user.isAdmin)
     const {currentPage, productsPerPage} = this.state
     const {products} = this.props
     const indexOfLastProduct = currentPage * productsPerPage
@@ -55,10 +65,12 @@ class AllProducts extends Component {
         </div>
       )
     })
+    // function printMe() {
+    //   console.log('THIS WAS CLICKED ')
+    // }
 
     return (
       <div>
-        <Cart />
         <div className="pages">
           <div id="page-numbers">Pages</div>
           <div id="page-numbers">{renderPageNumbers}</div>
@@ -80,12 +92,34 @@ class AllProducts extends Component {
                   <Card.Text> Description: {product.description}</Card.Text>
                 </Card.Body>
                 <div>Rating: {stars(product.rating)}</div>
+
                 <button
                   className="add-to-cart"
                   type="button"
                   // onClick={() => this.props.addToCart(product)}
                 >
                   Add to Cart
+                </button>
+                <button
+                  type="button"
+                  className={
+                    this.state.isAddButtonVisable
+                      ? 'product-button-visable'
+                      : 'product-button-invisable'
+                  }
+                >
+                  EDIT PRODUCT DETAILS
+                </button>
+                <button
+                  onClick={() => this.handleDeleteClick(product.id)}
+                  type="button"
+                  className={
+                    this.state.isAddButtonVisable
+                      ? 'product-button-visable'
+                      : 'product-button-invisable'
+                  }
+                >
+                  DELETE
                 </button>
               </Card>
             </div>
@@ -104,12 +138,16 @@ class AllProducts extends Component {
  */
 const mapStateToProps = state => {
   return {
-    products: state.product.products
+    products: state.product.products,
+    user: state.user
   }
 }
 const mapDispatchToProps = dispatch => ({
   getProds: () => {
     dispatch(fetchAllProducts())
+  },
+  deleteProduct: productId => {
+    dispatch(deleteAProduct(productId))
   }
 })
 

@@ -17,7 +17,7 @@ class Cart extends Component {
     const {cart} = this.props
     return cart[0] ? (
       <div key={cart.id}>
-        <div>Hello world</div>
+        {/* <div>Hello world</div> */}
         {cart[0].products.map(item => {
           return (
             <div key={item.id}>
