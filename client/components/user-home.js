@@ -9,13 +9,14 @@ import Cart from './Cart'
 
 export const UserHome = props => {
   const {email} = props
+  // console.log(this.props)
 
   return (
     <div>
       <h3>Welcome, {email}</h3>
       <div className="products-container">
         <h1> HOME </h1>
-        {/* <Cart /> */}
+        <Cart />
         {/* <AllProducts /> */}
       </div>
     </div>
