@@ -16,7 +16,7 @@ class UserHome extends Component {
       <div>
         <h3>Welcome, {email}</h3>
         <div className="products-container">
-          <Cart />
+          {/* <Cart /> */}
           <Link to="/products">Products</Link>
         </div>
       </div>

@@ -29,7 +29,7 @@ Order.belongsToMany(Product, {through: OrderProducts})
 // console.log(User.prototype)
 // console.log('PRODUCT MAGIC METHOD', Product.prototype)
 // console.log('USER MAGIC METHOD', User.prototype)
-console.log('Order MAGIC METHOD', Order.prototype)
+// console.log('Order MAGIC METHOD', Order.prototype)
 // console.log('Product MAGIC METHOD', Product.prototype)
 // console.log('Product MAGIC METHOD', OrderProducts.prototype)
 

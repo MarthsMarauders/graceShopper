@@ -8,15 +8,13 @@ import {Link} from 'react-router-dom'
  * COMPONENT
  */
 export const LandingPage = () => {
-  // const {email} = props
-
   return (
     <div>
       {/* <h3>Welcome, {email}</h3> */}
       <div className="products-container">
         <h1> HOME </h1>
-        <Link to="/cart"> Cart </Link>
-
+        <Link to="/cart"> Go to my Cart </Link>
+        <Link to="/products"> Go to products </Link>
         {/* <Cart /> */}
         {/* <AllProducts /> */}
       </div>

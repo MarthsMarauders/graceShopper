@@ -9,28 +9,22 @@ import {fetchOrder} from '../store/orders'
 
 class Cart extends Component {
   componentDidMount() {
-    console.log(this.props.match.params)
-    this.props.getCart(this.props.match.params.id)
-    // this.props.getOrder(this.props.user.id)
-    // console.log(this.props.order.id, 'ORDER ID')
-    // this.props.getCart(this.props.order.id)
-    // this.forceUpdate();
+    this.props.getCart(this.props.user.id)
+    console.log('\n --------🚀 \n componentDidMount \n this.props', this.props)
   }
-
+  componentDidUpdate() {
+    console.log('componentDidUpdate')
+  }
   render() {
     // const {cart} = this.props
-    console.log(
-      this.props.cart,
-      '\n\n\nim this . props in render in cart \n\n\n'
-    )
     return (
       <div /*key={cart.id}*/>
         <div>Hello world</div>
-        {this.props.cart.map(item => (
+        {/* {this.props.cart.map(item => (
           <div key={item.productId}>
             <h1>{item.price}</h1>
           </div>
-        ))}
+        ))} */}
       </div>
     )
   }
@@ -40,8 +34,9 @@ class Cart extends Component {
  */
 const mapStateToProps = state => {
   return {
-    cart: state.cart.products,
     user: state.user
+
+    // cart: state.cart.products
   }
 }
 
@@ -50,13 +45,5 @@ const mapDispatchToProps = dispatch => ({
     dispatch(fetchCart(userId))
   }
 })
-// const mapDispatchToProps = dispatch => ({
-//   getCart: orderId => {
-//     dispatch(fetchCart(orderId))
-//   },
-//   getOrder: userId => {
-//     dispatch(fetchOrder(userId))
-//   }
-// })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
