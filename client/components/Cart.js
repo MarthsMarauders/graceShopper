@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart} from '../store/cart'
+import {fetchCart, getCart} from '../store/cart'
 import {fetchOrder} from '../store/orders'
 
 /**
@@ -9,14 +9,13 @@ import {fetchOrder} from '../store/orders'
 
 class Cart extends Component {
   componentDidMount() {
-    this.props.getCart(this.props.user.id)
+    // this.props.getCart(this.props.user.id)
     console.log('\n --------🚀 \n componentDidMount \n this.props', this.props)
   }
   componentDidUpdate() {
     console.log('componentDidUpdate')
   }
   render() {
-    // const {cart} = this.props
     return (
       <div /*key={cart.id}*/>
         <div>Hello world</div>
@@ -35,8 +34,6 @@ class Cart extends Component {
 const mapStateToProps = state => {
   return {
     user: state.user
-
-    // cart: state.cart.products
   }
 }
 

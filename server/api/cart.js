@@ -15,14 +15,18 @@ router.get('/', async (req, res, next) => {
 // gets the cart for a user making sure complete is false
 router.get('/:userId/mycart', async (req, res, next) => {
   try {
+    // Find the exsisting order or create it
     const cart = await Order.findOrCreate({
       where: {
         completed: false,
         userId: req.params.userId
       }
     })
+    // Define what we will send in either case.
     let cartProductsArr = null
-    console.log(cart[1], 'CREATED VALUE', cart[0], 'INSTANCE')
+    // console.log(cart[1], 'CREATED VALUE', cart[0], 'INSTANCE')
+
+    // If an Order was just created, grab it | Include associated products|
     if (cart[1]) {
       cartProductsArr = await Order.findAll({
         where: {
@@ -30,7 +34,9 @@ router.get('/:userId/mycart', async (req, res, next) => {
         },
         include: {model: Product}
       })
-    } else {
+    }
+    //  If order exsisted, grab it | Include associated products |
+    else {
       cartProductsArr = await Order.findAll({
         where: {
           id: cart[0].id
@@ -73,14 +79,18 @@ router.post('/:userId/:productId', async (req, res, next) => {
 // adds a product to the cart
 router.put('/:userId/:productId', async (req, res, next) => {
   try {
+    // Find Product
     const product = await Product.findByPk(req.params.productId)
+    // Find User's order thats uncomplete
     const order = await Order.findOne({
       where: {
         completed: false,
         userId: req.params.userId
       }
     })
+    // Create association
     await order.addProduct(product)
+    // Get association table row and add a price.
     const cartRow = await OrderProducts.findOne({
       where: {
         orderId: order.id,
@@ -89,6 +99,7 @@ router.put('/:userId/:productId', async (req, res, next) => {
     })
     cartRow.price = product.price
     await cartRow.save()
+    // Send all associated order and products
     const cartRows = await OrderProducts.findAll({
       where: {
         orderId: order.id
