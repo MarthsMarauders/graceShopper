@@ -41,11 +41,12 @@ export const fetchCart = userId => {
     }
   }
 }
+// "adding" to the cart should be a post route because a row in the association table is being created
 
 export const addToCart = (userId, productId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.put(`/api/cart/${userId}/${productId}`)
+      const {data} = await axios.post(`/api/cart/${userId}/${productId}`)
       dispatch(_addToCart(data))
     } catch (error) {
       console.log(error, 'addToCart action failed')

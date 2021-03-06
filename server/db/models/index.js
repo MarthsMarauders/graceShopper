@@ -33,6 +33,46 @@ Order.belongsToMany(Product, {through: OrderProducts})
 // console.log('Product MAGIC METHOD', Product.prototype)
 // console.log('Product MAGIC METHOD', OrderProducts.prototype)
 
+const productModel = Product
+console.log('\n\nProduct model can use:\n\n')
+for (let assoc of Object.keys(productModel.associations)) {
+  for (let accessor of Object.keys(
+    productModel.associations[assoc].accessors
+  )) {
+    console.log(
+      productModel.name +
+        '.' +
+        productModel.associations[assoc].accessors[accessor] +
+        '()'
+    )
+  }
+}
+const orderModel = Order
+console.log('\n\nOrder model can use:\n\n')
+for (let assoc of Object.keys(orderModel.associations)) {
+  for (let accessor of Object.keys(orderModel.associations[assoc].accessors)) {
+    console.log(
+      orderModel.name +
+        '.' +
+        orderModel.associations[assoc].accessors[accessor] +
+        '()'
+    )
+  }
+}
+
+const userModel = User
+console.log('\n\n User model can use:\n\n')
+for (let assoc of Object.keys(userModel.associations)) {
+  for (let accessor of Object.keys(userModel.associations[assoc].accessors)) {
+    console.log(
+      userModel.name +
+        '.' +
+        userModel.associations[assoc].accessors[accessor] +
+        '()'
+    )
+  }
+}
+
 module.exports = {
   User,
   Product,

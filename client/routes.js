@@ -18,9 +18,16 @@ import {me} from './store'
  * COMPONENT
  */
 class Routes extends Component {
-  componentDidMount() {
-    this.props.loadInitialData()
+  // Moved loadInitialData to constructor
+  constructor(props) {
+    super()
+    props.loadInitialData()
   }
+  // Removed loadInitialData away from compDidMount to change order of operations
+
+  // componentDidMount() {
+  //   this.props.loadInitialData()
+  // }
 
   render() {
     const {isLoggedIn} = this.props

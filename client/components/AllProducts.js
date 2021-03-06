@@ -6,7 +6,7 @@ import {Card} from 'react-bootstrap'
 import {SingleProduct} from './SingleProduct'
 import {Link} from 'react-router-dom'
 import Cart from './Cart'
-
+import {addToCart} from '../store/cart'
 /**
  * COMPONENT
  */
@@ -33,7 +33,8 @@ class AllProducts extends Component {
 
   render() {
     const {currentPage, productsPerPage} = this.state
-    const {products} = this.props
+    const {products, user} = this.props
+    console.log(this.props, '\n\n\n in render \n\n\n')
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
     const currentProducts = products.slice(
@@ -83,7 +84,7 @@ class AllProducts extends Component {
                 <button
                   className="add-to-cart"
                   type="button"
-                  // onClick={() => this.props.addToCart(product)}
+                  onClick={() => this.props.addToCart(user.id, product.id)}
                 >
                   Add to Cart
                 </button>
@@ -104,18 +105,22 @@ class AllProducts extends Component {
  */
 const mapStateToProps = state => {
   return {
+    ...state,
     products: state.product.products
   }
 }
 const mapDispatchToProps = dispatch => ({
   getProds: () => {
     dispatch(fetchAllProducts())
+  },
+  addToCart: (userId, productId) => {
+    dispatch(addToCart(userId, productId))
   }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
 
-function stars(rating) {
+export function stars(rating) {
   let html
   if (rating === -1) {
     html = (

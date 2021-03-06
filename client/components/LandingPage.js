@@ -4,38 +4,25 @@ import {connect} from 'react-redux'
 import AllProducts from './AllProducts'
 import Cart from './Cart'
 import {Link} from 'react-router-dom'
-/**
- * COMPONENT
- */
+
+// Dummy Render component for the landing page
 export const LandingPage = () => {
   return (
     <div>
-      {/* <h3>Welcome, {email}</h3> */}
       <div className="products-container">
-        <h1> HOME </h1>
-        <Link to="/cart"> Go to my Cart </Link>
-        <Link to="/products"> Go to products </Link>
-        {/* <Cart /> */}
-        {/* <AllProducts /> */}
+        <h1> LandingPage </h1>
+        <Link to="/products">
+          {' '}
+          <h1>See All Products</h1>{' '}
+        </Link>
       </div>
     </div>
   )
 }
 
-/**
- * CONTAINER
- */
 const mapState = state => {
   return {
-    ...state
+    state
   }
 }
-
 export default connect(mapState)(LandingPage)
-
-/**
- * PROP TYPES
- */
-// UserHome.propTypes = {
-//   email: PropTypes.string
-// }
