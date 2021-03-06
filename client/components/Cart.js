@@ -9,22 +9,16 @@ import {fetchOrder} from '../store/orders'
 
 class Cart extends Component {
   componentDidMount() {
-    console.log(this.props, 'PROPS!')
+    console.log(this.props.user.id, 'THIS>PROPS>USER>ID')
     this.props.getCart(this.props.user.id)
-    // this.props.getOrder(this.props.user.id)
-    // console.log(this.props.order.id, 'ORDER ID')
-    // this.props.getCart(this.props.order.id)
-    // this.forceUpdate();
   }
 
   render() {
     const {cart} = this.props
-    console.log(cart[0], 'CARPRODUCTS')
     return cart[0] ? (
       <div key={cart.id}>
         <div>Hello world</div>
         {cart[0].products.map(item => {
-          // console.log(item)
           return (
             <div key={item.id}>
               <div>{item.price}</div>
@@ -40,11 +34,9 @@ class Cart extends Component {
  * CONTAINER
  */
 const mapStateToProps = state => {
-  console.log(state, 'ORDERS STATE')
   return {
     cart: state.cart.products,
     user: state.user
-    // order: state.orders.order
   }
 }
 

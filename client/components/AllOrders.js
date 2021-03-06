@@ -9,7 +9,6 @@ class AllOrders extends React.Component {
   }
 
   render() {
-    console.log(this.props.orders)
     const {orders} = this.props
     return (
       <div>

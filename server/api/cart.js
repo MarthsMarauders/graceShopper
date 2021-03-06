@@ -15,19 +15,29 @@ router.get('/', async (req, res, next) => {
 // gets the cart for a user making sure complete is false
 router.get('/:userId/mycart', async (req, res, next) => {
   try {
-    const cart = await Order.findOne({
+    const cart = await Order.findOrCreate({
       where: {
         completed: false,
         userId: req.params.userId
       }
     })
-    const cartProductsArr = await Order.findAll({
-      where: {
-        id: cart.id
-      },
-      include: {model: Product}
-    })
-
+    let cartProductsArr = null
+    console.log(cart[1], 'CREATED VALUE', cart[0], 'INSTANCE')
+    if (cart[1]) {
+      cartProductsArr = await Order.findAll({
+        where: {
+          id: cart[0].dataValues.id
+        },
+        include: {model: Product}
+      })
+    } else {
+      cartProductsArr = await Order.findAll({
+        where: {
+          id: cart[0].id
+        },
+        include: {model: Product}
+      })
+    }
     res.json(cartProductsArr)
   } catch (error) {
     next(error)
