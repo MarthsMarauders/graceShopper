@@ -58,7 +58,7 @@ class AllProducts extends Component {
 
     return (
       <div>
-        {/* <Cart /> */}
+        <Cart />
         <div className="pages">
           <div id="page-numbers">Pages</div>
           <div id="page-numbers">{renderPageNumbers}</div>

@@ -38,8 +38,9 @@ class Cart extends Component {
   }
 
   render() {
-    if (this.props.cart[0]) {
-      let arrayOfInCartItems = this.props.cart[0].products
+    if (this.props.cart.products) {
+      let arrayOfInCartItems = this.props.cart.products
+      console.log(arrayOfInCartItems, 'ARRAY OF CART ITEMS')
       return (
         <div /*key={cart.id}*/>
           <div>Hello world</div>
@@ -59,42 +60,33 @@ class Cart extends Component {
                   <Card.Text> Description: {product.description}</Card.Text>
                 </Card.Body>
                 <div>Rating: {stars(product.rating)}</div>
-                <div
+                {/* <div
                   className="value-button"
                   id="decrease"
                   // onClick="decreaseValue()"
-                  value={
-                    this.props.cart[0].products[index]['Order-Products']
-                      .numberOfItems
-                  }
+                  value={product['Order-Products'].numberOfItems}
                   name={product.id}
                   onClick={this.handleChange}
                 >
                   -
-                </div>
+                </div> */}
                 <input
                   type="number"
                   id="number"
-                  value={
-                    this.props.cart[0].products[index]['Order-Products']
-                      .numberOfItems
-                  }
+                  value={product['Order-Products'].numberOfItems}
                   name={product.id}
                   onChange={this.handleChange}
                 />
-                <div
+                {/* <div
                   className="value-button"
                   id="increase"
                   // onClick="increaseValue()"
-                  value={
-                    this.props.cart[0].products[index]['Order-Products']
-                      .numberOfItems
-                  }
+                  value={product['Order-Products'].numberOfItems}
                   name={product.id}
                   onClick={this.handleChange}
                 >
                   +
-                </div>
+                </div> */}
                 <button
                   className="add-to-cart"
                   type="button"
@@ -107,13 +99,6 @@ class Cart extends Component {
               </Card>
             </div>
           ))}
-
-          {/* {arrayOfInCartItems.map(item => (
-            <div key={item.id}>
-              <h1>{item.price}</h1>
-              <h1>{item.name}</h1>
-            </div>
-          ))} */}
         </div>
       )
     } else {

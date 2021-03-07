@@ -47,6 +47,7 @@ export const addToCart = (userId, productId) => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/cart/${userId}/${productId}`)
+      console.log(data, 'IN CART THUNK')
       dispatch(_addToCart(data))
     } catch (error) {
       console.log(error, 'addToCart action failed')
@@ -79,35 +80,48 @@ export const changeQuantityInCart = (userId, productId, amount) => {
 
 // -----Reducer-----
 export default function productReducer(state = initialState, action) {
-  // NEED TO MAKE SURE THESE ARE RIGHT
-  // adding cart is adding a very nested structure
-  // when I fix this is going to break Cart component where I get out of nesting
-  // make sure all of these work properly
-
   switch (action.type) {
     case GET_CART:
-      return {...state, products: action.products}
+      return {...state, products: action.products[0]}
     case ADD_TO_CART:
-      return {...state, products: action.product}
-    case REMOVE_FROM_CART:
-      console.log(action.product.productId, 'IN REDUCER')
       return {
         ...state,
-        products: state.products.map(product => {
-          console.log(product, 'HEROOOOO')
-          if (product.productId !== action.product.productId) return product
-        })
+        products: {
+          ...state.products,
+          products: [...state.products.products, action.product]
+          // ...state.products.products.push(action.product)
+        }
+      }
+    case REMOVE_FROM_CART:
+      console.log(action.product.productId, 'product id')
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          products: [
+            ...state.products.products.filter(
+              product => product.id !== action.product.productId
+            )
+          ]
+        }
       }
     case CHANGE_QUANTITY:
-      return {...state, products: action.product}
+      return {
+        ...state,
+        products: {
+          ...state.products,
+          products: [
+            ...state.products.products.map(prod => {
+              if (prod.id === action.product.productId) {
+                prod['Order-Products'].numberOfItems =
+                  action.product.numberOfItems
+              }
+              return prod
+            })
+          ]
+        }
+      }
     default:
       return state
   }
 }
-
-// return {
-//   ...state,
-//   products: state.products.filter(
-//     product => product.productId !== action.product.productId
-//   )
-// }
