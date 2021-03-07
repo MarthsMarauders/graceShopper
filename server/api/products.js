@@ -20,7 +20,16 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
-//Not Working Properly. When new product is created name is showing up as null
+router.get('/:id/edit', async (req, res, next) => {
+  try {
+    const {id} = req.params
+    const singleProduct = await Product.findByPk(id)
+    res.json(singleProduct)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/', async (req, res, next) => {
   const {name, description, rating, price, quantity} = req.body
   try {
