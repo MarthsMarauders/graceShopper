@@ -8,6 +8,7 @@ import {Link} from 'react-router-dom'
 import Cart from './Cart'
 import {me} from '../store/user'
 
+import {addToCart} from '../store/cart'
 /**
  * COMPONENT
  */
@@ -20,7 +21,7 @@ class AllProducts extends Component {
     this.state = {
       currentPage: 1,
       productsPerPage: 40,
-      isAddButtonVisable: this.props.user
+      isAddButtonVisable: this.props.user.isAdmin
     }
     this.handleClick = this.handleClick.bind(this)
   }
@@ -53,9 +54,9 @@ class AllProducts extends Component {
   //   window.location.reload()
   // }
   render() {
-    console.log('USER IS ADMIN---->', this.props.user)
+    console.log('USER IS ADMIN---->', this.props.user.isAdmin)
     const {currentPage, productsPerPage} = this.state
-    const {products} = this.props
+    const {products, user} = this.props
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
     const currentProducts = products.slice(
@@ -120,7 +121,7 @@ class AllProducts extends Component {
                 <button
                   className="add-to-cart"
                   type="button"
-                  // onClick={() => this.props.addToCart(product)}
+                  onClick={() => this.props.addToCart(user.id, product.id)}
                 >
                   Add to Cart
                 </button>
@@ -165,19 +166,20 @@ class AllProducts extends Component {
 const mapStateToProps = state => {
   return {
     ...state,
-    products: state.product.products,
-    user: state.user.isAdmin
+    products: state.product.products
+    // user: state.user.isAdmin
   }
 }
 const mapDispatchToProps = dispatch => ({
   getProds: () => dispatch(fetchAllProducts()),
   deleteProduct: productId => dispatch(deleteAProduct(productId)),
-  fetchUser: () => dispatch(me())
+  fetchUser: () => dispatch(me()),
+  addToCart: (userId, productId) => dispatch(addToCart(userId, productId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
 
-function stars(rating) {
+export function stars(rating) {
   let html
   if (rating === -1) {
     html = (

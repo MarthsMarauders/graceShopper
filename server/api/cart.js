@@ -15,14 +15,17 @@ router.get('/', async (req, res, next) => {
 // gets the cart for a user making sure complete is false
 router.get('/:userId/mycart', async (req, res, next) => {
   try {
+    // Find the exsisting order or create it
     const cart = await Order.findOrCreate({
       where: {
         completed: false,
         userId: req.params.userId
       }
     })
+    // Define what we will send in either case.
     let cartProductsArr = null
-    console.log(cart[1], 'CREATED VALUE', cart[0], 'INSTANCE')
+
+    // If an Order was just created, grab it | Include associated products|
     if (cart[1]) {
       cartProductsArr = await Order.findAll({
         where: {
@@ -30,7 +33,9 @@ router.get('/:userId/mycart', async (req, res, next) => {
         },
         include: {model: Product}
       })
-    } else {
+    }
+    //  If order exsisted, grab it | Include associated products |
+    else {
       cartProductsArr = await Order.findAll({
         where: {
           id: cart[0].id
@@ -43,58 +48,82 @@ router.get('/:userId/mycart', async (req, res, next) => {
     next(error)
   }
 })
-
-// creates an order and adds the first product to it
+// 'Add to cart' button
+// This post route will create rows in the through table and return the products added to the order number.
 router.post('/:userId/:productId', async (req, res, next) => {
   try {
+    // Find the User
     const user = await User.findByPk(req.params.userId)
+    // Find the Product
     const product = await Product.findByPk(req.params.productId)
-    await user.createOrder()
-    const order = await Order.findOne({
+    // Find (or create) the Order & include the products
+    let order = await Order.findOrCreate({
       where: {
         completed: false,
-        userId: req.params.userId
-      }
+        userId: user.id
+      },
+      include: {model: Product}
     })
-    await order.setProducts(product)
+    order = order[0] // just the order instance plz
+    // set the product on the order using the through table or increment it
+    const doesProdExist = await order.hasProduct(product)
+    if (doesProdExist) {
+      const rowInThroughTable = await OrderProducts.findOne({
+        where: {
+          orderId: order.id,
+          productId: product.id
+        }
+      })
+      rowInThroughTable.numberOfItems++
+      await rowInThroughTable.save()
+    } else await order.addProducts(product)
+    // Find the row in the through table
     const cartRow = await OrderProducts.findOne({
       where: {
         orderId: order.id
       }
     })
+    // add the price on the through table
     cartRow.price = product.price
     await cartRow.save()
-    res.json(cartRow)
+    // send the order with the newly created association on it.
+    res.json(order)
   } catch (error) {
     next(error)
   }
 })
 
-// adds a product to the cart
-router.put('/:userId/:productId', async (req, res, next) => {
+// This will become the 'update quantity' route for the cart
+// We should use a dropdown form that submits an integer in /:amount
+router.put('/:userId/:productId/:amount', async (req, res, next) => {
   try {
+    // make number
+    const amount = parseInt(req.params.amount)
+    // Find Product
     const product = await Product.findByPk(req.params.productId)
+    // Find User's order thats uncomplete
     const order = await Order.findOne({
       where: {
         completed: false,
         userId: req.params.userId
-      }
+      },
+      include: {model: Product}
     })
-    await order.addProduct(product)
-    const cartRow = await OrderProducts.findOne({
-      where: {
-        orderId: order.id,
-        productId: req.params.productId
-      }
-    })
-    cartRow.price = product.price
-    await cartRow.save()
-    const cartRows = await OrderProducts.findAll({
-      where: {
-        orderId: order.id
-      }
-    })
-    res.json(cartRows)
+    // Make sure product is associated with order
+    const doesProdExist = await order.hasProduct(product)
+    if (doesProdExist && amount >= 0) {
+      // Get association table row and increment count.
+      let rowInThroughTable = await OrderProducts.findOne({
+        where: {
+          orderId: order.id,
+          productId: req.params.productId
+        }
+      })
+      rowInThroughTable.numberOfItems = rowInThroughTable.numberOfItems + amount
+      await rowInThroughTable.save()
+    }
+    // Send all associated order and products
+    res.json(order)
   } catch (error) {
     next(error)
   }

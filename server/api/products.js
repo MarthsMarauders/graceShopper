@@ -31,14 +31,15 @@ router.get('/:id/edit', async (req, res, next) => {
 })
 
 router.post('/', async (req, res, next) => {
-  const {name, description, rating, price, quantity} = req.body
+  const {name, description, rating, price, quantity, imageUrl} = req.body
   try {
     const newProduct = await Product.create({
       name: name,
       description: description,
       rating: rating,
       price: price,
-      quantity: quantity
+      quantity: quantity,
+      imageUrl: imageUrl
     })
     res.json(newProduct)
   } catch (error) {

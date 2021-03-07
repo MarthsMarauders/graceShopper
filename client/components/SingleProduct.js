@@ -12,7 +12,6 @@ class SingleProduct extends Component {
   componentDidMount() {
     let id = this.props.match.params.id
     this.props.getSingleProd(id)
-    // this.forceUpdate();
   }
 
   render() {

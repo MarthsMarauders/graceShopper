@@ -26,12 +26,47 @@ Order.belongsTo(User)
 Product.belongsToMany(Order, {through: OrderProducts})
 Order.belongsToMany(Product, {through: OrderProducts})
 
-// console.log(User.prototype)
-// console.log('PRODUCT MAGIC METHOD', Product.prototype)
-// console.log('USER MAGIC METHOD', User.prototype)
-// console.log('User MAGIC METHOD', User.prototype)
-// console.log('Product MAGIC METHOD', Product.prototype)
-// console.log('Product MAGIC METHOD', OrderProducts.prototype)
+// These will print all magic methods for a model!
+const productModel = Product
+console.log('\n\nProduct model can use:\n\n')
+for (let assoc of Object.keys(productModel.associations)) {
+  for (let accessor of Object.keys(
+    productModel.associations[assoc].accessors
+  )) {
+    console.log(
+      productModel.name +
+        '.' +
+        productModel.associations[assoc].accessors[accessor] +
+        '()'
+    )
+  }
+}
+// These will print all magic methods for a model!
+const orderModel = Order
+console.log('\n\nOrder model can use:\n\n')
+for (let assoc of Object.keys(orderModel.associations)) {
+  for (let accessor of Object.keys(orderModel.associations[assoc].accessors)) {
+    console.log(
+      orderModel.name +
+        '.' +
+        orderModel.associations[assoc].accessors[accessor] +
+        '()'
+    )
+  }
+}
+// These will print all magic methods for a model!
+const userModel = User
+console.log('\n\n User model can use:\n\n')
+for (let assoc of Object.keys(userModel.associations)) {
+  for (let accessor of Object.keys(userModel.associations[assoc].accessors)) {
+    console.log(
+      userModel.name +
+        '.' +
+        userModel.associations[assoc].accessors[accessor] +
+        '()'
+    )
+  }
+}
 
 module.exports = {
   User,

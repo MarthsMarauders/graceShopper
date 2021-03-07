@@ -10,4 +10,7 @@ export {default as SingleProduct} from './SingleProduct'
 export {default as AllOrders} from './AllOrders'
 export {default as EditProduct} from './EditProduct'
 export {default as AddProduct} from './AddProduct'
+export {default as Cart} from './Cart'
+export {default as LandingPage} from './LandingPage'
+
 export {Login, Signup} from './auth-form'

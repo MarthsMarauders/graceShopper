@@ -11,7 +11,8 @@ class AddProduct extends Component {
       name: '',
       description: '',
       price: '',
-      rating: ''
+      rating: '',
+      image: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
@@ -29,7 +30,7 @@ class AddProduct extends Component {
   }
 
   render() {
-    const {name, price, description, rating} = this.state
+    const {name, price, description, rating, image} = this.state
     const {handleSubmit, handleChange} = this
 
     return (
@@ -43,8 +44,11 @@ class AddProduct extends Component {
         <label htmlFor="price">Price:</label>
         <input name="price" onChange={handleChange} value={price} />
 
-        <label htmlFor="rating">rating:</label>
+        <label htmlFor="rating">Rating:</label>
         <input name="rating" onChange={handleChange} value={rating} />
+
+        <label htmlFor="image">Image:</label>
+        <input name="image" onChange={handleChange} value={image} />
 
         <button type="submit">Submit</button>
         <Link to="/products">Cancel</Link>
