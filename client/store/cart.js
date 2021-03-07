@@ -48,6 +48,7 @@ export const addToCart = (userId, productId) => {
     try {
       const {data} = await axios.post(`/api/cart/${userId}/${productId}`)
       dispatch(_addToCart(data))
+      // history.push('/cart')
     } catch (error) {
       console.log(error, 'addToCart action failed')
     }

@@ -83,3 +83,12 @@ form div {
   background-color: aqua;
   border-radius: 15px;
 }
+.cart-div {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+.cart-label {
+  text-align: center;
+  margin-bottom: 10px;
+}

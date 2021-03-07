@@ -24,6 +24,8 @@ class AllProducts extends Component {
       isAddButtonVisable: this.props.user.isAdmin
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleAddToCart = this.handleAddToCart.bind(this)
+    this.handleDeleteClick = this.handleDeleteClick.bind(this)
   }
 
   handleClick(event) {
@@ -33,6 +35,11 @@ class AllProducts extends Component {
   }
   handleDeleteClick(productId) {
     this.props.deleteProduct(productId)
+  }
+  handleAddToCart(userId, productId) {
+    this.props.addToCart(userId, productId)
+    // eslint-disable-next-line no-alert
+    alert('Successfully added an item to your Cart!!')
   }
 
   componentDidMount() {
@@ -121,7 +128,7 @@ class AllProducts extends Component {
                 <button
                   className="add-to-cart"
                   type="button"
-                  onClick={() => this.props.addToCart(user.id, product.id)}
+                  onClick={() => this.handleAddToCart(user.id, product.id)}
                 >
                   Add to Cart
                 </button>
