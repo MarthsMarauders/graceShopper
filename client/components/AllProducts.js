@@ -83,6 +83,18 @@ class AllProducts extends Component {
 
     return (
       <div>
+        <Link to="/products/create">
+          <button
+            type="button"
+            className={
+              this.state.isAddButtonVisable
+                ? 'product-button-visable'
+                : 'product-button-invisable'
+            }
+          >
+            ADD NEW PRODUCT
+          </button>
+        </Link>
         <div className="pages">
           <div id="page-numbers">Pages</div>
           <div id="page-numbers">{renderPageNumbers}</div>
@@ -158,12 +170,8 @@ const mapStateToProps = state => {
   }
 }
 const mapDispatchToProps = dispatch => ({
-  getProds: () => {
-    dispatch(fetchAllProducts())
-  },
-  deleteProduct: productId => {
-    dispatch(deleteAProduct(productId))
-  },
+  getProds: () => dispatch(fetchAllProducts()),
+  deleteProduct: productId => dispatch(deleteAProduct(productId)),
   fetchUser: () => dispatch(me())
 })
 

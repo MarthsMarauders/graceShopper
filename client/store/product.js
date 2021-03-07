@@ -9,6 +9,7 @@ const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
 const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+const CREATE_PRODUCT = 'CREATE_PRODUCT'
 
 /**
  * INITIAL STATE
@@ -27,6 +28,10 @@ export const getProducts = products => ({
 })
 export const deleteProduct = product => ({
   type: DELETE_PRODUCT,
+  product
+})
+export const createProduct = product => ({
+  type: CREATE_PRODUCT,
   product
 })
 export const updateProduct = product => ({
@@ -79,6 +84,18 @@ export const deleteAProduct = productId => {
   }
 }
 
+export const createNewProduct = product => {
+  return async dispatch => {
+    try {
+      const {data: newProduct} = await axios.post('/api/products', product)
+      dispatch(createProduct(newProduct))
+      history.push('/products')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export const updateAProduct = product => {
   return async dispatch => {
     try {
@@ -122,6 +139,8 @@ export default function productReducer(state = initialState, action) {
       return state.products.map(product =>
         product.id === action.product.id ? action.product : product
       )
+    case CREATE_PRODUCT:
+      return {...state, products: [...state.products, action.product]}
     default:
       return state
   }

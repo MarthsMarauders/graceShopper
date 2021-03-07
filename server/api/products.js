@@ -46,7 +46,6 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-//NOT WORKING PROPERLY
 router.put('/:productId', async (req, res, next) => {
   try {
     const {productId} = req.params

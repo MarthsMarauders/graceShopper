@@ -9,8 +9,8 @@ import {
   AllProducts,
   SingleProduct,
   AllOrders,
-  Cart,
-  EditProduct
+  EditProduct,
+  AddProduct
 } from './components'
 import {me} from './store'
 // import {} from './components'
@@ -28,11 +28,11 @@ class Routes extends Component {
 
     return (
       <Switch>
-        {/* Routes placed here are available to all visitors */}
         <Route path="/login" component={Login} />
         <Route path="/signup" component={Signup} />
         <Route exact path="/orders" component={AllOrders} />
         <Route exact path="/products" component={AllProducts} />
+        <Route exact path="/products/create" component={AddProduct} />
         {/* <Route exact path="/cart" component={Cart} /> */}
         <Route exact path="/products/:id" component={SingleProduct} />
         <Route exact path="/products/:id/edit" component={EditProduct} />
