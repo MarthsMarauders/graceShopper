@@ -99,6 +99,7 @@ router.put('/:userId/:productId/:amount', async (req, res, next) => {
   try {
     // make number
     const amount = parseInt(req.params.amount)
+    console.log(amount, 'AMOUNT')
     // Find Product
     const product = await Product.findByPk(req.params.productId)
     // Find User's order thats uncomplete
@@ -119,7 +120,8 @@ router.put('/:userId/:productId/:amount', async (req, res, next) => {
           productId: req.params.productId
         }
       })
-      rowInThroughTable.numberOfItems = rowInThroughTable.numberOfItems + amount
+      rowInThroughTable.numberOfItems = amount
+      // NEED TO UPDATE PRICE IN ORDERPROUDCTS TABLE BUT IS WORKING
       await rowInThroughTable.save()
     }
     // Send all associated order and products

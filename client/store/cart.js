@@ -63,10 +63,12 @@ export const removeFromCart = (userId, productId) => {
     }
   }
 }
-export const changeQuantityInCart = userId => {
+export const changeQuantityInCart = (userId, productId, amount) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/cart/${userId}/mycart`)
+      const {data} = await axios.put(
+        `/api/cart/${userId}/${productId}/${amount}`
+      )
       dispatch(_changeProductQuantityInCart(data))
     } catch (error) {
       console.log(error, 'changeQuantityInCart action failed')
