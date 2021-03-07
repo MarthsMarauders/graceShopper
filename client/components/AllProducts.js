@@ -112,16 +112,18 @@ class AllProducts extends Component {
                 >
                   Add to Cart
                 </button>
-                <button
-                  type="button"
-                  className={
-                    this.state.isAddButtonVisable
-                      ? 'product-button-visable'
-                      : 'product-button-invisable'
-                  }
-                >
-                  EDIT PRODUCT DETAILS
-                </button>
+                <Link to={`/products/${product.id}/edit`}>
+                  <button
+                    type="button"
+                    className={
+                      this.state.isAddButtonVisable
+                        ? 'product-button-visable'
+                        : 'product-button-invisable'
+                    }
+                  >
+                    EDIT PRODUCT DETAILS
+                  </button>
+                </Link>
                 <button
                   onClick={() => this.handleDeleteClick(product.id)}
                   type="button"

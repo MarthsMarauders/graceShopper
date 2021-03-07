@@ -8,6 +8,7 @@ import history from '../history'
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS'
 const GET_SINGLE_PRODUCT = 'GET_SINGLE_PRODUCT'
 const DELETE_PRODUCT = 'DELETE_PRODUCT'
+const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 
 /**
  * INITIAL STATE
@@ -25,6 +26,10 @@ export const getProducts = products => ({
   products
 })
 export const deleteProduct = product => ({
+  type: DELETE_PRODUCT,
+  product
+})
+export const updateProduct = product => ({
   type: DELETE_PRODUCT,
   product
 })
@@ -74,6 +79,21 @@ export const deleteAProduct = productId => {
   }
 }
 
+export const updateAProduct = product => {
+  return async dispatch => {
+    try {
+      const {data: productToUpdate} = await axios.put(
+        `/api/products/${product.id}`,
+        product
+      )
+      dispatch(updateProduct(productToUpdate))
+      history.push('/products')
+    } catch (error) {
+      console.log('THERE WAS AN ERROR UPDATING A PRODUCT', error)
+    }
+  }
+}
+
 // export const createProduct = () => async (dispatch) => {
 //   try {
 //     await axios.post('/products/createProduct')
@@ -98,6 +118,10 @@ export default function productReducer(state = initialState, action) {
         product => product.id !== productId
       )
       return {...state, products: newProducts}
+    case UPDATE_PRODUCT:
+      return state.products.map(product =>
+        product.id === action.product.id ? action.product : product
+      )
     default:
       return state
   }
