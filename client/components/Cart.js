@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, changeQuantityInCart} from '../store/cart'
+import {fetchCart, changeQuantityInCart, removeFromCart} from '../store/cart'
 import {fetchOrder} from '../store/orders'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
@@ -15,7 +15,8 @@ class Cart extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount() {
-    this.props.fetchCart(this.props.user.id)
+    // (this.props.user.id ? this.props.fetchCart(this.props.user.id): null;)
+    if (this.props.user.id) this.props.fetchCart(this.props.user.id)
   }
 
   componentDidUpdate(prevProps) {
@@ -28,6 +29,7 @@ class Cart extends Component {
   }
 
   handleChange(event) {
+    console.log(event.target, 'HELLO THERE')
     this.props.changeQuant(
       this.props.user.id,
       event.target.name,
@@ -36,12 +38,6 @@ class Cart extends Component {
   }
 
   render() {
-    if (this.props.cart[0]) {
-      console.log(
-        this.props.cart[0].products[0]['Order-Products'].numberOfItems,
-        'CART HERE IN THERE'
-      )
-    }
     if (this.props.cart[0]) {
       let arrayOfInCartItems = this.props.cart[0].products
       return (
@@ -67,7 +63,12 @@ class Cart extends Component {
                   className="value-button"
                   id="decrease"
                   // onClick="decreaseValue()"
-                  value="Decrease Value"
+                  value={
+                    this.props.cart[0].products[index]['Order-Products']
+                      .numberOfItems
+                  }
+                  name={product.id}
+                  onClick={this.handleChange}
                 >
                   -
                 </div>
@@ -85,19 +86,23 @@ class Cart extends Component {
                   className="value-button"
                   id="increase"
                   // onClick="increaseValue()"
-                  value="Increase Value"
+                  value={
+                    this.props.cart[0].products[index]['Order-Products']
+                      .numberOfItems
+                  }
+                  name={product.id}
+                  onClick={this.handleChange}
                 >
                   +
                 </div>
-                <button className="add-to-cart" type="button">
-                  Change Quantity {product.numberOfItems}
-                </button>
                 <button
                   className="add-to-cart"
                   type="button"
-                  // onClick={() => this.props.addToCart(product)}
+                  onClick={() =>
+                    this.props.removeItem(this.props.user.id, product.id)
+                  }
                 >
-                  Delete From Cart {product.numberOfItems}
+                  Delete From Cart
                 </button>
               </Card>
             </div>
@@ -136,6 +141,9 @@ const mapDispatchToProps = dispatch => ({
   },
   changeQuant: (userId, productId, amount) => {
     dispatch(changeQuantityInCart(userId, productId, amount))
+  },
+  removeItem: (userId, productId) => {
+    dispatch(removeFromCart(userId, productId))
   }
 })
 

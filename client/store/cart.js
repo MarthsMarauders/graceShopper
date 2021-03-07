@@ -17,17 +17,17 @@ export const getCart = products => ({
   type: GET_CART,
   products
 })
-export const _addToCart = products => ({
+export const _addToCart = product => ({
   type: ADD_TO_CART,
-  products
+  product
 })
-export const _removeFromCart = products => ({
+export const _removeFromCart = product => ({
   type: REMOVE_FROM_CART,
-  products
+  product
 })
-export const _changeProductQuantityInCart = products => ({
+export const _changeProductQuantityInCart = product => ({
   type: CHANGE_QUANTITY,
-  products
+  product
 })
 
 // -----Thunks-----
@@ -56,7 +56,8 @@ export const addToCart = (userId, productId) => {
 export const removeFromCart = (userId, productId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/cart/${userId}/${productId}`)
+      const {data} = await axios.delete(`/api/cart/${userId}/${productId}`)
+      console.log(data, 'IN THUNK')
       dispatch(_removeFromCart(data))
     } catch (error) {
       console.log(error, 'removeFromCart action failed')
@@ -78,16 +79,35 @@ export const changeQuantityInCart = (userId, productId, amount) => {
 
 // -----Reducer-----
 export default function productReducer(state = initialState, action) {
+  // NEED TO MAKE SURE THESE ARE RIGHT
+  // adding cart is adding a very nested structure
+  // when I fix this is going to break Cart component where I get out of nesting
+  // make sure all of these work properly
+
   switch (action.type) {
     case GET_CART:
       return {...state, products: action.products}
     case ADD_TO_CART:
-      return {...state, products: action.products}
+      return {...state, products: action.product}
     case REMOVE_FROM_CART:
-      return {...state, products: action.products}
+      console.log(action.product.productId, 'IN REDUCER')
+      return {
+        ...state,
+        products: state.products.map(product => {
+          console.log(product, 'HEROOOOO')
+          if (product.productId !== action.product.productId) return product
+        })
+      }
     case CHANGE_QUANTITY:
-      return {...state, products: action.products}
+      return {...state, products: action.product}
     default:
       return state
   }
 }
+
+// return {
+//   ...state,
+//   products: state.products.filter(
+//     product => product.productId !== action.product.productId
+//   )
+// }
