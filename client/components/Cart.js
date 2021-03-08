@@ -5,6 +5,7 @@ import {fetchOrder} from '../store/orders'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {stars} from './AllProducts'
+import {addToCart} from '../store/cart'
 /**
  * COMPONENT
  */
@@ -12,7 +13,11 @@ import {stars} from './AllProducts'
 class Cart extends Component {
   constructor() {
     super()
+    this.state = {
+      guestCartChange: ''
+    }
     this.handleChange = this.handleChange.bind(this)
+    this.deleteFromLocalCart = this.deleteFromLocalCart.bind(this)
   }
   componentDidMount() {
     if (this.props.user.id) this.props.fetchCart(this.props.user.id)
@@ -35,8 +40,24 @@ class Cart extends Component {
     )
   }
 
+  deleteFromLocalCart(product) {
+    localStorage.removeItem(product.id)
+    this.setState({
+      guestCartChange: ''
+    })
+  }
+
   render() {
-    if (this.props.cart.products) {
+    let guestCart = getGuestItems(localStorage)
+    // if (this.props.cart.products)
+    if (this.props.user.id && this.props.cart.products) {
+      const {user} = this.props
+      // console.log(user)
+      console.log(user, 'user', guestCart, 'GUEST CART')
+      guestCart.forEach(prod => {
+        this.props.addToCart(user.id, prod.id)
+      })
+      localStorage.clear()
       let arrayOfInCartItems = this.props.cart.products
       return (
         <div>
@@ -102,9 +123,35 @@ class Cart extends Component {
         </div>
       )
     } else {
+      // add total price and number of items
       return (
         <div>
-          <p>noffin</p>
+          {guestCart.map(product => (
+            <div key={product.id}>
+              <Card id="card" style={{width: '18rem'}} border="primary">
+                <Link to={`/products/${product.id}`}>
+                  <Card.Img
+                    id="prod-img"
+                    variant="top"
+                    src={product.imageUrl}
+                  />
+                  <Card.Title>{product.name}</Card.Title>
+                </Link>
+                <Card.Body>
+                  <Card.Text>${product.price / 100}</Card.Text>
+                  <Card.Text> Description: {product.description}</Card.Text>
+                </Card.Body>
+                <div>Rating: {stars(product.rating)}</div>
+                <button
+                  className="add-to-cart"
+                  type="button"
+                  onClick={() => this.deleteFromLocalCart(product)}
+                >
+                  Delete From Cart
+                </button>
+              </Card>
+            </div>
+          ))}
         </div>
       )
     }
@@ -129,7 +176,8 @@ const mapDispatchToProps = dispatch => ({
   },
   removeItem: (userId, productId) => {
     dispatch(removeFromCart(userId, productId))
-  }
+  },
+  addToCart: (userId, productId) => dispatch(addToCart(userId, productId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
@@ -149,3 +197,18 @@ function totalPrice(productsArr) {
   })
   return total
 }
+
+function getGuestItems(productsObj) {
+  let guestCart = []
+  Object.keys(productsObj).forEach(function(key) {
+    guestCart.push(JSON.parse(productsObj.getItem(key)))
+  })
+  return guestCart
+}
+
+// function deleteFromLocalCart(product) {
+//   localStorage.removeItem(product.id)
+//   this.setState({
+//     guestCartChange: '+'
+//   })
+// }
