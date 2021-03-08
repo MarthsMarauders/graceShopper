@@ -16,7 +16,6 @@ import {addToCart} from '../store/cart'
 class AllProducts extends Component {
   constructor(props) {
     super(props)
-    console.log('USER STATE----->', this.props)
     // const {user} = this.props
     this.state = {
       currentPage: 1,
@@ -39,22 +38,7 @@ class AllProducts extends Component {
     this.props.getProds()
   }
 
-  // componentDidUpdate(prevProps) {
-  //   // console.log(
-  //   //   ' componentDidUpdate \n\n',
-  //   //   prevProps.user.id,
-  //   //   this.props.user.id
-  //   // )
-  //   if (this.props.user.id !== prevProps.user.id) {
-  //     this.props.fetchUser(this.props.user.id)
-  //   }
-  // }
-
-  // refreshPage() {
-  //   window.location.reload()
-  // }
   render() {
-    console.log('USER IS ADMIN---->', this.props.user.isAdmin)
     const {currentPage, productsPerPage} = this.state
     const {products, user} = this.props
     const indexOfLastProduct = currentPage * productsPerPage
@@ -78,13 +62,9 @@ class AllProducts extends Component {
         </div>
       )
     })
-    // function printMe() {
-    //   console.log('THIS WAS CLICKED ')
-    // }
-
     return (
       <div>
-        <Cart />
+        {/* <Cart /> */}
         <Link to="/products/create">
           <button
             type="button"

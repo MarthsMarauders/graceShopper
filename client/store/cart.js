@@ -96,6 +96,8 @@ export default function productReducer(state = initialState, action) {
         }
       }
     case CHANGE_QUANTITY:
+      // console.log(action.product, 'ACTION PRODUCT')
+      // return {...state, products: action.product}
       return {
         ...state,
         products: {

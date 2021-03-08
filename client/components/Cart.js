@@ -25,17 +25,6 @@ class Cart extends Component {
     if (this.props.cart.id !== prevProps.cart.id) {
       this.props.fetchCart(this.props.user.id)
     }
-    // console.log(
-    //   this.props.cart.products,
-    //   'THSI IS THE CART',
-    //   prevProps.cart.products,
-    //   'THIS IS THE PREV PROPS'
-    // )
-    // if (this.props.cart.products && prevProps.cart.products) {
-    //   if (this.props.cart.products.length !== prevProps.cart.products.length) {
-    //     this.props.fetchCart(this.props.user.id)
-    //   }
-    // }
   }
 
   handleChange(event) {
@@ -44,7 +33,6 @@ class Cart extends Component {
       event.target.name,
       event.target.value
     )
-    this.props.fetchCart(this.props.user.id)
   }
 
   render() {
@@ -52,10 +40,9 @@ class Cart extends Component {
       let arrayOfInCartItems = this.props.cart.products
       return (
         <div>
-          <div>Cart's Total Cost: ${this.props.cart.totalPrice / 100}</div>
+          <div>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</div>
           <div>
-            You have {findNumberOfItems(this.props.cart.products)} items in your
-            cart!
+            You have {findNumberOfItems(arrayOfInCartItems)} items in your cart!
           </div>
           {arrayOfInCartItems.map(product => (
             <div key={product.id}>
@@ -153,4 +140,12 @@ function findNumberOfItems(productsArr) {
     num += prod['Order-Products'].numberOfItems
   })
   return num
+}
+
+function totalPrice(productsArr) {
+  let total = 0
+  productsArr.forEach(prod => {
+    total += prod['Order-Products'].numberOfItems * prod['Order-Products'].price
+  })
+  return total
 }
