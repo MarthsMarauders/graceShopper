@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // gets the cart for a user making sure complete is false
-router.get('/:userId/mycart', async (req, res, next) => {
+router.get('/user-cart/:userId', async (req, res, next) => {
   try {
     // Find the exsisting order or create it
     const cart = await Order.findOrCreate({
@@ -63,7 +63,7 @@ router.get('/:userId/mycart', async (req, res, next) => {
 })
 // 'Add to cart' button
 // This post route will create rows in the through table and return the products added to the order number.
-router.post('/:userId/:productId', async (req, res, next) => {
+router.post('/user-cart/:userId/product/:productId', async (req, res, next) => {
   try {
     // Find the User
     const user = await User.findByPk(req.params.userId)
@@ -123,78 +123,118 @@ router.post('/:userId/:productId', async (req, res, next) => {
 
 // This will become the 'update quantity' route for the cart
 // We should use a dropdown form that submits an integer in /:amount
-router.put('/:userId/:productId/:amount', async (req, res, next) => {
+router.put(
+  '/user-cart/:userId/product/:productId/amount/:amount',
+  async (req, res, next) => {
+    try {
+      // make number
+      const amount = parseInt(req.params.amount)
+      // Find User's order thats uncomplete
+      const order = await Order.findOne({
+        where: {
+          completed: false,
+          userId: req.params.userId
+        },
+        include: {model: Product}
+      })
+      // Get association table row and changes count.
+      let rowInThroughTable = await OrderProducts.findOne({
+        where: {
+          orderId: order.id,
+          productId: req.params.productId
+        }
+      })
+      rowInThroughTable.numberOfItems = amount
+      await rowInThroughTable.save()
+      // grab each row related to the order and add the price to the order total price
+      const allRowsInThrough = await OrderProducts.findAll({
+        where: {
+          orderId: order.id
+        }
+      })
+      let totalCost = 0
+      allRowsInThrough.forEach(row => {
+        totalCost += row.price * row.numberOfItems
+      })
+      order.totalPrice = totalCost
+      await order.save()
+      // Send all associated order and products
+      res.json(rowInThroughTable)
+    } catch (error) {
+      next(error)
+    }
+  }
+)
+
+// deletes a product from the through table aka cart
+router.delete(
+  '/user-cart/:userId/product/:productId',
+  async (req, res, next) => {
+    try {
+      // finds the order
+      const order = await Order.findOne({
+        where: {
+          completed: false,
+          userId: req.params.userId
+        }
+      })
+      // this is all for updating the orders totalPrice
+      const allRowsInThrough = await OrderProducts.findAll({
+        where: {
+          orderId: order.id
+        }
+      })
+      let totalCost = 0
+      allRowsInThrough.forEach(row => {
+        totalCost += row.price * row.numberOfItems
+      })
+      order.totalPrice = totalCost
+      await order.save()
+      // grabs the rows to delete
+      const cartRowToDelete = await OrderProducts.findOne({
+        where: {
+          orderId: order.id,
+          productId: req.params.productId
+        }
+      })
+      // deletes the rows
+      await cartRowToDelete.destroy()
+      res.json(cartRowToDelete)
+    } catch (error) {
+      next(error)
+    }
+  }
+)
+
+// 'Checkout' button
+// This post route will comeplete an order and add a new one.
+router.post('/checkout/:userId', async (req, res, next) => {
   try {
-    // make number
-    const amount = parseInt(req.params.amount)
-    // Find User's order thats uncomplete
-    const order = await Order.findOne({
+    let userId = parseInt(req.params.userId)
+    // Find the User
+    const user = await User.findByPk(userId)
+    // Find the Order & include the products
+    let order = await Order.findOne({
       where: {
         completed: false,
-        userId: req.params.userId
+        userId: user.id
       },
       include: {model: Product}
     })
-    // Get association table row and changes count.
-    let rowInThroughTable = await OrderProducts.findOne({
-      where: {
-        orderId: order.id,
-        productId: req.params.productId
-      }
-    })
-    rowInThroughTable.numberOfItems = amount
-    await rowInThroughTable.save()
-    // grab each row related to the order and add the price to the order total price
-    const allRowsInThrough = await OrderProducts.findAll({
-      where: {
-        orderId: order.id
-      }
-    })
-    let totalCost = 0
-    allRowsInThrough.forEach(row => {
-      totalCost += row.price * row.numberOfItems
-    })
-    order.totalPrice = totalCost
+    // Complete the order
+    order.completed = true
     await order.save()
-    // Send all associated order and products
-    res.json(rowInThroughTable)
-  } catch (error) {
-    next(error)
-  }
-})
+    // Create fresh order
+    await user.createOrder()
 
-// deletes a product from the through table aka cart
-router.delete('/:userId/:productId', async (req, res, next) => {
-  try {
-    // finds the order
-    const order = await Order.findOne({
+    order = await Order.findOne({
       where: {
         completed: false,
-        userId: req.params.userId
-      }
+        userId: user.id
+      },
+      include: {model: Product}
     })
-    // this is all for updating the orders totalPrice
-    const allRowsInThrough = await OrderProducts.findAll({
-      where: {
-        orderId: order.id
-      }
-    })
-    let totalCost = 0
-    allRowsInThrough.forEach(row => {
-      totalCost += row.price * row.numberOfItems
-    })
-    order.totalPrice = totalCost
-    await order.save()
-    // grabs the rows to delete
-    const cartRowToDelete = await OrderProducts.findOne({
-      where: {
-        orderId: order.id,
-        productId: req.params.productId
-      }
-    })
-    // deletes the rows
-    await cartRowToDelete.destroy()
-    res.json(cartRowToDelete)
+    res.json(order)
   } catch (error) {
     next(error)
   }
