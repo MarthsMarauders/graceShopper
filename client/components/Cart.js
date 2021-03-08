@@ -18,9 +18,6 @@ import {addToCart} from '../store/cart'
 class Cart extends Component {
   constructor() {
     super()
-    this.state = {
-      guestCartChange: ''
-    }
     this.handleChange = this.handleChange.bind(this)
     this.deleteFromLocalCart = this.deleteFromLocalCart.bind(this)
   }
@@ -47,18 +44,13 @@ class Cart extends Component {
 
   deleteFromLocalCart(product) {
     localStorage.removeItem(product.id)
-    this.setState({
-      guestCartChange: ''
-    })
+    this.forceUpdate()
   }
 
   render() {
     let guestCart = getGuestItems(localStorage)
-    // if (this.props.cart.products)
     if (this.props.user.id && this.props.cart.products) {
       const {user} = this.props
-      // console.log(user)
-      console.log(user, 'user', guestCart, 'GUEST CART')
       guestCart.forEach(prod => {
         this.props.addToCart(user.id, prod.id)
       })

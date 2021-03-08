@@ -1,5 +1,6 @@
 import axios from 'axios'
 import history from '../history'
+import path from 'path'
 
 // -----Action Types-----
 const GET_CART = 'GET_CART'
@@ -39,8 +40,10 @@ export const _checkout = products => ({
 export const fetchCart = userId => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/cart/user-cart/${userId}`)
-      dispatch(getCart(data))
+      if (userId) {
+        const {data} = await axios.get(`/api/cart/user-cart/${userId}`)
+        dispatch(getCart(data))
+      }
     } catch (error) {
       console.log(error, 'fetchCart action failed')
     }
