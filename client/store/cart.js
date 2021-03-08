@@ -17,9 +17,9 @@ export const getCart = products => ({
   type: GET_CART,
   products
 })
-export const _addToCart = product => ({
+export const _addToCart = products => ({
   type: ADD_TO_CART,
-  product
+  products
 })
 export const _removeFromCart = product => ({
   type: REMOVE_FROM_CART,
@@ -47,7 +47,6 @@ export const addToCart = (userId, productId) => {
   return async dispatch => {
     try {
       const {data} = await axios.post(`/api/cart/${userId}/${productId}`)
-      console.log(data, 'IN CART THUNK')
       dispatch(_addToCart(data))
     } catch (error) {
       console.log(error, 'addToCart action failed')
@@ -58,7 +57,6 @@ export const removeFromCart = (userId, productId) => {
   return async dispatch => {
     try {
       const {data} = await axios.delete(`/api/cart/${userId}/${productId}`)
-      console.log(data, 'IN THUNK')
       dispatch(_removeFromCart(data))
     } catch (error) {
       console.log(error, 'removeFromCart action failed')
@@ -84,14 +82,7 @@ export default function productReducer(state = initialState, action) {
     case GET_CART:
       return {...state, products: action.products[0]}
     case ADD_TO_CART:
-      return {
-        ...state,
-        products: {
-          ...state.products,
-          products: [...state.products.products, action.product]
-          // ...state.products.products.push(action.product)
-        }
-      }
+      return {...state, products: action.products}
     case REMOVE_FROM_CART:
       console.log(action.product.productId, 'product id')
       return {

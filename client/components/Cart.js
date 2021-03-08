@@ -29,7 +29,6 @@ class Cart extends Component {
   }
 
   handleChange(event) {
-    console.log(event.target, 'HELLO THERE')
     this.props.changeQuant(
       this.props.user.id,
       event.target.name,
@@ -40,9 +39,8 @@ class Cart extends Component {
   render() {
     if (this.props.cart.products) {
       let arrayOfInCartItems = this.props.cart.products
-      console.log(arrayOfInCartItems, 'ARRAY OF CART ITEMS')
       return (
-        <div /*key={cart.id}*/>
+        <div>
           <div>Hello world</div>
           {arrayOfInCartItems.map((product, index) => (
             <div key={product.id}>

@@ -43,6 +43,18 @@ router.get('/:userId/mycart', async (req, res, next) => {
         include: {model: Product}
       })
     }
+    const allRowsInThrough = await OrderProducts.findAll({
+      where: {
+        orderId: cart[0].id
+      }
+    })
+    let totalCost = 0
+    allRowsInThrough.forEach(row => {
+      console.log(row.price, 'PRICE', row.numberOfItems, 'NUMBER OF ITEMS')
+      totalCost += row.price * row.numberOfItems
+    })
+    cart[0].totalPrice = totalCost
+    await cart[0].save()
     res.json(cartProductsArr)
   } catch (error) {
     next(error)
@@ -52,33 +64,56 @@ router.get('/:userId/mycart', async (req, res, next) => {
 // This post route will create rows in the through table and return the products added to the order number.
 router.post('/:userId/:productId', async (req, res, next) => {
   try {
-    let rowToSendBack = undefined
     // Find the User
     const user = await User.findByPk(req.params.userId)
     // Find the Product
     const product = await Product.findByPk(req.params.productId)
-    // Find (or create) the Order & include the products
-    let order = await Order.findOrCreate({
+    // // Find (or create) the Order & include the products
+    let order = await Order.findOne({
       where: {
         completed: false,
         userId: user.id
       },
       include: {model: Product}
     })
-    order = order[0] // just the order instance plz
+    await order.addProducts(product)
+    order = await Order.findOne({
+      where: {
+        completed: false,
+        userId: user.id
+      },
+      include: {model: Product}
+    })
+    // order = order[0] // just the order instance plz
     // set the product on the order using the through table or increment it
-    const doesProdExist = await order.hasProduct(product)
-    if (doesProdExist) {
-      const rowInThroughTable = await OrderProducts.findOne({
-        where: {
-          orderId: order.id,
-          productId: product.id
-        }
-      })
-      rowInThroughTable.numberOfItems++
-      await rowInThroughTable.save()
-      rowToSendBack = rowInThroughTable
-    } else await order.addProducts(product)
+    // const doesProdExist = await order.hasProduct(product)
+    // if (doesProdExist) {
+    const rowInThroughTable = await OrderProducts.findOne({
+      where: {
+        orderId: order.id,
+        productId: product.id
+      }
+    })
+    // rowInThroughTable.numberOfItems++
+    rowInThroughTable.price = product.price
+    await rowInThroughTable.save()
+    // }
+    //grab all of the prices and numberofitems counts from the rows of the through table
+    /// find the right price
+    // update the right order with the right price
+    const allRowsInThrough = await OrderProducts.findAll({
+      where: {
+        orderId: order.id
+      }
+    })
+    let totalCost = 0
+    allRowsInThrough.forEach(row => {
+      console.log(row.price, 'PRICE', row.numberOfItems, 'NUMBER OF ITEMS')
+      totalCost += row.price * row.numberOfItems
+    })
+    order.totalPrice = totalCost
+    await order.save()
+    // else await order.addProducts(product)
     // Find the row in the through table
     const cartRow = await OrderProducts.findOne({
       where: {
@@ -88,8 +123,15 @@ router.post('/:userId/:productId', async (req, res, next) => {
     // add the price on the through table
     cartRow.price = product.price
     await cartRow.save()
-    // send the order with the newly created association on it.
-    res.json(rowToSendBack)
+    // // send the order with the newly created association on it.
+    // let orderProducts = await Order.findOne({
+    //   where: {
+    //     completed: false,
+    //     userId: user.id
+    //   },
+    //   include: {model: Product}
+    // })
+    res.json(order)
   } catch (error) {
     next(error)
   }
@@ -104,7 +146,7 @@ router.put('/:userId/:productId/:amount', async (req, res, next) => {
     const amount = parseInt(req.params.amount)
     // console.log(amount, 'AMOUNT')
     // Find Product
-    // const product = await Product.findByPk(req.params.productId)
+    const product = await Product.findByPk(req.params.productId)
     // Find User's order thats uncomplete
     const order = await Order.findOne({
       where: {
@@ -113,6 +155,7 @@ router.put('/:userId/:productId/:amount', async (req, res, next) => {
       },
       include: {model: Product}
     })
+
     // Make sure product is associated with order
     // const doesProdExist = await order.hasProduct(product)
     // if (doesProdExist && amount >= 0) {
@@ -124,8 +167,22 @@ router.put('/:userId/:productId/:amount', async (req, res, next) => {
       }
     })
     rowInThroughTable.numberOfItems = amount
-    // NEED TO UPDATE PRICE IN ORDERPROUDCTS TABLE BUT IS WORKING
     await rowInThroughTable.save()
+
+    const allRowsInThrough = await OrderProducts.findAll({
+      where: {
+        orderId: order.id
+      }
+    })
+    let totalCost = 0
+    allRowsInThrough.forEach(row => {
+      console.log(row.price, 'PRICE', row.numberOfItems, 'NUMBER OF ITEMS')
+      totalCost += row.price * row.numberOfItems
+    })
+    order.totalPrice = totalCost
+    await order.save()
+    // rowInThroughTable.price = product.price
+    // NEED TO UPDATE PRICE IN ORDERPROUDCTS TABLE BUT IS WORKING
     // }
     // Send all associated order and products
     res.json(rowInThroughTable)
