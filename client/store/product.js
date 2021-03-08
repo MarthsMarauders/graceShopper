@@ -75,7 +75,6 @@ export const deleteAProduct = productId => {
       const {data: productToDelete} = await axios.delete(
         `/api/products/${productId}`
       )
-      console.log('DELETED PRODUCT IN THUNK---->', productToDelete)
       dispatch(deleteProduct(productToDelete))
       history.push('/products')
     } catch (error) {
