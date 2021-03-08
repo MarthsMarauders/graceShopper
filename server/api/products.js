@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const {Product, Order} = require('../db/models')
+const adminCheck = require('../adminCheck')
+
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -20,7 +22,7 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
-router.get('/:id/edit', async (req, res, next) => {
+router.get('/:id/edit', adminCheck, async (req, res, next) => {
   try {
     const {id} = req.params
     const singleProduct = await Product.findByPk(id)
@@ -30,7 +32,7 @@ router.get('/:id/edit', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', adminCheck, async (req, res, next) => {
   const {name, description, rating, price, quantity, imageUrl} = req.body
   try {
     const newProduct = await Product.create({
@@ -47,7 +49,7 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-router.put('/:productId', async (req, res, next) => {
+router.put('/:productId', adminCheck, async (req, res, next) => {
   try {
     const {productId} = req.params
     const product = await Product.findByPk(productId)
@@ -57,7 +59,7 @@ router.put('/:productId', async (req, res, next) => {
   }
 })
 
-router.delete('/:productId', async (req, res, next) => {
+router.delete('/:productId', adminCheck, async (req, res, next) => {
   try {
     const {productId} = req.params
     const productToDelete = await Product.findByPk(productId)

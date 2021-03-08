@@ -1,8 +1,10 @@
 const router = require('express').Router()
 const {Order, User, Product} = require('../db/models')
+const adminCheck = require('../adminCheck')
+
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminCheck, async (req, res, next) => {
   try {
     const allOrders = await Order.findAll({
       include: [{model: Product}]
@@ -13,7 +15,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:id', async (req, res, next) => {
+router.get('/:id', adminCheck, async (req, res, next) => {
   try {
     const {id} = req.params
     const singleOrder = await Order.findByPk(id, {
@@ -24,7 +26,7 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
-router.post('/', async (req, res, next) => {
+router.post('/', adminCheck, async (req, res, next) => {
   try {
     const newOrder = await Order.create()
     res.json(newOrder)
@@ -34,7 +36,7 @@ router.post('/', async (req, res, next) => {
 })
 
 //NOT WORKING PROPERLY
-router.put('/:orderId', async (req, res, next) => {
+router.put('/:orderId', adminCheck, async (req, res, next) => {
   try {
     const {orderId} = req.params
     const order = await Order.findByPk(orderId)
@@ -44,7 +46,7 @@ router.put('/:orderId', async (req, res, next) => {
   }
 })
 
-router.delete('/:orderId', async (req, res, next) => {
+router.delete('/:orderId', adminCheck, async (req, res, next) => {
   try {
     const {orderId} = req.params
     const orderToDelete = await Order.findByPk(orderId)
