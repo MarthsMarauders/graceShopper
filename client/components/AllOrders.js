@@ -10,11 +10,13 @@ class AllOrders extends React.Component {
 
   render() {
     const {orders} = this.props
+
     return (
       <div>
         {orders.map(order => (
           <div key={order.id}>
             <h1>Order#{order.id}</h1>
+            <h1> {order.completed ? 'Completed:True' : 'Completed:False'} </h1>
             {order.products.map(product => (
               <div key={product.id}>
                 <Link to={`/products/${product.id}`}>

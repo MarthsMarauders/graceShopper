@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, changeQuantityInCart, removeFromCart} from '../store/cart'
+import {
+  fetchCart,
+  changeQuantityInCart,
+  removeFromCart,
+  checkout
+} from '../store/cart'
 import {fetchOrder} from '../store/orders'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
@@ -61,27 +66,36 @@ class Cart extends Component {
       let arrayOfInCartItems = this.props.cart.products
       return (
         <div>
-          <div>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</div>
-          <div>
+          <h1>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</h1>
+          <h1>
             You have {findNumberOfItems(arrayOfInCartItems)} items in your cart!
-          </div>
-          {arrayOfInCartItems.map(product => (
-            <div key={product.id}>
-              <Card id="card" style={{width: '18rem'}} border="primary">
-                <Link to={`/products/${product.id}`}>
-                  <Card.Img
-                    id="prod-img"
-                    variant="top"
-                    src={product.imageUrl}
-                  />
-                  <Card.Title>{product.name}</Card.Title>
-                </Link>
-                <Card.Body>
-                  <Card.Text>${product.price / 100}</Card.Text>
-                  <Card.Text> Description: {product.description}</Card.Text>
-                </Card.Body>
-                <div>Rating: {stars(product.rating)}</div>
-                {/* <div
+          </h1>
+          <button
+            className="checkout_buy"
+            type="button"
+            onClick={() => this.props.checkout(this.props.user.id)}
+          >
+            <h1> Buy Now </h1>
+          </button>
+
+          <div className="products-div">
+            {arrayOfInCartItems.map(product => (
+              <div key={product.id}>
+                <Card id="card" style={{width: '18rem'}} border="primary">
+                  <Link to={`/products/${product.id}`}>
+                    <Card.Img
+                      id="prod-img"
+                      variant="top"
+                      src={product.imageUrl}
+                    />
+                    <Card.Title>{product.name}</Card.Title>
+                  </Link>
+                  <Card.Body>
+                    <Card.Text>${product.price / 100}</Card.Text>
+                    <Card.Text> Description: {product.description}</Card.Text>
+                  </Card.Body>
+                  <div>Rating: {stars(product.rating)}</div>
+                  {/* <div
                   className="value-button"
                   id="decrease"
                   // onClick="decreaseValue()"
@@ -91,14 +105,14 @@ class Cart extends Component {
                 >
                   -
                 </div> */}
-                <input
-                  type="number"
-                  id="number"
-                  value={product['Order-Products'].numberOfItems}
-                  name={product.id}
-                  onChange={this.handleChange}
-                />
-                {/* <div
+                  <input
+                    type="number"
+                    id="number"
+                    value={product['Order-Products'].numberOfItems}
+                    name={product.id}
+                    onChange={this.handleChange}
+                  />
+                  {/* <div
                   className="value-button"
                   id="increase"
                   // onClick="increaseValue()"
@@ -108,18 +122,19 @@ class Cart extends Component {
                 >
                   +
                 </div> */}
-                <button
-                  className="add-to-cart"
-                  type="button"
-                  onClick={() =>
-                    this.props.removeItem(this.props.user.id, product.id)
-                  }
-                >
-                  Delete From Cart
-                </button>
-              </Card>
-            </div>
-          ))}
+                  <button
+                    className="add-to-cart"
+                    type="button"
+                    onClick={() =>
+                      this.props.removeItem(this.props.user.id, product.id)
+                    }
+                  >
+                    Delete From Cart
+                  </button>
+                </Card>
+              </div>
+            ))}
+          </div>
         </div>
       )
     } else {
@@ -177,7 +192,10 @@ const mapDispatchToProps = dispatch => ({
   removeItem: (userId, productId) => {
     dispatch(removeFromCart(userId, productId))
   },
-  addToCart: (userId, productId) => dispatch(addToCart(userId, productId))
+  addToCart: (userId, productId) => dispatch(addToCart(userId, productId)),
+  checkout: userId => {
+    dispatch(checkout(userId))
+  }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
