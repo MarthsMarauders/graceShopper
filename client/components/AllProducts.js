@@ -39,7 +39,7 @@ class AllProducts extends Component {
   handleAddToCart(userId, productId) {
     this.props.addToCart(userId, productId)
     // eslint-disable-next-line no-alert
-    alert('Successfully added an item to your Cart!!')
+    // alert('Successfully added an item to your Cart!!')
   }
 
   componentDidMount() {
