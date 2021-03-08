@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, getCart} from '../store/cart'
+import {fetchCart, changeQuantityInCart, removeFromCart} from '../store/cart'
 import {fetchOrder} from '../store/orders'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
@@ -10,9 +10,14 @@ import {stars} from './AllProducts'
  */
 
 class Cart extends Component {
-  componentDidMount() {
-    this.props.fetchCart(this.props.user.id)
+  constructor() {
+    super()
+    this.handleChange = this.handleChange.bind(this)
   }
+  componentDidMount() {
+    if (this.props.user.id) this.props.fetchCart(this.props.user.id)
+  }
+
   componentDidUpdate(prevProps) {
     if (this.props.user.id !== prevProps.user.id) {
       this.props.fetchCart(this.props.user.id)
@@ -21,49 +26,80 @@ class Cart extends Component {
       this.props.fetchCart(this.props.user.id)
     }
   }
-  render() {
-    const {user} = this.props
-    if (this.props.cart[0]) {
-      let arrayOfInCartItems = this.props.cart[0].products
-      return (
-        <>
-          <h1 className="cart-label">{user.email}'s Cart</h1>
-          <div className="cart-div" /*key={cart.id}*/>
-            {arrayOfInCartItems.map(product => (
-              <div key={product.id}>
-                <Card id="card" style={{width: '18rem'}} border="primary">
-                  <Link to={`/products/${product.id}`}>
-                    <Card.Img
-                      id="prod-img"
-                      variant="top"
-                      src={product.imageUrl}
-                    />
-                    <Card.Title>{product.name}</Card.Title>
-                  </Link>
-                  <Card.Body>
-                    <Card.Text>${product.price / 100}</Card.Text>
-                    <Card.Text> Description: {product.description}</Card.Text>
-                  </Card.Body>
-                  <div>Rating: {stars(product.rating)}</div>
-                  <button
-                    className="add-to-cart"
-                    type="button"
-                    // onClick={() => this.props.addToCart(product)}
-                  >
-                    Change Quantity {product.numberOfItems}
-                  </button>
-                </Card>
-              </div>
-            ))}
 
-            {/* {arrayOfInCartItems.map(item => (
-            <div key={item.id}>
-              <h1>{item.price}</h1>
-              <h1>{item.name}</h1>
-            </div>
-          ))} */}
+  handleChange(event) {
+    this.props.changeQuant(
+      this.props.user.id,
+      event.target.name,
+      event.target.value
+    )
+  }
+
+  render() {
+    if (this.props.cart.products) {
+      let arrayOfInCartItems = this.props.cart.products
+      return (
+        <div>
+          <div>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</div>
+          <div>
+            You have {findNumberOfItems(arrayOfInCartItems)} items in your cart!
           </div>
-        </>
+          {arrayOfInCartItems.map(product => (
+            <div key={product.id}>
+              <Card id="card" style={{width: '18rem'}} border="primary">
+                <Link to={`/products/${product.id}`}>
+                  <Card.Img
+                    id="prod-img"
+                    variant="top"
+                    src={product.imageUrl}
+                  />
+                  <Card.Title>{product.name}</Card.Title>
+                </Link>
+                <Card.Body>
+                  <Card.Text>${product.price / 100}</Card.Text>
+                  <Card.Text> Description: {product.description}</Card.Text>
+                </Card.Body>
+                <div>Rating: {stars(product.rating)}</div>
+                {/* <div
+                  className="value-button"
+                  id="decrease"
+                  // onClick="decreaseValue()"
+                  value={product['Order-Products'].numberOfItems}
+                  name={product.id}
+                  onClick={this.handleChange}
+                >
+                  -
+                </div> */}
+                <input
+                  type="number"
+                  id="number"
+                  value={product['Order-Products'].numberOfItems}
+                  name={product.id}
+                  onChange={this.handleChange}
+                />
+                {/* <div
+                  className="value-button"
+                  id="increase"
+                  // onClick="increaseValue()"
+                  value={product['Order-Products'].numberOfItems}
+                  name={product.id}
+                  onClick={this.handleChange}
+                >
+                  +
+                </div> */}
+                <button
+                  className="add-to-cart"
+                  type="button"
+                  onClick={() =>
+                    this.props.removeItem(this.props.user.id, product.id)
+                  }
+                >
+                  Delete From Cart
+                </button>
+              </Card>
+            </div>
+          ))}
+        </div>
       )
     } else {
       return (
@@ -79,16 +115,37 @@ class Cart extends Component {
  */
 const mapStateToProps = state => {
   return {
-    ...state,
-    cart: state.cart.products
-    // user: state.user
+    cart: state.cart.products,
+    user: state.user
   }
 }
 
 const mapDispatchToProps = dispatch => ({
   fetchCart: userId => {
     dispatch(fetchCart(userId))
+  },
+  changeQuant: (userId, productId, amount) => {
+    dispatch(changeQuantityInCart(userId, productId, amount))
+  },
+  removeItem: (userId, productId) => {
+    dispatch(removeFromCart(userId, productId))
   }
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+
+function findNumberOfItems(productsArr) {
+  let num = 0
+  productsArr.forEach(prod => {
+    num += prod['Order-Products'].numberOfItems
+  })
+  return num
+}
+
+function totalPrice(productsArr) {
+  let total = 0
+  productsArr.forEach(prod => {
+    total += prod['Order-Products'].numberOfItems * prod['Order-Products'].price
+  })
+  return total
+}

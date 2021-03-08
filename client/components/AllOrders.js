@@ -11,7 +11,7 @@ class AllOrders extends React.Component {
   render() {
     const {orders} = this.props
     return (
-      <div>
+      <div className="all-orders-div">
         {orders.map(order => (
           <div key={order.id}>
             <h1>Order#{order.id}</h1>

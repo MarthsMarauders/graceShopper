@@ -15,10 +15,14 @@ class UserHome extends Component {
     return (
       <div>
         <h3>Welcome, {email}</h3>
-        <div className="products-container">
-          {/* <Cart /> */}
-          <Link to="/products">Products</Link>
-        </div>
+
+        {/* <Cart /> */}
+        <Link to="/products">
+          <h1>AllProducts</h1>
+        </Link>
+        <Link to="/users">
+          <h1 className="all-users-h1">All Users</h1>
+        </Link>
       </div>
     )
   }

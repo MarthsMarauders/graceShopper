@@ -4,6 +4,7 @@ import history from '../history'
 import {connect} from 'react-redux'
 import {fetchSingleProduct, updateAProduct} from '../store/product'
 import {Card, Form} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 /**
  * COMPONENT
@@ -74,6 +75,7 @@ class EditProduct extends Component {
           <input name="rating" onChange={handleChange} value={rating} />
 
           <button type="submit">Submit</button>
+          <Link to="/products">Cancel</Link>
         </form>
 
         {/* <Form>
