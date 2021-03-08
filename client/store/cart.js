@@ -6,6 +6,7 @@ const GET_CART = 'GET_CART'
 const ADD_TO_CART = 'ADD_TO_CART'
 const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 const CHANGE_QUANTITY = 'CHANGE_QUANTITY'
+const CHECKOUT = 'CHECKOUT'
 
 // -----Initial State-----
 const initialState = {
@@ -29,12 +30,16 @@ export const _changeProductQuantityInCart = product => ({
   type: CHANGE_QUANTITY,
   product
 })
+export const _checkout = products => ({
+  type: CHECKOUT,
+  products
+})
 
 // -----Thunks-----
 export const fetchCart = userId => {
   return async dispatch => {
     try {
-      const {data} = await axios.get(`/api/cart/${userId}/mycart`)
+      const {data} = await axios.get(`/api/cart/user-cart/${userId}`)
       dispatch(getCart(data))
     } catch (error) {
       console.log(error, 'fetchCart action failed')
@@ -46,7 +51,9 @@ export const fetchCart = userId => {
 export const addToCart = (userId, productId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.post(`/api/cart/${userId}/${productId}`)
+      const {data} = await axios.post(
+        `/api/cart/user-cart/${userId}/product/${productId}`
+      )
       dispatch(_addToCart(data))
       // history.push('/cart')
     } catch (error) {
@@ -57,7 +64,9 @@ export const addToCart = (userId, productId) => {
 export const removeFromCart = (userId, productId) => {
   return async dispatch => {
     try {
-      const {data} = await axios.delete(`/api/cart/${userId}/${productId}`)
+      const {data} = await axios.delete(
+        `/api/cart/user-cart/${userId}/product/${productId}`
+      )
       dispatch(_removeFromCart(data))
     } catch (error) {
       console.log(error, 'removeFromCart action failed')
@@ -68,11 +77,21 @@ export const changeQuantityInCart = (userId, productId, amount) => {
   return async dispatch => {
     try {
       const {data} = await axios.put(
-        `/api/cart/${userId}/${productId}/${amount}`
+        `/api/cart/user-cart/${userId}/product/${productId}/amount/${amount}`
       )
       dispatch(_changeProductQuantityInCart(data))
     } catch (error) {
       console.log(error, 'changeQuantityInCart action failed')
+    }
+  }
+}
+export const checkout = userId => {
+  return async dispatch => {
+    try {
+      const response = await axios.post(`/api/cart/checkout/${userId}`)
+      dispatch(_checkout(response))
+    } catch (error) {
+      console.log(error, 'checkout action failed')
     }
   }
 }
@@ -97,8 +116,6 @@ export default function productReducer(state = initialState, action) {
         }
       }
     case CHANGE_QUANTITY:
-      // console.log(action.product, 'ACTION PRODUCT')
-      // return {...state, products: action.product}
       return {
         ...state,
         products: {
@@ -114,6 +131,8 @@ export default function productReducer(state = initialState, action) {
           ]
         }
       }
+    case CHECKOUT:
+      return {...state, products: action.products}
     default:
       return state
   }

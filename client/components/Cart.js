@@ -1,6 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import {fetchCart, changeQuantityInCart, removeFromCart} from '../store/cart'
+import {
+  fetchCart,
+  changeQuantityInCart,
+  removeFromCart,
+  checkout
+} from '../store/cart'
 import {fetchOrder} from '../store/orders'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
@@ -40,13 +45,21 @@ class Cart extends Component {
       let arrayOfInCartItems = this.props.cart.products
       return (
         <div>
-          <div>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</div>
-          <div>
+          <h1>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</h1>
+          <h1>
             You have {findNumberOfItems(arrayOfInCartItems)} items in your cart!
-          </div>
-          {arrayOfInCartItems.map(product => (
-            <div key={product.id}>
-              <div>
+          </h1>
+          <button
+            className="checkout_buy"
+            type="button"
+            onClick={() => this.props.checkout(this.props.user.id)}
+          >
+            <h1> Buy Now </h1>
+          </button>
+
+          <div className="products-div">
+            {arrayOfInCartItems.map(product => (
+              <div key={product.id}>
                 <Card id="card" style={{width: '18rem'}} border="primary">
                   <Link to={`/products/${product.id}`}>
                     <Card.Img
@@ -99,8 +112,8 @@ class Cart extends Component {
                   </button>
                 </Card>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       )
     } else {
@@ -131,6 +144,9 @@ const mapDispatchToProps = dispatch => ({
   },
   removeItem: (userId, productId) => {
     dispatch(removeFromCart(userId, productId))
+  },
+  checkout: userId => {
+    dispatch(checkout(userId))
   }
 })
 
