@@ -25,17 +25,17 @@ class Cart extends Component {
     if (this.props.cart.id !== prevProps.cart.id) {
       this.props.fetchCart(this.props.user.id)
     }
-    console.log(
-      this.props.cart.products,
-      'THSI IS THE CART',
-      prevProps.cart.products,
-      'THIS IS THE PREV PROPS'
-    )
-    if (this.props.cart.products && prevProps.cart.products) {
-      if (this.props.cart.products.length !== prevProps.cart.products.length) {
-        this.props.fetchCart(this.props.user.id)
-      }
-    }
+    // console.log(
+    //   this.props.cart.products,
+    //   'THSI IS THE CART',
+    //   prevProps.cart.products,
+    //   'THIS IS THE PREV PROPS'
+    // )
+    // if (this.props.cart.products && prevProps.cart.products) {
+    //   if (this.props.cart.products.length !== prevProps.cart.products.length) {
+    //     this.props.fetchCart(this.props.user.id)
+    //   }
+    // }
   }
 
   handleChange(event) {
@@ -44,6 +44,7 @@ class Cart extends Component {
       event.target.name,
       event.target.value
     )
+    this.props.fetchCart(this.props.user.id)
   }
 
   render() {
