@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order, User, Product, OrderProducts} = require('../db/models')
+const {Order, User, Product} = require('../db/models')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
@@ -24,21 +24,31 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
+router.post('/', async (req, res, next) => {
+  try {
+    const newOrder = await Order.create()
+    res.json(newOrder)
+  } catch (error) {
+    next(error)
+  }
+})
 
-// deletes the order and deletes the rows from the through table
+//NOT WORKING PROPERLY
+router.put('/:orderId', async (req, res, next) => {
+  try {
+    const {orderId} = req.params
+    const order = await Order.findByPk(orderId)
+    res.json(await order.update(req.body))
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.delete('/:orderId', async (req, res, next) => {
   try {
     const {orderId} = req.params
     const orderToDelete = await Order.findByPk(orderId)
-    const rowsToDelete = await OrderProducts.findAll({
-      where: {
-        orderId: orderId
-      }
-    })
-    for (let row of rowsToDelete) await row.destroy()
-    // await rowsToDelete.destroy()
     await orderToDelete.destroy()
-    // delete the through table rows
     res.json(orderToDelete)
   } catch (error) {
     next(error)

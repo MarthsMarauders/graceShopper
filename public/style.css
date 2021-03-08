@@ -74,3 +74,12 @@ form div {
 .number {
   cursor: pointer;
 }
+.product-button-invisable {
+  cursor: not-allowed;
+  display: none;
+}
+
+.product-button-visable {
+  background-color: aqua;
+  border-radius: 15px;
+}

@@ -8,6 +8,8 @@ export {default as UserHome} from './user-home'
 export {default as AllProducts} from './AllProducts'
 export {default as SingleProduct} from './SingleProduct'
 export {default as AllOrders} from './AllOrders'
+export {default as EditProduct} from './EditProduct'
+export {default as AddProduct} from './AddProduct'
 export {default as Cart} from './Cart'
 export {default as LandingPage} from './LandingPage'
 
