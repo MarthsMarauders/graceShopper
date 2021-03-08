@@ -77,6 +77,7 @@ router.post('/user-cart/:userId/product/:productId', async (req, res, next) => {
       },
       include: {model: Product}
     })
+    // order = order[0]
     // need to add the product to the order
     await order.addProducts(product)
     // need to find the order with the new order attached to it
@@ -112,6 +113,7 @@ router.post('/user-cart/:userId/product/:productId', async (req, res, next) => {
     allRowsInThrough.forEach(row => {
       totalCost += row.price * row.numberOfItems
     })
+    //
     order.totalPrice = totalCost
     await order.save()
     //

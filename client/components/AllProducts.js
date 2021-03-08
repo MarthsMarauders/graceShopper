@@ -91,19 +91,15 @@ class AllProducts extends Component {
         <div className="products-div">
           {currentProducts.map(product => (
             <div key={product.id}>
-              <Card id="card" style={{width: '18rem'}} border="primary">
+              <div id="class">
                 <Link to={`/products/${product.id}`}>
-                  <Card.Img
-                    id="prod-img"
-                    variant="top"
-                    src={product.imageUrl}
-                  />
-                  <Card.Title>{product.name}</Card.Title>
+                  <img id="prod-img" variant="top" src={product.imageUrl} />
+                  <h1>{product.name}</h1>
                 </Link>
-                <Card.Body>
-                  <Card.Text>${product.price / 100}</Card.Text>
-                  <Card.Text> Description: {product.description}</Card.Text>
-                </Card.Body>
+                <div>
+                  <div>${product.price / 100}</div>
+                  <div> Description: {product.description}</div>
+                </div>
                 <div>Rating: {stars(product.rating)}</div>
 
                 <button
@@ -136,7 +132,7 @@ class AllProducts extends Component {
                 >
                   DELETE
                 </button>
-              </Card>
+              </div>
             </div>
           ))}
         </div>
@@ -166,6 +162,10 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
+
+function addToLocalCart(product) {
+  localStorage.setItem(`${product.id}`, JSON.stringify(product))
+}
 
 export function stars(rating) {
   let html
@@ -233,6 +233,7 @@ export function stars(rating) {
   }
   return html
 }
+
 /**
  * PROP TYPES
  */

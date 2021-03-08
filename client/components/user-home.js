@@ -9,6 +9,9 @@ import {Link} from 'react-router-dom'
  * COMPONENT
  */
 class UserHome extends Component {
+  componentDidMount() {
+    this.props.fetchCart(this.props.user.id)
+  }
   render() {
     const {email} = this.props
     const {user} = this.props
@@ -41,7 +44,13 @@ const mapState = state => {
   }
 }
 
-export default connect(mapState)(UserHome)
+const mapDispatchToProps = dispatch => ({
+  fetchCart: userId => {
+    dispatch(fetchCart(userId))
+  }
+})
+
+export default connect(mapState, mapDispatchToProps)(UserHome)
 
 /**
  * PROP TYPES
