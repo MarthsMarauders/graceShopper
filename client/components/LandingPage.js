@@ -12,7 +12,6 @@ export const LandingPage = () => {
       <div className="products-container">
         <h1> LandingPage </h1>
         <Link to="/products">
-          {' '}
           <h1>See All Products</h1>{' '}
         </Link>
       </div>
