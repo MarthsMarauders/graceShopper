@@ -20,16 +20,26 @@ router.get('/:id', async (req, res, next) => {
     next(error)
   }
 })
-//Not Working Properly. When new product is created name is showing up as null
+router.get('/:id/edit', async (req, res, next) => {
+  try {
+    const {id} = req.params
+    const singleProduct = await Product.findByPk(id)
+    res.json(singleProduct)
+  } catch (error) {
+    next(error)
+  }
+})
+
 router.post('/', async (req, res, next) => {
-  const {name, description, rating, price, quantity} = req.body
+  const {name, description, rating, price, quantity, imageUrl} = req.body
   try {
     const newProduct = await Product.create({
       name: name,
       description: description,
       rating: rating,
       price: price,
-      quantity: quantity
+      quantity: quantity,
+      imageUrl: imageUrl
     })
     res.json(newProduct)
   } catch (error) {
@@ -37,7 +47,6 @@ router.post('/', async (req, res, next) => {
   }
 })
 
-//NOT WORKING PROPERLY
 router.put('/:productId', async (req, res, next) => {
   try {
     const {productId} = req.params
@@ -53,6 +62,7 @@ router.delete('/:productId', async (req, res, next) => {
     const {productId} = req.params
     const productToDelete = await Product.findByPk(productId)
     await productToDelete.destroy()
+    console.log('THIS IS THE PRODUCT WE ARE DELETING', productToDelete)
     res.json(productToDelete)
   } catch (error) {
     next(error)
