@@ -84,7 +84,6 @@ export default function productReducer(state = initialState, action) {
     case ADD_TO_CART:
       return {...state, products: action.products}
     case REMOVE_FROM_CART:
-      console.log(action.product.productId, 'product id')
       return {
         ...state,
         products: {

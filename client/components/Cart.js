@@ -15,7 +15,6 @@ class Cart extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
   componentDidMount() {
-    // (this.props.user.id ? this.props.fetchCart(this.props.user.id): null;)
     if (this.props.user.id) this.props.fetchCart(this.props.user.id)
   }
 
@@ -25,6 +24,17 @@ class Cart extends Component {
     }
     if (this.props.cart.id !== prevProps.cart.id) {
       this.props.fetchCart(this.props.user.id)
+    }
+    console.log(
+      this.props.cart.products,
+      'THSI IS THE CART',
+      prevProps.cart.products,
+      'THIS IS THE PREV PROPS'
+    )
+    if (this.props.cart.products && prevProps.cart.products) {
+      if (this.props.cart.products.length !== prevProps.cart.products.length) {
+        this.props.fetchCart(this.props.user.id)
+      }
     }
   }
 
@@ -41,8 +51,12 @@ class Cart extends Component {
       let arrayOfInCartItems = this.props.cart.products
       return (
         <div>
-          <div>Hello world</div>
-          {arrayOfInCartItems.map((product, index) => (
+          <div>Cart's Total Cost: ${this.props.cart.totalPrice / 100}</div>
+          <div>
+            You have {findNumberOfItems(this.props.cart.products)} items in your
+            cart!
+          </div>
+          {arrayOfInCartItems.map(product => (
             <div key={product.id}>
               <Card id="card" style={{width: '18rem'}} border="primary">
                 <Link to={`/products/${product.id}`}>
@@ -131,3 +145,11 @@ const mapDispatchToProps = dispatch => ({
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Cart)
+
+function findNumberOfItems(productsArr) {
+  let num = 0
+  productsArr.forEach(prod => {
+    num += prod['Order-Products'].numberOfItems
+  })
+  return num
+}
