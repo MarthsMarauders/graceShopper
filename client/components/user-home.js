@@ -13,15 +13,13 @@ class UserHome extends Component {
     this.props.fetchCart(this.props.user.id)
   }
   render() {
-    const {email} = this.props
+    const {email, isAdmin} = this.props
     const {user} = this.props
     return (
       <div>
-        <h3>Welcome, {email}</h3>
-        <div className="products-container">
-          {/* <Cart /> */}
-          <Link to="/products">Products</Link>
-        </div>
+        <h3>
+          Welcome, {email} / {isAdmin ? 'Admin' : 'Buyer'}
+        </h3>
       </div>
     )
   }
@@ -33,6 +31,7 @@ class UserHome extends Component {
 const mapState = state => {
   return {
     email: state.user.email,
+    isAdmin: state.user.isAdmin,
     user: state.user
   }
 }

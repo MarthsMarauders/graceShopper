@@ -12,5 +12,6 @@ export {default as EditProduct} from './EditProduct'
 export {default as AddProduct} from './AddProduct'
 export {default as Cart} from './Cart'
 export {default as LandingPage} from './LandingPage'
+export {default as UserInfo} from './UserInfo'
 
 export {Login, Signup} from './auth-form'

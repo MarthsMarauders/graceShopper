@@ -6,16 +6,21 @@ import history from '../history'
  */
 const GET_USER = 'GET_USER'
 const REMOVE_USER = 'REMOVE_USER'
+const GET_ALL_USERS = 'GET_ALL_USERS'
 
 /**
  * INITIAL STATE
  */
-const defaultUser = {}
+const initialState = {
+  users: [],
+  user: {}
+}
 
 /**
  * ACTION CREATORS
  */
 const getUser = user => ({type: GET_USER, user})
+const getUsers = users => ({type: GET_ALL_USERS, users})
 const removeUser = () => ({type: REMOVE_USER})
 
 /**
@@ -24,7 +29,8 @@ const removeUser = () => ({type: REMOVE_USER})
 export const me = () => async dispatch => {
   try {
     const res = await axios.get('/auth/me')
-    dispatch(getUser(res.data || defaultUser))
+    dispatch(getUser(res.data || {}))
+    // history.push('/home')
   } catch (err) {
     console.error(err)
   }
@@ -46,6 +52,17 @@ export const auth = (email, password, method) => async dispatch => {
   }
 }
 
+export const fetchAllUsers = () => {
+  return async dispatch => {
+    try {
+      const {data} = await axios.get('/api/users')
+      dispatch(getUsers(data))
+    } catch (error) {
+      console.log(error, 'trouble fetching')
+    }
+  }
+}
+
 export const logout = () => async dispatch => {
   try {
     await axios.post('/auth/logout')
@@ -59,12 +76,14 @@ export const logout = () => async dispatch => {
 /**
  * REDUCER
  */
-export default function(state = defaultUser, action) {
+export default function(state = initialState, action) {
   switch (action.type) {
+    case GET_ALL_USERS:
+      return {...state, users: action.users}
     case GET_USER:
       return action.user
     case REMOVE_USER:
-      return defaultUser
+      return {}
     default:
       return state
   }
