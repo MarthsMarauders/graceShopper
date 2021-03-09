@@ -13,7 +13,8 @@ import {
   AddProduct,
   Cart,
   LandingPage,
-  UserInfo
+  UserInfo,
+  ConfirmationPage
 } from './components'
 import {me} from './store'
 
@@ -48,6 +49,7 @@ class Routes extends Component {
         <Route exact path="/products/:id/edit" component={EditProduct} />
         <Route exact path="/cart" component={Cart} />
         <Route exact path="/users" component={UserInfo} />
+        <Route exact path="/confirmation" component={ConfirmationPage} />
 
         {isLoggedIn && (
           <Switch>
