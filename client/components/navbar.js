@@ -18,7 +18,7 @@ class Navbar extends React.Component {
   }
   render() {
     const {handleClick, isLoggedIn} = this.props
-    // console.log(this.props.user.isAdmin)
+    console.log(this.props.user.isAdmin)
     return (
       <div>
         <h1>Wheelin' Dealin'</h1>
@@ -32,14 +32,14 @@ class Navbar extends React.Component {
               <Link className="admin-links" to="/users">
                 All Users
               </Link>
-              <Link
-                to="/orders"
+              <a
+                href="/orders"
                 className={
                   this.state.isAdmin ? 'admin-links-hidden' : 'admin-links'
                 }
               >
                 All Orders
-              </Link>
+              </a>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>

@@ -171,13 +171,10 @@ ul li {
   color: blue;
 }
 
-.admin-links {
-  color: blue;
-}
-
 .admin-links-hidden {
   cursor: not-allowed;
   display: none;
+  color: #000;
 }
 .login-form {
   background: white;
