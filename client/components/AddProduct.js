@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
@@ -55,6 +56,8 @@ class AddProduct extends Component {
     if (this.validation()) {
       this.props.createProduct({...this.state})
       this.setState(defaultState)
+    } else {
+      alert('Must Enter in the Proper fields')
     }
   }
 
@@ -70,45 +73,62 @@ class AddProduct extends Component {
     const {handleSubmit, handleChange} = this
 
     return (
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Product Name:</label>
-        <input
-          name="name"
-          onChange={handleChange}
-          placeholder={validationError.name}
-          value={name}
-        />
+      <>
+        <h1 className="add-product-h1">
+          <u>Enter A New Product </u>
+        </h1>
+        <form className="admin-form" onSubmit={handleSubmit}>
+          <label className="admin-label" htmlFor="name">
+            Product Name:
+          </label>
+          <input
+            type="text"
+            name="name"
+            onChange={handleChange}
+            placeholder={validationError.name}
+            value={name}
+          />
 
-        <label htmlFor="description">Description:</label>
-        <input
-          name="description"
-          onChange={handleChange}
-          placeholder={validationError.name}
-          value={description}
-        />
+          <label className="admin-label" htmlFor="description">
+            Description:
+          </label>
+          <input
+            type="text"
+            name="description"
+            onChange={handleChange}
+            placeholder={validationError.name}
+            value={description}
+          />
 
-        <label htmlFor="price">Price:</label>
-        <input
-          name="price"
-          onChange={handleChange}
-          placeholder={validationError.name}
-          value={price}
-        />
+          <label className="admin-label" htmlFor="price">
+            Price:
+          </label>
+          <input
+            type="text"
+            name="price"
+            onChange={handleChange}
+            placeholder={validationError.name}
+            value={price}
+          />
 
-        <label htmlFor="rating">Rating:</label>
-        <input
-          name="rating"
-          onChange={handleChange}
-          placeholder={validationError.name}
-          value={rating}
-        />
+          <label className="admin-label" htmlFor="rating">
+            Rating:
+          </label>
+          <input
+            type="text"
+            name="rating"
+            onChange={handleChange}
+            placeholder={validationError.name}
+            value={rating}
+          />
 
-        <label htmlFor="image">Image:</label>
-        <input name="image" onChange={handleChange} value={image} />
+          {/* <label htmlFor="image">Image:</label>
+        <input name="image" onChange={handleChange} value={image} /> */}
 
-        <button type="submit">Submit</button>
-        <Link to="/products">Cancel</Link>
-      </form>
+          <button type="submit">Submit</button>
+          <Link to="/products">Cancel</Link>
+        </form>
+      </>
     )
   }
 }

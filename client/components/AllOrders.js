@@ -14,7 +14,7 @@ class AllOrders extends React.Component {
     return (
       <div className="all-orders-div">
         {orders.map(order => (
-          <div key={order.id}>
+          <div key={order.id} className="order-item-div">
             <h1>Order#{order.id}</h1>
             <h1> {order.completed ? 'Completed:True' : 'Completed:False'} </h1>
             {order.products.map(product => (
