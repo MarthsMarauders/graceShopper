@@ -32,7 +32,7 @@ router.get('/:id/edit', adminCheck, async (req, res, next) => {
   }
 })
 
-router.post('/create', adminCheck, async (req, res, next) => {
+router.post('/', adminCheck, async (req, res, next) => {
   const {name, description, rating, price, quantity, imageUrl} = req.body
   try {
     const newProduct = await Product.create({

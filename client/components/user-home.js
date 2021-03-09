@@ -20,17 +20,6 @@ class UserHome extends Component {
         <h3>
           Welcome, {email} / {isAdmin ? 'Admin' : 'Buyer'}
         </h3>
-
-        {/* <Cart /> */}
-        {/* <Link to="/products">
-          <h1>AllProducts</h1>
-        </Link> */}
-        {/* <Link to="/users">
-          <h1>All Users</h1>
-        </Link>
-        <Link to="/orders">
-          <h1>All Orders</h1>
-        </Link> */}
       </div>
     )
   }
