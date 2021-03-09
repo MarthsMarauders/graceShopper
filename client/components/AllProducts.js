@@ -91,38 +91,50 @@ class AllProducts extends Component {
         <div className="products-div">
           {currentProducts.map(product => (
             <div className="card" key={product.id}>
-              <div id="class">
+              <Card style={{width: '18rem'}} border="primary">
                 <Link to={`/products/${product.id}`}>
-                  <img id="prod-img" variant="top" src={product.imageUrl} />
+                  <Card.Img variant="top" src={product.imageUrl} />
                   <h1>{product.name}</h1>
                 </Link>
-                <div>
-                  <div>${product.price / 100}</div>
-                  <div> Description: {product.description}</div>
-                </div>
-                <div>Rating: {stars(product.rating)}</div>
-                <input
-                  type="number"
-                  id="number"
-                  defaultValue="1"
-                  min="0"
-                  max="200"
-                  name={product.id}
-                  onChange={this.handleChange}
-                />
-                <button
-                  className="add-to-cart"
-                  type="button"
-                  onClick={
-                    user.id
-                      ? () => this.props.addToCart(user.id, product.id, amount)
-                      : () => addToLocalCart(product)
-                  }
-                >
-                  Add to Cart
-                </button>
-                <Link to={`/products/${product.id}/edit`}>
+                <Card.Body>
+                  <Card.Text>Price: ${product.price / 100}</Card.Text>
+                  <Card.Text> Description: {product.description}</Card.Text>
+                  <Card.Text>Rating: {stars(product.rating)}</Card.Text>
+                  <input
+                    type="number"
+                    id="number"
+                    defaultValue="1"
+                    min="0"
+                    max="200"
+                    name={product.id}
+                    onChange={this.handleChange}
+                  />
                   <button
+                    className="add-to-cart"
+                    type="button"
+                    onClick={
+                      user.id
+                        ? () =>
+                            this.props.addToCart(user.id, product.id, amount)
+                        : () => addToLocalCart(product)
+                    }
+                  >
+                    Add to Cart
+                  </button>
+                  <Link to={`/products/${product.id}/edit`}>
+                    <button
+                      type="button"
+                      className={
+                        this.state.isAddButtonVisable
+                          ? 'product-button-visable'
+                          : 'product-button-invisable'
+                      }
+                    >
+                      EDIT PRODUCT DETAILS
+                    </button>
+                  </Link>
+                  <button
+                    onClick={() => this.handleDeleteClick(product.id)}
                     type="button"
                     className={
                       this.state.isAddButtonVisable
@@ -130,21 +142,10 @@ class AllProducts extends Component {
                         : 'product-button-invisable'
                     }
                   >
-                    EDIT PRODUCT DETAILS
+                    DELETE
                   </button>
-                </Link>
-                <button
-                  onClick={() => this.handleDeleteClick(product.id)}
-                  type="button"
-                  className={
-                    this.state.isAddButtonVisable
-                      ? 'product-button-visable'
-                      : 'product-button-invisable'
-                  }
-                >
-                  DELETE
-                </button>
-              </div>
+                </Card.Body>
+              </Card>
             </div>
           ))}
         </div>
