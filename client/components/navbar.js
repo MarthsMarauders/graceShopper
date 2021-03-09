@@ -21,8 +21,10 @@ class Navbar extends React.Component {
     console.log(this.props.user.isAdmin)
     return (
       <div>
-        <h1>Wheelin' Dealin'</h1>
-        <nav>
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <h1 className="navbar-brand" href="#">
+            Wheelin' Dealin'
+          </h1>
           {isLoggedIn ? (
             <div>
               {/* The navbar will show these links after you log in */}

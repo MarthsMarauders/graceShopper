@@ -16,10 +16,12 @@ class UserInfo extends React.Component {
         <h1 className="all-users-h1">ALL USERS</h1>
         {users.map(user => (
           <div key={user.id}>
-            <ul>
-              <li>UserId: {user.id}</li>
-              <li>UserEmail: {user.email}</li>
-              <li>Admin: {user.isAdmin ? 'Admin' : 'Not Admin'}</li>
+            <ul className="list-group">
+              <li className="list-group-item">UserId: {user.id}</li>
+              <li className="list-group-item">UserEmail: {user.email}</li>
+              <li className="list-group-item">
+                Admin: {user.isAdmin ? 'Admin' : 'Not Admin'}
+              </li>
             </ul>
           </div>
         ))}

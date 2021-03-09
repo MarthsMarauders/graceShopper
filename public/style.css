@@ -136,8 +136,6 @@ button[type='submit'] {
 }
 .order-item-div {
   text-align: center;
-  border: 1px solid #ddd;
-  background-color: lightgrey;
   margin: 20px;
   padding: 15px;
 }
@@ -176,21 +174,25 @@ ul li {
   display: none;
   color: #000;
 }
+.login-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 16px;
+}
 .login-form {
-  background: white;
+  border: 2px solid black;
+  background: #ffffff;
   width: 40%;
-  box-shadow: 0px 0px 20px rgba(#000, 0.7);
-  font-family: lato;
   position: relative;
   color: #333;
   border-radius: 10px;
 }
 .login-label {
   margin-left: 20px;
-  display: inline-block;
   margin-top: 30px;
   margin-bottom: 5px;
-  position: relative;
 }
 header {
   text-align: center;
@@ -202,19 +204,16 @@ header {
 }
 .login-input {
   text-align: center;
-  display: block;
   width: 78%;
   margin-left: 20px;
   padding: 5px 20px;
   font-size: 1em;
   border-radius: 3px;
-  outline: none;
   border: 1px solid #ccc;
 }
 small {
-  color: #ff3838;
+  text-align: center;
   font-size: 2em;
-  position: absolute;
   left: 2.3em;
 }
 
@@ -222,19 +221,20 @@ small {
   position: relative;
   margin-top: 30px;
   margin-bottom: 30px;
-  left: 50%;
   font-family: inherit;
   color: white;
-  background: #ff3838;
-  outline: none;
-  border: none;
   padding: 5px 15px;
   font-size: 1.3em;
   font-weight: 400;
   border-radius: 3px;
-  box-shadow: 0px 0px 10px rgba(#333, 0.4);
   cursor: pointer;
 }
-.loginSubmit :hover {
-  background: lighten(#ff3838, 5);
+
+.jumbotron {
+  text-align: center;
+}
+.list-group {
+}
+.all-orders-h1 {
+  text-align: center;
 }
