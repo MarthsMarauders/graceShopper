@@ -135,6 +135,8 @@ button[type='submit'] {
   cursor: pointer;
 }
 .order-item-div {
+  text-align: center;
+  border: 1px solid #ddd;
   background-color: tan;
   margin: 20px;
   padding: 15px;
@@ -146,3 +148,20 @@ button[type='submit'] {
 /* .edit-product-img {
   text-align: center;
 } */
+
+ul {
+  list-style-type: none;
+  width: 75%;
+  padding: 0;
+  margin: 0 auto;
+}
+
+ul li {
+  border: 1px solid #ddd;
+  margin-top: -1px;
+  background-color: #f6f6f6;
+  padding: 18px;
+}
+.all-users-h1 {
+  text-align: center;
+}

@@ -16,14 +16,14 @@ class AllOrders extends React.Component {
         {orders.map(order => (
           <div key={order.id} className="order-item-div">
             <h1>Order#{order.id}</h1>
-            <h1> {order.completed ? 'Completed:True' : 'Completed:False'} </h1>
+            <h1> {order.completed ? 'Completed' : 'Pending'} </h1>
             {order.products.map(product => (
               <div key={product.id}>
                 <Link to={`/products/${product.id}`}>
                   <img src={product.imageUrl}></img>
                   <h3>Product Name: {product.name}</h3>
                 </Link>
-                Price: {product.price}
+                Price: ${product.price / 100}
               </div>
             ))}
           </div>

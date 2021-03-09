@@ -24,7 +24,7 @@ class UserHome extends Component {
           <h1>AllProducts</h1>
         </Link>
         <Link to="/users">
-          <h1 className="all-users-h1">All Users</h1>
+          <h1>All Users</h1>
         </Link>
         <Link to="/orders">
           <h1>All Orders</h1>
