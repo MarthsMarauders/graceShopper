@@ -56,7 +56,6 @@ class Cart extends Component {
       })
       localStorage.clear()
       let arrayOfInCartItems = this.props.cart.products
-      console.log(guestCart, 'ARRAY OF CART ITEMS')
       return (
         <div>
           <h1>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</h1>
