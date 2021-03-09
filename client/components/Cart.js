@@ -4,13 +4,13 @@ import {
   fetchCart,
   changeQuantityInCart,
   removeFromCart,
-  checkout
+  checkout,
+  addToCart
 } from '../store/cart'
 import {fetchOrder} from '../store/orders'
-import {Card, Dropdown} from 'react-bootstrap'
+import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {stars} from './AllProducts'
-import {addToCart} from '../store/cart'
 
 /**
  * COMPONENT
@@ -33,6 +33,15 @@ class Cart extends Component {
     if (this.props.cart.id !== prevProps.cart.id) {
       this.props.fetchCart(this.props.user.id)
     }
+
+    // if (this.props.cart.products && this.props.cart.products.length) {
+    //   if (
+    //     findNumberOfItems(this.props.cart.products) !==
+    //     findNumberOfItems(prevProps.cart.products)
+    //   ) {
+    //     this.props.fetchCart(this.props.user.id)
+    //   }
+    // }
   }
 
   handleChange(event) {
@@ -56,7 +65,7 @@ class Cart extends Component {
     if (this.props.user.id && this.props.cart.products) {
       const {user} = this.props
       guestCart.forEach(prod => {
-        this.props.addToCart(user.id, prod.id)
+        this.props.addToCart(user.id, prod.id, 1)
       })
       localStorage.clear()
       let arrayOfInCartItems = this.props.cart.products
@@ -199,7 +208,8 @@ const mapDispatchToProps = dispatch => ({
   removeItem: (userId, productId) => {
     dispatch(removeFromCart(userId, productId))
   },
-  addToCart: (userId, productId) => dispatch(addToCart(userId, productId)),
+  addToCart: (userId, productId, amount) =>
+    dispatch(addToCart(userId, productId, amount)),
   checkout: userId => {
     dispatch(checkout(userId))
   }
@@ -229,6 +239,13 @@ function getGuestItems(productsObj) {
     guestCart.push(JSON.parse(productsObj.getItem(key)))
   })
   return guestCart
+}
+
+function makeMax(num) {
+  if (num > 200) {
+    num = 200
+  }
+  return num
 }
 
 // function deleteFromLocalCart(product) {

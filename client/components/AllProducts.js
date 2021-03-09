@@ -5,13 +5,8 @@ import {fetchAllProducts, deleteAProduct} from '../store/product'
 import {Card} from 'react-bootstrap'
 import {SingleProduct} from './SingleProduct'
 import {Link} from 'react-router-dom'
-import Cart from './Cart'
 import {me} from '../store/user'
-
 import {addToCart} from '../store/cart'
-/**
- * COMPONENT
- */
 
 class AllProducts extends Component {
   constructor(props) {
@@ -20,9 +15,11 @@ class AllProducts extends Component {
     this.state = {
       currentPage: 1,
       productsPerPage: 40,
-      isAddButtonVisable: this.props.user.isAdmin
+      isAddButtonVisable: this.props.user.isAdmin,
+      amount: 1
     }
     this.handleClick = this.handleClick.bind(this)
+    this.handleChange = this.handleChange.bind(this)
   }
 
   handleClick(event) {
@@ -30,6 +27,16 @@ class AllProducts extends Component {
       currentPage: Number(event.target.id)
     })
   }
+
+  handleChange(event) {
+    // if empty/null, dont do this
+    if (!isNaN(parseInt(event.target.value))) {
+      this.setState({
+        amount: event.target.value
+      })
+    }
+  }
+
   handleDeleteClick(productId) {
     this.props.deleteProduct(productId)
   }
@@ -39,7 +46,7 @@ class AllProducts extends Component {
   }
 
   render() {
-    const {currentPage, productsPerPage} = this.state
+    const {currentPage, productsPerPage, amount} = this.state
     const {products, user} = this.props
     const indexOfLastProduct = currentPage * productsPerPage
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage
@@ -108,7 +115,7 @@ class AllProducts extends Component {
                   type="button"
                   onClick={
                     user.id
-                      ? () => this.props.addToCart(user.id, product.id)
+                      ? () => this.props.addToCart(user.id, product.id, amount)
                       : () => addToLocalCart(product)
                   }
                 >
@@ -163,12 +170,13 @@ const mapDispatchToProps = dispatch => ({
   getProds: () => dispatch(fetchAllProducts()),
   deleteProduct: productId => dispatch(deleteAProduct(productId)),
   fetchUser: () => dispatch(me()),
-  addToCart: (userId, productId) => dispatch(addToCart(userId, productId))
+  addToCart: (userId, productId, amount) =>
+    dispatch(addToCart(userId, productId, amount))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(AllProducts)
 
-function addToLocalCart(product) {
+export function addToLocalCart(product) {
   localStorage.setItem(`${product.id}`, JSON.stringify(product))
 }
 
