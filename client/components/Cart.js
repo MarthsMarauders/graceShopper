@@ -7,10 +7,11 @@ import {
   checkout
 } from '../store/cart'
 import {fetchOrder} from '../store/orders'
-import {Card} from 'react-bootstrap'
+import {Card, Dropdown} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {stars} from './AllProducts'
 import {addToCart} from '../store/cart'
+
 /**
  * COMPONENT
  */
@@ -35,11 +36,14 @@ class Cart extends Component {
   }
 
   handleChange(event) {
-    this.props.changeQuant(
-      this.props.user.id,
-      event.target.name,
-      event.target.value
-    )
+    // if empty/null, dont do this
+    if (!isNaN(parseInt(event.target.value))) {
+      this.props.changeQuantityInCart(
+        this.props.user.id,
+        event.target.name,
+        event.target.value
+      )
+    }
   }
 
   deleteFromLocalCart(product) {
@@ -100,7 +104,9 @@ class Cart extends Component {
                   <input
                     type="number"
                     id="number"
-                    value={product['Order-Products'].numberOfItems}
+                    defaultValue={product['Order-Products'].numberOfItems}
+                    min="0"
+                    max="200"
                     name={product.id}
                     onChange={this.handleChange}
                   />
@@ -156,6 +162,15 @@ class Cart extends Component {
                 >
                   Delete From Cart
                 </button>
+                {/* <input
+                  type="number"
+                  id="number"
+                  defaultValue="1"
+                  min="0"
+                  max="200"
+                  name={product.id}
+                  onChange={this.handleChange}
+                /> */}
               </Card>
             </div>
           ))}
@@ -178,7 +193,7 @@ const mapDispatchToProps = dispatch => ({
   fetchCart: userId => {
     dispatch(fetchCart(userId))
   },
-  changeQuant: (userId, productId, amount) => {
+  changeQuantityInCart: (userId, productId, amount) => {
     dispatch(changeQuantityInCart(userId, productId, amount))
   },
   removeItem: (userId, productId) => {

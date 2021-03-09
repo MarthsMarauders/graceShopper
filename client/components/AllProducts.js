@@ -94,7 +94,15 @@ class AllProducts extends Component {
                   <div> Description: {product.description}</div>
                 </div>
                 <div>Rating: {stars(product.rating)}</div>
-
+                <input
+                  type="number"
+                  id="number"
+                  defaultValue="1"
+                  min="0"
+                  max="200"
+                  name={product.id}
+                  onChange={this.handleChange}
+                />
                 <button
                   className="add-to-cart"
                   type="button"
