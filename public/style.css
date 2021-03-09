@@ -137,13 +137,14 @@ button[type='submit'] {
 .order-item-div {
   text-align: center;
   border: 1px solid #ddd;
-  background-color: tan;
+  background-color: lightgrey;
   margin: 20px;
   padding: 15px;
 }
 .edit-product-div {
   display: flex;
   flex-direction: row;
+  justify-content: space-evenly;
 }
 /* .edit-product-img {
   text-align: center;

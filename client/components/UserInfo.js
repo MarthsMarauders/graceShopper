@@ -11,7 +11,6 @@ class UserInfo extends React.Component {
 
   render() {
     const {users} = this.props
-    console.log('THIS IS USERS--->', users)
     return users ? (
       <div className="user-div">
         <h1 className="all-users-h1">ALL USERS</h1>
