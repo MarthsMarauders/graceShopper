@@ -76,13 +76,16 @@ class Cart extends Component {
           <h1>
             You have {findNumberOfItems(arrayOfInCartItems)} items in your cart!
           </h1>
-          <button
-            className="checkout_buy"
-            type="button"
-            onClick={() => this.props.checkout(this.props.user.id)}
-          >
-            <h1> Buy Now </h1>
-          </button>
+          <Link to="/confirmation">
+            <button
+              className="checkout_buy"
+              type="button"
+              onClick={() => this.props.checkout(this.props.user.id)}
+            >
+              <h1> Buy Now </h1>
+            </button>
+          </Link>
+
           <div className="products-div">
             {arrayOfInCartItems.map(product => (
               <div key={product.id}>
