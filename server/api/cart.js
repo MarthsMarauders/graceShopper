@@ -81,13 +81,6 @@ router.post('/user-cart/:userId/product/:productId', async (req, res, next) => {
     // need to add the product to the order
     await order.addProducts(product)
     // need to find the order with the new order attached to it
-    order = await Order.findOne({
-      where: {
-        completed: false,
-        userId: user.id
-      },
-      include: {model: Product}
-    })
     // set the product on the order using the through table or increment it
     // const doesProdExist = await order.hasProduct(product)
     // if (doesProdExist) {
@@ -97,9 +90,15 @@ router.post('/user-cart/:userId/product/:productId', async (req, res, next) => {
         productId: product.id
       }
     })
+    // console.log(rowInThroughTable, 'ROW IN THE THROUGH TABLE')
     // increment the number of items and input the price
     // rowInThroughTable.numberOfItems++
+    console.log(rowInThroughTable.price, 'Row WE GOT!!!!')
     rowInThroughTable.price = product.price
+    console.log(rowInThroughTable.price, 'Row WE GOT AFTER!!!!')
+    // rowInThroughTable.price = product.price
+
+    // console.log(rowInThroughTable, 'ROW IN THE THROUGH TABLE AFTER')
     await rowInThroughTable.save()
     // }
     // find all of the rows associated with the order to calculate the price
@@ -114,6 +113,13 @@ router.post('/user-cart/:userId/product/:productId', async (req, res, next) => {
       totalCost += row.price * row.numberOfItems
     })
     //
+    order = await Order.findOne({
+      where: {
+        completed: false,
+        userId: user.id
+      },
+      include: {model: Product}
+    })
     order.totalPrice = totalCost
     await order.save()
     //
