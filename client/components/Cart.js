@@ -69,6 +69,7 @@ class Cart extends Component {
       })
       localStorage.clear()
       let arrayOfInCartItems = this.props.cart.products
+      console.log(guestCart, 'ARRAY OF CART ITEMS')
       return (
         <div>
           <h1>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</h1>
@@ -82,7 +83,6 @@ class Cart extends Component {
           >
             <h1> Buy Now </h1>
           </button>
-
           <div className="products-div">
             {arrayOfInCartItems.map(product => (
               <div key={product.id}>
@@ -229,6 +229,14 @@ function totalPrice(productsArr) {
   let total = 0
   productsArr.forEach(prod => {
     total += prod['Order-Products'].numberOfItems * prod['Order-Products'].price
+  })
+  return total
+}
+
+function totalPriceForMergedCart(productsArr) {
+  let total = 0
+  productsArr.forEach(prod => {
+    total += prod.price
   })
   return total
 }

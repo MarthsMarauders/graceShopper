@@ -246,17 +246,3 @@ export function stars(rating) {
   }
   return html
 }
-
-/**
- * PROP TYPES
- */
-// UserHome.propTypes = {
-//   email: PropTypes.string
-// }
-
-// <div key={product.id}>
-//   <img src={product.imageUrl}></img>
-//   <p> Name: {product.name} </p>
-//   <p> Price: ${product.price} </p>
-//   <p> rating: {product.rating} </p>
-// </div>

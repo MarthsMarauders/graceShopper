@@ -61,6 +61,7 @@ export const addToCart = (userId, productId, amount) => {
         `/api/cart/user-cart/${userId}/product/${productId}/amount/${amount}`
       )
       dispatch(_addToCart(data))
+      // history.push('/cart')
     } catch (error) {
       console.log(error, 'addToCart action failed')
     }
