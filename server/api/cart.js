@@ -63,65 +63,79 @@ router.get('/user-cart/:userId', async (req, res, next) => {
 })
 // 'Add to cart' button
 // This post route will create rows in the through table and return the products added to the order number.
-router.post('/user-cart/:userId/product/:productId', async (req, res, next) => {
-  try {
-    // Find the User
-    const user = await User.findByPk(req.params.userId)
-    // Find the Product
-    const product = await Product.findByPk(req.params.productId)
-    // // Find (or create) the Order & include the products
-    let order = await Order.findOne({
-      where: {
-        completed: false,
-        userId: user.id
-      },
-      include: {model: Product}
-    })
-    // order = order[0]
-    // need to add the product to the order
-    await order.addProducts(product)
-    // need to find the order with the new order attached to it
-    order = await Order.findOne({
-      where: {
-        completed: false,
-        userId: user.id
-      },
-      include: {model: Product}
-    })
-    // set the product on the order using the through table or increment it
-    // const doesProdExist = await order.hasProduct(product)
-    // if (doesProdExist) {
-    const rowInThroughTable = await OrderProducts.findOne({
-      where: {
-        orderId: order.id,
-        productId: product.id
-      }
-    })
-    // increment the number of items and input the price
-    // rowInThroughTable.numberOfItems++
-    rowInThroughTable.price = product.price
-    await rowInThroughTable.save()
-    // }
-    // find all of the rows associated with the order to calculate the price
-    const allRowsInThrough = await OrderProducts.findAll({
-      where: {
-        orderId: order.id
-      }
-    })
-    // finds the price and sets it on the order
-    let totalCost = 0
-    allRowsInThrough.forEach(row => {
-      totalCost += row.price * row.numberOfItems
-    })
-    //
-    order.totalPrice = totalCost
-    await order.save()
-    //
-    res.json(order)
-  } catch (error) {
-    next(error)
+router.post(
+  '/user-cart/:userId/product/:productId/amount/:amount',
+  async (req, res, next) => {
+    try {
+      let amount = parseInt(req.params.amount)
+      // Find the User
+      const user = await User.findByPk(req.params.userId)
+      // Find the Product
+      const product = await Product.findByPk(req.params.productId)
+      // // Find (or create) the Order & include the products
+      let order = await Order.findOne({
+        where: {
+          completed: false,
+          userId: user.id
+        },
+        include: {model: Product}
+      })
+      // order = order[0]
+
+      // need to add the product to the order
+      await order.addProducts(product)
+
+      // need to find the order with the new order attached to it
+      order = await Order.findOne({
+        where: {
+          completed: false,
+          userId: user.id
+        },
+        include: {model: Product}
+      })
+      // set the product on the order using the through table or increment it
+      // const doesProdExist = await order.hasProduct(product)
+      // if (doesProdExist) {
+      const rowInThroughTable = await OrderProducts.findOne({
+        where: {
+          orderId: order.id,
+          productId: product.id
+        }
+      })
+      // increment the number of items and input the price
+      rowInThroughTable.numberOfItems = amount
+      rowInThroughTable.price = product.price
+      await rowInThroughTable.save()
+
+      // }
+      // find all of the rows associated with the order to calculate the price
+      const allRowsInThrough = await OrderProducts.findAll({
+        where: {
+          orderId: order.id
+        }
+      })
+      // finds the price and sets it on the order
+      let totalCost = 0
+      allRowsInThrough.forEach(row => {
+        totalCost += row.price * row.numberOfItems
+      })
+      //
+      order.totalPrice = totalCost
+      await order.save()
+
+      order = await Order.findOne({
+        where: {
+          completed: false,
+          userId: user.id
+        },
+        include: {model: Product}
+      })
+      res.json(order)
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
 
 // This will become the 'update quantity' route for the cart
 // We should use a dropdown form that submits an integer in /:amount

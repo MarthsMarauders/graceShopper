@@ -51,11 +51,14 @@ export const fetchCart = userId => {
 }
 // "adding" to the cart should be a post route because a row in the association table is being created
 
-export const addToCart = (userId, productId) => {
+export const addToCart = (userId, productId, amount) => {
   return async dispatch => {
     try {
+      if (amount > 200) {
+        amount = 200
+      }
       const {data} = await axios.post(
-        `/api/cart/user-cart/${userId}/product/${productId}`
+        `/api/cart/user-cart/${userId}/product/${productId}/amount/${amount}`
       )
       dispatch(_addToCart(data))
       // history.push('/cart')
@@ -79,6 +82,10 @@ export const removeFromCart = (userId, productId) => {
 export const changeQuantityInCart = (userId, productId, amount) => {
   return async dispatch => {
     try {
+      if (amount > 200) {
+        amount = 200
+      }
+
       const {data} = await axios.put(
         `/api/cart/user-cart/${userId}/product/${productId}/amount/${amount}`
       )

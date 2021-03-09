@@ -11,6 +11,7 @@ import {fetchOrder} from '../store/orders'
 import {Card} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import {stars} from './AllProducts'
+
 /**
  * COMPONENT
  */
@@ -32,14 +33,26 @@ class Cart extends Component {
     if (this.props.cart.id !== prevProps.cart.id) {
       this.props.fetchCart(this.props.user.id)
     }
+
+    // if (this.props.cart.products && this.props.cart.products.length) {
+    //   if (
+    //     findNumberOfItems(this.props.cart.products) !==
+    //     findNumberOfItems(prevProps.cart.products)
+    //   ) {
+    //     this.props.fetchCart(this.props.user.id)
+    //   }
+    // }
   }
 
   handleChange(event) {
-    this.props.changeQuant(
-      this.props.user.id,
-      event.target.name,
-      event.target.value
-    )
+    // if empty/null, dont do this
+    if (!isNaN(parseInt(event.target.value))) {
+      this.props.changeQuantityInCart(
+        this.props.user.id,
+        event.target.name,
+        event.target.value
+      )
+    }
   }
 
   deleteFromLocalCart(product) {
@@ -52,10 +65,11 @@ class Cart extends Component {
     if (this.props.user.id && this.props.cart.products) {
       const {user} = this.props
       guestCart.forEach(prod => {
-        this.props.addToCart(user.id, prod.id)
+        this.props.addToCart(user.id, prod.id, 1)
       })
       localStorage.clear()
       let arrayOfInCartItems = this.props.cart.products
+      console.log(guestCart, 'ARRAY OF CART ITEMS')
       return (
         <div>
           <h1>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</h1>
@@ -102,7 +116,9 @@ class Cart extends Component {
                   <input
                     type="number"
                     id="number"
-                    value={product['Order-Products'].numberOfItems}
+                    defaultValue={product['Order-Products'].numberOfItems}
+                    min="0"
+                    max="200"
                     name={product.id}
                     onChange={this.handleChange}
                   />
@@ -158,6 +174,15 @@ class Cart extends Component {
                 >
                   Delete From Cart
                 </button>
+                {/* <input
+                  type="number"
+                  id="number"
+                  defaultValue="1"
+                  min="0"
+                  max="200"
+                  name={product.id}
+                  onChange={this.handleChange}
+                /> */}
               </Card>
             </div>
           ))}
@@ -180,13 +205,14 @@ const mapDispatchToProps = dispatch => ({
   fetchCart: userId => {
     dispatch(fetchCart(userId))
   },
-  changeQuant: (userId, productId, amount) => {
+  changeQuantityInCart: (userId, productId, amount) => {
     dispatch(changeQuantityInCart(userId, productId, amount))
   },
   removeItem: (userId, productId) => {
     dispatch(removeFromCart(userId, productId))
   },
-  addToCart: (userId, productId) => dispatch(addToCart(userId, productId)),
+  addToCart: (userId, productId, amount) =>
+    dispatch(addToCart(userId, productId, amount)),
   checkout: userId => {
     dispatch(checkout(userId))
   }
@@ -210,12 +236,27 @@ function totalPrice(productsArr) {
   return total
 }
 
+function totalPriceForMergedCart(productsArr) {
+  let total = 0
+  productsArr.forEach(prod => {
+    total += prod.price
+  })
+  return total
+}
+
 function getGuestItems(productsObj) {
   let guestCart = []
   Object.keys(productsObj).forEach(function(key) {
     guestCart.push(JSON.parse(productsObj.getItem(key)))
   })
   return guestCart
+}
+
+function makeMax(num) {
+  if (num > 200) {
+    num = 200
+  }
+  return num
 }
 
 // function deleteFromLocalCart(product) {
