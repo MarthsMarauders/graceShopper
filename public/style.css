@@ -166,3 +166,16 @@ ul li {
 .all-users-h1 {
   text-align: center;
 }
+
+.admin-links {
+  color: blue;
+}
+
+.admin-links {
+  color: blue;
+}
+
+.admin-links-hidden {
+  cursor: not-allowed;
+  display: none;
+}

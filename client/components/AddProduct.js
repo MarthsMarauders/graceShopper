@@ -122,8 +122,15 @@ class AddProduct extends Component {
             value={rating}
           />
 
-          {/* <label htmlFor="image">Image:</label>
-        <input name="image" onChange={handleChange} value={image} /> */}
+          <label className="admin-label" htmlFor="image">
+            Image:
+          </label>
+          <input
+            type="text"
+            name="image"
+            onChange={handleChange}
+            value={image}
+          />
 
           <button type="submit">Submit</button>
           <Link to="/products">Cancel</Link>

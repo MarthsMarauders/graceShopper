@@ -19,7 +19,7 @@ class UserInfo extends React.Component {
             <ul>
               <li>UserId: {user.id}</li>
               <li>UserEmail: {user.email}</li>
-              <li>Admin: {user.isAdmin ? 'Admin' : 'NotAdmin'}</li>
+              <li>Admin: {user.isAdmin ? 'Admin' : 'Not Admin'}</li>
             </ul>
           </div>
         ))}
