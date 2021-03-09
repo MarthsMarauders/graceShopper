@@ -14,12 +14,14 @@ class UserHome extends Component {
   }
   render() {
     const {email, isAdmin} = this.props
-    const {user} = this.props
     return (
-      <div>
-        <h3>
+      <div className="jumbotron">
+        <h1 className="display-4">
           Welcome, {email} / {isAdmin ? 'Admin' : 'Buyer'}
-        </h3>
+        </h1>
+        <p className="lead"></p>
+        <p></p>
+        <Link to="/products">View Products</Link>
       </div>
     )
   }
