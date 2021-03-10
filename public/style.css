@@ -80,7 +80,6 @@ form div {
 }
 
 .product-button-visable {
-  background-color: aqua;
   border-radius: 15px;
 }
 .cart-div {
@@ -237,4 +236,37 @@ small {
 }
 .all-orders-h1 {
   text-align: center;
+}
+
+.landing-page {
+  background-color: #d50000;
+  background-image: repeating-linear-gradient(
+      45deg,
+      white,
+      rgba(0, 0, 0, 0.8) 100px,
+      transparent 0px,
+      transparent 200px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      blue,
+      white 100px,
+      transparent 0px,
+      transparent 200px
+    );
+}
+.brand-name-h1 {
+  text-align: center;
+  margin: 0 auto;
+  background-color: white;
+  width: 50%;
+  font-family: 'Indie Flower', cursive;
+  justify-content: center;
+}
+.brand-name {
+  color: red;
+  font-size: 4.5rem;
+}
+.brand-p {
+  font-size: 1.9rem;
 }
