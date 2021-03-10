@@ -71,14 +71,22 @@ class Cart extends Component {
       let arrayOfInCartItems = this.props.cart.products
       console.log(guestCart, 'ARRAY OF CART ITEMS')
       return (
-        <div>
-          <h1>Cart's Total Cost: ${totalPrice(arrayOfInCartItems) / 100}</h1>
-          <h1>
-            You have {findNumberOfItems(arrayOfInCartItems)} items in your cart!
-          </h1>
+        <div className="cart-comp">
+          <div className="cart-header-background">
+            <h1>
+              Cart's Total Cost:{' '}
+              <span className="price">
+                ${totalPrice(arrayOfInCartItems) / 100}
+              </span>
+            </h1>
+            <h1>
+              You have {findNumberOfItems(arrayOfInCartItems)} items in your
+              cart!
+            </h1>
+          </div>
           <Link to="/confirmation">
             <button
-              className="checkout_buy"
+              className="btn btn-success"
               type="button"
               onClick={() => this.props.checkout(this.props.user.id)}
             >

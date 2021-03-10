@@ -1,76 +1,61 @@
 body {
   font-family: sans-serif;
 }
-
 a {
   text-decoration: none;
 }
-
 label {
   display: block;
 }
-
 nav a {
   display: inline-block;
   margin: 1em;
 }
-
 form div {
   margin: 1em;
   display: inline-block;
 }
-
 .products-div {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
-
 .checked {
   color: gold;
 }
-
 #unchecked {
   color: gray;
 }
-
 .products-container {
   width: 95vw;
   height: 95vh;
 }
-
 #card {
   border-radius: 15px;
 }
-
 #prod-img {
   border-radius: 15px;
 }
-
 .add-to-cart {
   border-radius: 15px;
 }
-
 .add-to-cart:hover {
   background-color: darkgrey;
   color: white;
 }
-
 #page-numbers {
   display: flex;
   justify-content: center;
 }
-
 .pages {
+  color: white;
   display: flex;
   justify-content: center;
   flex-direction: column;
 }
-
 .numbers {
   padding: 5px;
 }
-
 .number {
   cursor: pointer;
 }
@@ -78,7 +63,6 @@ form div {
   cursor: not-allowed;
   display: none;
 }
-
 .product-button-visable {
   border-radius: 15px;
 }
@@ -102,6 +86,8 @@ form div {
   justify-content: space-evenly;
 }
 .admin-form {
+  color: white;
+  font: bold;
   margin: 0 auto;
   text-align: center;
   width: 550px;
@@ -119,10 +105,10 @@ input[type='text'] {
   font-size: 25px;
 }
 .add-product-h1 {
+  color: white;
   text-align: center;
   margin-bottom: 25px;
 }
-
 button[type='submit'] {
   width: 100%;
   background-color: lightgreen;
@@ -140,38 +126,20 @@ button[type='submit'] {
 }
 .edit-product-div {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-evenly;
 }
-/* .edit-product-img {
-  text-align: center;
-} */
-
 ul {
   list-style-type: none;
   width: 75%;
   padding: 0;
   margin: 0 auto;
 }
-
 ul li {
   border: 1px solid #ddd;
   margin-top: -1px;
   background-color: #f6f6f6;
   padding: 18px;
-}
-.all-users-h1 {
-  text-align: center;
-}
-
-.admin-links {
-  color: blue;
-}
-
-.admin-links-hidden {
-  cursor: not-allowed;
-  display: none;
-  color: #000;
 }
 .login-div {
   display: flex;
@@ -215,7 +183,6 @@ small {
   font-size: 2em;
   left: 2.3em;
 }
-
 .loginSubmit {
   position: relative;
   margin-top: 30px;
@@ -228,17 +195,35 @@ small {
   border-radius: 3px;
   cursor: pointer;
 }
-
 .jumbotron {
   text-align: center;
-}
-.list-group {
+  color: black;
+  width: 70%;
+  margin: 0 auto;
 }
 .all-orders-h1 {
+  color: white;
   text-align: center;
 }
-
 .landing-page {
+  background-image: url('https://www.tokkoro.com/picsup/5665023-hot-wheels-wallpapers.jpg');
+}
+.brand-name-h1 {
+  text-align: center;
+  margin: 0 auto;
+  background-color: white;
+  width: 50%;
+  font-family: 'Indie Flower', cursive;
+  justify-content: center;
+}
+.brand-name {
+  color: orange;
+  font-size: 4.5rem;
+}
+.brand-p {
+  font-size: 1.9rem;
+}
+.user-div {
   background-color: #d50000;
   background-image: repeating-linear-gradient(
       45deg,
@@ -255,18 +240,27 @@ small {
       transparent 200px
     );
 }
-.brand-name-h1 {
+.cart-comp {
+  color: black;
   text-align: center;
+  background-image: url('https://www.tokkoro.com/picsup/5665023-hot-wheels-wallpapers.jpg');
+}
+.cart-header-background {
   margin: 0 auto;
-  background-color: white;
   width: 50%;
-  font-family: 'Indie Flower', cursive;
-  justify-content: center;
+  background-color: white;
 }
-.brand-name {
-  color: red;
-  font-size: 4.5rem;
+.price {
+  color: green;
 }
-.brand-p {
-  font-size: 1.9rem;
+.card {
+  margin: 0 auto;
+}
+body {
+  background-image: url('https://www.tokkoro.com/picsup/5665023-hot-wheels-wallpapers.jpg');
+  background-size: cover;
+}
+.google-signin {
+  color: white;
+  font-size: 32px;
 }

@@ -10,29 +10,33 @@ const AuthForm = props => {
   const {name, displayName, handleSubmit, error} = props
 
   return (
-    <div className="login-div">
-      <form className="login-form" onSubmit={handleSubmit} name={name}>
-        <header> Login </header>
-        <div>
-          <label className="login-label" htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input className="login-input" name="email" />
-        </div>
-        <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input className="login-input" name="password" type="password" />
-        </div>
-        <div>
-          <button className="loginSubmit" type="submit">
-            {displayName}
-          </button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+    <div className="login-background">
+      <div className="login-div">
+        <form className="login-form" onSubmit={handleSubmit} name={name}>
+          <header> Login </header>
+          <div>
+            <label className="login-label" htmlFor="email">
+              <small>Email</small>
+            </label>
+            <input className="login-input" name="email" />
+          </div>
+          <div>
+            <label htmlFor="password">
+              <small>Password</small>
+            </label>
+            <input className="login-input" name="password" type="password" />
+          </div>
+          <div>
+            <button className="loginSubmit" type="submit">
+              {displayName}
+            </button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+        <a className="google-signin" href="/auth/google">
+          {displayName} with Google
+        </a>
+      </div>
     </div>
   )
 }

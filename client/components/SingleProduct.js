@@ -40,7 +40,7 @@ class SingleProduct extends Component {
           <Card.Img variant="top" src={product.imageUrl} />
           <Card.Body>
             <Card.Title>{product.name}</Card.Title>
-            <Card.Text>Price: {product.price}</Card.Text>
+            <Card.Text>Price: ${product.price / 100}</Card.Text>
             <Card.Text> Description: {product.description}</Card.Text>
             <Card.Text>Rating: {stars(product.rating)}</Card.Text>
             <input
