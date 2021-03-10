@@ -1,9 +1,10 @@
 const router = require('express').Router()
 const {OrderProducts, Order, User, Product} = require('../db/models')
+const adminCheck = require('../adminCheck')
 
 module.exports = router
 
-router.get('/', async (req, res, next) => {
+router.get('/', adminCheck, async (req, res, next) => {
   try {
     const orders = await OrderProducts.findAll()
     res.json(orders)
@@ -13,7 +14,7 @@ router.get('/', async (req, res, next) => {
 })
 
 // gets the cart for a user making sure complete is false
-router.get('/user-cart/:userId', async (req, res, next) => {
+router.get('/user-cart/:userId', adminCheck, async (req, res, next) => {
   try {
     // Find the exsisting order or create it
     const cart = await Order.findOrCreate({
@@ -65,6 +66,7 @@ router.get('/user-cart/:userId', async (req, res, next) => {
 // This post route will create rows in the through table and return the products added to the order number.
 router.post(
   '/user-cart/:userId/product/:productId/amount/:amount',
+  adminCheck,
   async (req, res, next) => {
     try {
       let amount = parseInt(req.params.amount)
@@ -141,6 +143,7 @@ router.post(
 // We should use a dropdown form that submits an integer in /:amount
 router.put(
   '/user-cart/:userId/product/:productId/amount/:amount',
+  adminCheck,
   async (req, res, next) => {
     try {
       // make number
@@ -185,6 +188,7 @@ router.put(
 // deletes a product from the through table aka cart
 router.delete(
   '/user-cart/:userId/product/:productId',
+  adminCheck,
   async (req, res, next) => {
     try {
       // finds the order
@@ -224,7 +228,7 @@ router.delete(
 
 // 'Checkout' button
 // This post route will comeplete an order and add a new one.
-router.post('/checkout/:userId', async (req, res, next) => {
+router.post('/checkout/:userId', adminCheck, async (req, res, next) => {
   try {
     let userId = parseInt(req.params.userId)
     // Find the User
