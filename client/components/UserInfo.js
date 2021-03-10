@@ -13,7 +13,6 @@ class UserInfo extends React.Component {
     const {users} = this.props
     return users ? (
       <div className="user-div">
-        <h1 className="all-users-h1">ALL USERS</h1>
         {users.map(user => (
           <div key={user.id}>
             <ul className="list-group">

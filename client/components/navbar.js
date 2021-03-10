@@ -6,19 +6,11 @@ import {logout} from '../store'
 import {me} from '../store/user'
 
 class Navbar extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isAdmin: this.props.user.isAdmin
-    }
-  }
-
   componentDidMount() {
     this.props.fetchUser()
   }
   render() {
     const {handleClick, isLoggedIn} = this.props
-    console.log(this.props.user.isAdmin)
     return (
       <div>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -31,17 +23,6 @@ class Navbar extends React.Component {
               <Link to="/home">Home</Link>
               <Link to="/products">All Products</Link>
               <Link to="/cart">My Cart</Link>
-              <Link className="admin-links" to="/users">
-                All Users
-              </Link>
-              <a
-                href="/orders"
-                className={
-                  this.state.isAdmin ? 'admin-links-hidden' : 'admin-links'
-                }
-              >
-                All Orders
-              </a>
               <a href="#" onClick={handleClick}>
                 Logout
               </a>

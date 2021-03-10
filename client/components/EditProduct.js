@@ -77,7 +77,7 @@ class EditProduct extends Component {
     const {handleSubmit, handleChange} = this
     return (
       <div key={product.id} className="edit-product-div">
-        <Card style={{width: '18rem'}} border="primary">
+        <Card style={{width: '35rem'}} border="primary">
           <Card.Img
             className="edit-product-img"
             variant="top"

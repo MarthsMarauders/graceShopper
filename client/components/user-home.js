@@ -14,16 +14,39 @@ class UserHome extends Component {
   }
   render() {
     const {email, isAdmin} = this.props
-    return (
-      <div className="jumbotron">
-        <h1 className="display-4">
-          Welcome, {email} / {isAdmin ? 'Admin' : 'Buyer'}
-        </h1>
-        <p className="lead"></p>
-        <p></p>
-        <Link to="/products">View Products</Link>
-      </div>
-    )
+    if (isAdmin) {
+      return (
+        <div className="jumbotron">
+          <h1 className="display-4">
+            Welcome, {email} / {isAdmin ? 'Admin' : 'Buyer'}
+          </h1>
+          <p className="lead"></p>
+          <div>
+            <Link to="/products">View Products</Link>
+          </div>
+          <div className="admin-rights">
+            <h3>Admin Rights</h3>
+            <div>
+              <Link to="/users">View Users</Link>
+            </div>
+            <div>
+              <Link to="/orders">View Orders</Link>
+            </div>
+          </div>
+        </div>
+      )
+    } else {
+      return (
+        <div className="jumbotron">
+          <h1 className="display-4">
+            Welcome, {email} / {isAdmin ? 'Admin' : 'Buyer'}
+          </h1>
+          <p className="lead"></p>
+          <p></p>
+          <Link to="/products">View Products</Link>
+        </div>
+      )
+    }
   }
 }
 
