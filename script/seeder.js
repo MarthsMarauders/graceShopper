@@ -1,38 +1,26 @@
-// The below scripts were used to scrape data from the hotwheels wiki
-// DO NOT DELETE
-// every 11th element  document.querySelectorAll('td')[1].lastElementChild.childNodes[0]; - name
-// document.querySelectorAll('td')[10].lastElementChild.childNodes[0].src; - imageUrl
-// obj with a name prop and it will contain first thing and imageUrl obj for second thing
+// The below scripts were used to scrape data from the hotwheels fanwiki
 
-// function f() {
-//   let a = document.querySelectorAll('tr')[1].children[1].innerText
-//   let imageUrl = document.querySelectorAll('tr')[1].lastElementChild.childNodes[0]
-//     .href
-// }
-
-// for 1993!!
-// Array.from(document.querySelectorAll('tr')).map(row => {
-//   let obj = {}
-//   try {
-//     obj.name = row.children[1].innerText
-//     obj.imageUrl = row.lastElementChild.childNodes[0].href
-//     return obj
-//   } catch (error) {
-//     console.log(error)
-//   }
-// })
-// // FOR 1995!!!
-// Array.from(document.querySelectorAll('tr')).map(row => {
-//   const obj = {}
-//   try {
-//     obj.name = row.children[2].innerText
-//     obj.imageUrl = row.lastElementChild.childNodes[0].href.slice(0, -34)
-//     obj.price = Math.round(Math.random() * 10000)
-//     return obj
-//   } catch (error) {
-//     console.log(error)
-//   }
-// })
+// This is the function to copy grab the names, images, and generate a price from different years in the HotWheels fanwiki website
+// The only thing that should ever change in is the index spot of the name in the row depending on which year of cars you are looking at. For example in 1995 the name is in the 3rd spot in the row (index 2). For year 1993 the name is in the 2nd spot in the row (index 1). So you would change the index in the obj.name declaration depending on the location of the name.
+// If you would like to try out this function (It's cool!) go to https://hotwheels.fandom.com/wiki/List_of_1995_Hot_Wheels and open up the console either by inspecing the page or alt + command + j on a Mac. Paste the function and click enter. Then call the function "copyDataFromFanWiki()" and then paste in the console. You will see the names and the image Url's of each car on the page.
+// This was used to create dummy data for a project we worked on. There are more functions to create dummy data after all of the data I put into this file lower down on the page.
+function copyDataFromFanWiki() {
+  return copy(
+    Array.from(document.querySelectorAll('tr'))
+      .map(row => {
+        const obj = {}
+        if (row.children[2]) {
+          obj.name = row.children[2].innerText
+        }
+        if (row.lastElementChild.childNodes[0].href) {
+          obj.imageUrl = row.lastElementChild.childNodes[0].href.slice(0, -34)
+        }
+        obj.price = Math.round(Math.random() * 10000)
+        return obj
+      })
+      .filter(obj => obj.imageUrl !== undefined)
+  )
+}
 
 const cars96 = [
   {
@@ -2109,16 +2097,16 @@ const places = [
   'Wizard Village'
 ]
 
+// array of users we will be filling below
 const finalArrayOfUsers = []
+
+// this a function to create user info by using the arrays above
 function usersCreator(givenNames) {
-  // const universityLength = universities.length
   givenNames.forEach(name => {
     let addObj = {}
+    // each name we split where there's a space
     let wordCount = name.split(' ')
-    if (wordCount.length === 1) {
-      addObj.firstName = wordCount[0]
-      addObj.lastName = wordCount[0]
-    }
+    // creates first and last name
     if (wordCount.length > 1) {
       addObj.firstName = wordCount.shift()
       if (wordCount.length > 1) {
@@ -2127,25 +2115,25 @@ function usersCreator(givenNames) {
         addObj.lastName = wordCount.join('')
       }
     }
-    // addObj.email =
-    //   addObj.firstName.replace(/['\(\):\/\-/.]/, '') +
-    //   addObj.lastName.replace(/['\(\):\/\-/.]/, '') +
-    //   '@gmail.com'
+    // creates ab email using their name
     addObj.email =
       addObj.firstName.replace(/['\(\):\/\-/.]/, '') +
       addObj.lastName.replace(/['\(\):\/\-/.]/, '') +
       213 +
       '@gmail.com'
+    // creates a random address
     addObj.address =
       Math.round(Math.random() * 1000).toString() +
       ' ' +
       places[Math.round(Math.random() * places.length)]
+    // creates a password
     addObj.password = '123'
     finalArrayOfUsers.push(addObj)
   })
 }
 
 function createRating() {
+  // creates a random rating between 1-5 and -1. -1 means there are no ratings on the front end
   let rating = Math.floor(Math.random() * 6)
   if (rating === 0) {
     rating = -1
@@ -2153,24 +2141,33 @@ function createRating() {
   return rating
 }
 
+// this will be filled by the function below
 const finalArrayOfCars = []
+// this creates additional information with the array of car data we copied from the website
 function carCreator(carArray) {
   const descriptionLength = descriptionWords.length - 1
   carArray.forEach(singleCar => {
+    // creates a description using two words from the description words array
     singleCar.description =
       descriptionWords[Math.round(Math.random() * descriptionLength)] +
       ' ' +
       descriptionWords[Math.round(Math.random() * descriptionLength)]
+    // creates a random price
     singleCar.price = Math.round(Math.random() * 10000)
+    // uses the create rating function
     singleCar.rating = createRating()
+    //makes price a string and adds 99 to it
     singleCar.price =
       singleCar.price.toString()[0] + singleCar.price.toString()[1] + '99'
+    // turns the price into an integer
     singleCar.price = parseInt(singleCar.price)
     finalArrayOfCars.push(singleCar)
   })
 }
 
+// this function is being used in the seed file. Feel free to look at the seed file to see how this data is being used to populate the database.
 function seeder() {
+  // this is where the functions are being called on the data
   carCreator(cars96)
   usersCreator(names)
   return {cars: finalArrayOfCars, users: finalArrayOfUsers}
