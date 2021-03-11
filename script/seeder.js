@@ -7,7 +7,7 @@
 // --------------------------------------------------------------
 //The only thing that should ever change is the index spot of the name in the row depending on which year of cars you are looking at. For example in 1995 the name is in the 3rd spot in the row (index 2). For year 1993 the name is in the 2nd spot in the row (index 1). So you would change the index in the obj.name declaration depending on the location of the name.
 // --------------------------------------------------------------
-// This was used to create dummy data for a project we worked on. There are more functions to create dummy data after all of the data that I needed to put after the data is defined. The next functions start at line 2100.
+// This was used to create dummy data for a project we worked on. There are more functions to create dummy data after all of the data that I needed to put after the data is defined. The next functions start around line 2100.
 function copyDataFromFanWiki() {
   return copy(
     Array.from(document.querySelectorAll('tr'))
