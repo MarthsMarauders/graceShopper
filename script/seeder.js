@@ -1,11 +1,11 @@
 // Comments from Evan Fisher
 // The below scripts were used to scrape data from the hotwheels fanwiki
 // --------------------------------------------------------------
-// This is the function to copy grab the names, images, and generate a price from different years in the HotWheels fanwiki website.
+// This is the function to grab the names, images, and generate a price from different years in the HotWheels fanwiki website.
 // --------------------------------------------------------------
 // If you would like to try out this function (It's cool!) go to https://hotwheels.fandom.com/wiki/List_of_1995_Hot_Wheels and open up the console either by inspecing the page or alt + command + j on a Mac. Paste the function and click enter. Then call the function by typing "copyDataFromFanWiki()" and entering and then paste in the console. You will see the names and the image Url's of each car on the page.
 // --------------------------------------------------------------
-//The only thing that should ever change in is the index spot of the name in the row depending on which year of cars you are looking at. For example in 1995 the name is in the 3rd spot in the row (index 2). For year 1993 the name is in the 2nd spot in the row (index 1). So you would change the index in the obj.name declaration depending on the location of the name.
+//The only thing that should ever change is the index spot of the name in the row depending on which year of cars you are looking at. For example in 1995 the name is in the 3rd spot in the row (index 2). For year 1993 the name is in the 2nd spot in the row (index 1). So you would change the index in the obj.name declaration depending on the location of the name.
 // --------------------------------------------------------------
 // This was used to create dummy data for a project we worked on. There are more functions to create dummy data after all of the data that I needed to put after the data is defined. The next functions start at line 2100.
 function copyDataFromFanWiki() {
